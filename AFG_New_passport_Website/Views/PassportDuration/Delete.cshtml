@@ -1,0 +1,24 @@
+﻿@model AFG_New_passport_Website.Models.Domain.PassportDuration
+
+@{
+	Layout = "_DashboardLayout";
+}
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+<div class="form-container">
+	<div class="card">
+		<h2>@ViewData["Title"]</h2>
+
+		<p class="text-danger">آیا مطمئن هستید که می‌خواهید نوع مدت زمان زیر برای پاسپورت راحذف کنید؟</p>
+
+		<div class="mb-3">
+			<strong>نام:</strong> @Model.Name
+		</div>
+
+		<form asp-action="Delete" method="post">
+			<input type="hidden" asp-for="Id" />
+			<button type="submit" class="btn btn-danger">بله، حذف کن</button>
+			<a asp-action="Index" class="btn btn-secondary">لغو</a>
+		</form>
+
+	</div>
+</div>

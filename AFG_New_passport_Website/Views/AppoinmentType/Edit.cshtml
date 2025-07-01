@@ -1,0 +1,31 @@
+﻿@model AFG_New_passport_Website.Models.Domain.AppoinmentType
+
+@{
+	Layout = "_DashboardLayout"; // استفاده از لی‌اوت داشبورد برای این صفحه
+}
+
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+
+
+@* --------------------------------------------------------------------------- *@
+<body class="light  dark">
+	<div class="form-container enhanced-form w-50">
+		<div class="card shadow">
+		    <h5 class="text-center mb-4"><i class="fas fa-edit text-primary"></i> ویرایش شغل</h5>
+
+			<form asp-action="Edit" method="post">
+				<input type="hidden" asp-for="Id" />
+
+				<div class="form-group mb-3">
+					<label asp-for="Type" class="form-label">نوع درخواست</label>
+					<input asp-for="Type" class="form-control form-control-lg" />
+					<span asp-validation-for="Type" class="text-danger"></span>
+				</div>
+
+				<a asp-action="Index" class="btn btn-secondary mt-3"><i class="fas fa-arrow-right me-2"></i>باز گشت</a>
+				<button type="submit" class="btn btn-success mt-3"><i class="fas fa-check-circle me-2"></i>ذخیره تغیرات</button>
+			</form>
+	   </div>
+	</div>
+</body>
+@* --------------------------------------------------------------------------- *@

@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "_DashboardLayout";
+}
+@model IEnumerable<AFG_New_passport_Website.Models.Domain.BankAccounts>
+
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+
+<body class="light dark">
+    <div class="form-container enhanced-form">
+        <div class="card shadow">
+            <h2 class="text-center">لیست اکونت بانک ها</h2>
+            <hr />
+            <p>
+                <a asp-controller="BankAccounts" asp-action="Create" class="btn btn-primary mb-3">
+                    <i class="fas fa-plus me-2"></i> اضافه کردن اکونت جدید
+                </a>
+            </p>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>شماره حساب</th>
+                        <th>نام ارگان</th>
+                        <th>فیس</th>
+                        <th>شهر پروسس</th>
+                        <th>کد ارگان</th>
+                        <th>کد ولایت</th>
+                        <th>کد واحد</th>
+                        <th>کد عواید</th>
+                        <th>کد عواید کتابچه پاسپورت</th>
+                        <th>حساب تجارتی</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int rowIndex = 0;
+                        string[] bgColors = { "#007bff", "#f8f9fa" }; // آبی و خاکستری روشن (معادل bg-primary و bg-light)
+                        string[] textColors = { "white", "black" };
+                    }
+
+                    @foreach (var item in Model)
+                    {
+                        var colorIndex = (rowIndex / 3) % bgColors.Length;
+                        rowIndex++;
+
+                        <tr>
+                            <td style="background-color:@bgColors[colorIndex]; color:@textColors[colorIndex]">@item.AccountNumber</td>
+                            <td style="background-color:@bgColors[colorIndex]; color:@textColors[colorIndex]">@item.AccountHolder</td>
+                            <td style="background-color:@bgColors[colorIndex]; color:@textColors[colorIndex]">@item.Fee</td>
+                            <td style="background-color:@bgColors[colorIndex]; color:@textColors[colorIndex]">@item.ProcessingCity?.NameLocal</td>
+                            <td style="background-color:@bgColors[colorIndex]; color:@textColors[colorIndex]">@item.OrgCode</td>
+                            <td style="background-color:@bgColors[colorIndex]; color:@textColors[colorIndex]">@item.LocationCode</td>
+                            <td style="background-color:@bgColors[colorIndex]; color:@textColors[colorIndex]">@item.UniteCode</td>
+                            <td style="background-color:@bgColors[colorIndex]; color:@textColors[colorIndex]">@item.PassportRevenueCode</td>
+                            <td style="background-color:@bgColors[colorIndex]; color:@textColors[colorIndex]">@item.PassportBookletRevenueCode</td>
+                            <td style="background-color:@bgColors[colorIndex]; color:@textColors[colorIndex]">@item.CamercialBankAccount</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>

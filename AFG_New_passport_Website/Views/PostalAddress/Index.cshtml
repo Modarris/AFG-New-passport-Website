@@ -1,0 +1,68 @@
+﻿@{
+	Layout = "_DashboardLayout";
+}
+@model IEnumerable<AFG_New_passport_Website.Models.Domain.PostalAddress>
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+
+
+@* --------------------------------------------------------------------------- *@
+<body class="light  dark ">
+	<div class="form-container enhanced-form">
+		<div class="card shadow">
+			<h4 class="text-center mb-4"><i class="fas fa-envelope-open-text me-2"></i> مدیریت پوسته خانه ‌ها</h4>
+			<hr />
+			<p><a href="/PostalAddress/Create" class="btn btn-primary mb-3"><i class="fas fa-plus me-2"></i>اضافه کردن پوسته خانه جدید </a></p>
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr class="text-center">
+						<th>City Id</th>
+						<th>نام شهر</th>
+						<th>Post Address Id</th>
+						<th>نام پوسته خانه</th>
+						<th colspan="2">حالت</th>
+						<th colspan="">عملیات</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>@item.City.Id</td>
+							<td>@item.City.NameLocal</td>
+							<td>@item.Id</td>
+							<td>@item.Name</td>
+							<td>
+								@if (item.IsActive)
+								{
+									<span class="text-success">فعال</span>
+								}
+								else
+								{
+									<span class="text-danger">غیرفعال</span>
+								}
+							</td>
+							<td>
+								<form asp-action="ToggleStatus" asp-route-id="@item.Id" method="post" style="display:inline;">
+									<button type="submit" class="btn @(item.IsActive ? "btn-secondary" : "btn-success") btn-sm me-1">
+										@(item.IsActive ? "غیرفعال کن" : "فعال کن")
+									</button>
+								</form>
+							</td>
+							<td class="d-flex justify-content-between">
+							
+								<a href="/PostalAddress/Edit/@item.Id" class="btn btn-warning btn-sm me-1">
+									<i class="fas fa-edit"></i> ویرایش
+								</a>
+							
+								<a href="/PostalAddress/Delete/@item.Id" class="btn btn-danger btn-sm">
+									حذف
+								</a>
+							</td>
+
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>

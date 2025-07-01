@@ -1,0 +1,150 @@
+﻿    /* ====== ساختار عمومی مشترک ====== */
+    body.light {
+        background-color: #f4f4f4;
+        color: #222222;
+    }
+
+        body.light .card {
+            background-color: #fff;
+        }
+
+    /* حالت دارک */
+    body.dark {
+        background-color: #1f2235;
+        color: #FFDFB4;
+    }
+
+        body.dark .card {
+            background-color: #26293f;
+            color: #FFDFB4;
+        }
+
+        body.dark input,
+        body.dark textarea,
+        body.dark select {
+            background-color: #212436;
+            color: #fff;
+            border-color: #444;
+        }
+
+
+    /* ساختار اصلی فرم */
+    .enhanced-form {
+        max-width: 75%;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    /* کارد */
+        .enhanced-form .card {
+            padding: 40px;
+            background-color: #ffffff;
+            transition: background-color 0.8s ease, color 0.8s ease;
+            transition: border-color 0.5s ease;
+            border-color: #D6A97B;
+        }
+            .enhanced-form .card:hover {
+                border-color: #D6A97B;
+            }
+
+
+
+    /* فرم تاریک */
+    body.dark .enhanced-form .card {
+        background-color: #2C304A;
+        color: #D6A97B;
+    }
+
+    /* برچسب‌ها */
+    .enhanced-form label {
+        font-weight: 600;
+        font-size: 15px;
+        color: #333;
+    }
+
+    body.dark .enhanced-form label {
+        color: #D1D5DB;
+    
+    }
+    /* بتن */
+    body.dark .enhanced-form .submit {
+        color: #1d3c45;
+        background-color: #D1D5DB;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    body.dark .enhanced-form .submit:hover {
+        color: #C8A97F;
+        background-color: #1d3c45;
+        /* transition:0.8s;*/
+    }
+
+    /* تیبل */
+    body.dark .enhanced-form table {
+        border: solid #D6A97B;
+    
+    }
+
+
+        body.dark .enhanced-form table thead th {
+            color: #1d3c45;
+            background-color: #D1D5DB;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            background-color: #212436;
+            color: #D6A97B;
+        }
+        body.dark .enhanced-form table tbody td {
+            background-color: #212436;
+            color: #D1D5DB;
+        }
+
+
+    /* ورودی‌ها */
+    .styled-input {
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        padding: 10px 15px;
+        transition: all 0.3s ease;
+        background-color: #f9f9f9;
+    }
+
+
+    /* دکمه ذخیره */
+    .custom-submit {
+        border-radius: 10px;
+        padding: 10px;
+        font-weight: bold;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+        .custom-submit:hover {
+            background-color: #28a745;
+            box-shadow: 0 3px 8px rgba(40, 167, 69, 0.5);
+            /* برای همه inputها در حالت دارک */
+            body .dark input, body.dark textarea, body.dark select
+
+{
+    background-color: #212436 !important;
+    color: #D6A97B !important;
+    border: 1px solid #555;
+}
+
+/* هنگام فوکوس */
+body.dark input:focus,
+body.dark textarea:focus,
+body.dark select:focus {
+    background-color: #26293f !important;
+    color: #D6A97B !important;
+    border-color: #A88A66;
+    outline: none;
+    box-shadow: none;
+}
+
+/* رنگ placeholder هم طلایی ملایم */
+body.dark input::placeholder,
+body.dark textarea::placeholder {
+    color: #a88a66;
+    opacity: 0.6;
+}
+

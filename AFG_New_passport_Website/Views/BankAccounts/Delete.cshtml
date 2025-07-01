@@ -1,0 +1,50 @@
+﻿@* @model AFG_New_passport_Website.Models.Domain.BankAccounts
+
+@{
+	Layout = "_DashboardLayout";
+}
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+<div class="form-container enhanced-form">
+	<div class="card shadow">
+		<h2>@ViewData["Title"]</h2>
+
+		<p class="text-danger">آیا مطمئن هستید که می‌خواهید ریکارد زیر راحذف کنید؟</p>
+
+		<div class="mb-3">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr class="text-center" style="background-color:lightgray;">
+						<th>Accounts ID</th>
+						<th>"CPD Account</th>
+						<th>Post Account</th>
+						<th>Post Fee</th>
+						<th>Redcross Account</th>
+						<th>Redcross Fee</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+						<tr>
+							<td>@Model.Id</td>
+							<td>@Model.CPDAccount</td>
+							<td>@Model.PostAccount</td>
+							<td>@Model.PostFee</td>
+							<td>@Model.RedcrossAccount</td>
+							<td>@Model.RedcrossFee</td>
+						</tr>
+					
+				</tbody>
+			</table>
+		</div>
+
+		<form asp-action="Delete" method="post">
+			<input type="hidden" asp-for="Id" />
+			<button type="submit" class="btn btn-danger">بله، حذف کن</button>
+			<a asp-action="Index" class="btn btn-secondary">لغو</a>
+		</form>
+
+	</div>
+</div>
+
+
+ *@

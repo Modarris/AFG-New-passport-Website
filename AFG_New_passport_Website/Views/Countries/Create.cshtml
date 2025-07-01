@@ -1,0 +1,41 @@
+﻿@model AFG_New_passport_Website.Models.Domain.Country
+@{
+	Layout = "_DashboardLayout";
+}
+@using Microsoft.AspNetCore.Mvc.Localization
+	@inject IViewLocalizer Localizer
+
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+
+@* ---------------------------------------------------------------------------------------------------- *@
+<body class="light  dark ">
+	<div class="form-container enhanced-form">
+		<div class="card shadow">
+			<h2 class="text-center">افزودن کشور جدید</h2>
+			<hr />
+			<form id="ProvinceOfBorthForm" method="post" class="w-50 mx-auto border rounded p-4">
+				<div class="form-group mb-3">
+					<label for="DName" class="form-label">نام کشور </label>
+					<input type="text" id="DName" name="DName" class="form-control form-control-lg" required />
+					<span asp-validation-for="DName" class="text-danger"></span>
+				</div>
+
+				<div class="form-group mb-3">
+					<label for="EName" class="form-label">Country Name</label>
+					<input type="text" id="EName" name="EName" class="form-control form-control-lg" required />
+					<span asp-validation-for="EName" class="text-danger"></span>
+				</div>
+				<br />
+
+				<button type="submit" class="btn submit  w-100">
+					<i class="fas fa-save me-1"></i> ذخیره
+				</button>
+			</form>
+		</div>
+	</div>
+</body>
+@* ---------------------------------------------------------------------------------------------------- *@
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<AFG_New_passport_Website.Models.Domain.UserAddress>
+
+@{
+    ViewData["Title"] = "لیست آدرس‌ها";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white text-center">
+            <h4>لیست آدرس‌های ثبت‌شده</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>شهر</th>
+                        <th>پوست آدرس</th>
+                        <th>جزئیات آدرس</th>
+                        <th>شماره تماس</th>
+                        <th>شماره جایگزین</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var address in Model)
+                    {
+                        <tr>
+                            <td>City</td>
+                            <td>PostalAddress</td>
+                            <td>@address.AddressDetails</td>
+                            <td>@address.PrimaryPhone</td>
+                            <td>@address.SecondaryPhone</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

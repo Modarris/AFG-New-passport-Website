@@ -1,0 +1,22 @@
+﻿
+@model AFG_New_passport_Website.Models.Profile
+@using Microsoft.AspNetCore.Mvc.Localization
+    @inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "حذف پروفایل";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h3>آیا مطمئن هستید که می‌خواهید این پروفایل را حذف کنید؟</h3>
+
+<div>
+    <h4>نام: @Model.DName @Model.DLastName</h4>
+    <h4>کد: @Model.Code</h4>
+    <h4>تاریخ تولد: @Model.DateOfBirth</h4>
+</div>
+
+<form method="post" asp-action="DeleteConfirmed" asp-route-id="@Model.Profile_Id">
+    <button type="submit" class="btn btn-danger">حذف</button>
+    <a href="@Url.Action("List")" class="btn btn-secondary">لغو</a>
+</form>

@@ -1,0 +1,753 @@
+﻿<!DOCTYPE html>
+<html lang="en, fa" dir="rtl">
+@model AFG_New_passport_Website.Models.ViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+    @inject IViewLocalizer Localizer
+@{
+	Layout = null;
+	ViewData["Title"] = "Create Profile & PaperSheet";
+	var theme = Context.Request.Cookies["theme"];
+	var bodyClass = theme == "dark" ? "dark" : "light";
+}
+
+<head>
+	<link href="~/css/calander/css/persian-datepicker.min.css" rel="stylesheet" />
+	<script src="~/css/calander/js/jquery-3.7.1.min.js"></script>
+
+	<script src="~/css/calander/js/persian-date.js"></script>
+
+	<script src="~/css/calander/js/persian-datepicker.min.js"></script>
+	<!-- اضافه کردن jQuery -->
+	<!-- اضافه کردن jQuery UI -->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font Awesome CDN -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=Vazir&display=swap" rel="stylesheet">
+
+	<link href="~/calendar/mds.bs.datetimepicker.style.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+	<link href="~/css/registration/craetepagestyles.css" rel="stylesheet" />
+	<link href="~/css/registration/formtheme.css" rel="stylesheet" />
+	<style>
+		.header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		h6 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 10px;
+		}
+
+		.logo1 img {
+			width: 100px;
+			height: auto;
+		}
+
+		.logo2 img {
+			width: 100px;
+		}
+
+		.logo3 img {
+			width: 100px;
+		}
+
+		.center {
+			text-align: center;
+			flex-grow: 1; 
+		}
+
+		#p1 {
+			font-size: 18px;
+			font-weight: bold;
+		}
+
+		#p2 {
+			font-size: 16px;
+			font-weight: bold;
+		}
+
+		#p3 {
+			font-size: 14px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+
+<body class="@((Context.Request.Cookies["theme"] == "dark") ? "dark-mode" : "light-mode")">
+	<div class="container mt-5">
+		<div class="card shadow-lg">
+			
+			@* ------------------ Header --------------------*@
+		@* 	<div class="header bg-light">
+			
+				<div class="logo1 pe-lg-5">
+					<img src="https://localhost:7278/images/photo/logo2.png" />
+				</div>
+				
+				<div class="center pt-5 pe-5">
+					<p id="p1">@Localizer["امارت اسلامی افغانستان"]</p>
+					<p id="p2">@Localizer["وزارت امور داخله"]</p>
+					<p id="p3">@Localizer["معینیت اداری"]</p>
+					<p id="p3">@Localizer["ریاست عمومی پاسپورت	"]</p>
+				</div>
+				<div class="center pt-5 ps-5">
+					<p id="p1"> @Localizer["د افغانستان اسلامی امارت"]</p>
+					<p id="p2"> @Localizer["د کورنیو چارو وزارت"]</p>
+					<p id="p3"> @Localizer["د اداری چارو معینیت"]</p>
+					<p id="p3"> @Localizer["د پاسپورت عمومی ریاست"]</p>
+				</div>
+				
+				<div class="logo2 ps-lg-5	">
+					<img src="https://localhost:7278/images/photo/logo1.jpg" />
+				</div> *@
+			
+				
+			@* </div> *@
+			<br />
+			<div class="row ">
+				<div class="col-md-4 col-sm-12">
+					<a class="btn hero-btn btn-secondary w-75 mr-2" style="margin-right:20px;" asp-area="" asp-controller="Home" asp-action="index">@Localizer["Go to home Page"]</a>
+				</div>
+	
+				<div class="col-md-8 col-sm-12">
+					<h5  class="text-end pt-3 font-weight-bold">@Localizer["Apply to receive Passport"]</h5>
+				</div>
+				
+			</div>
+			
+			<hr />
+			<div class="card-body">
+
+				<form asp-action="Create" method="post" enctype="multipart/form-data" id="registerForm">
+					<div class="card form-card bg-light mb-3 p-2">
+						@Html.AntiForgeryToken()
+						<!-------------------------- Upload Picture----------------------------->
+
+						<div class="form-group mt-2">
+							<img id="profilePreview" src="#" alt="پیش‌نمایش عکس" style="max-width: 200px; display: none; border: 1px solid #ccc; padding: 5px;" />
+						</div>
+						<!------------------------------------------------------------------->
+
+						<div class="form-group col-md-2">
+							<label>عکس پروفایل</label>
+							<input asp-for="ProfilePhoto" class="form-control" accept="image/*" onchange="previewImage(event)" id="ProfilePhoto" />
+
+							<span asp-validation-for="ProfilePhoto" class="text-danger"></span>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-12 col-md-6">
+								<div class="form-group">
+									<label for="DName">@Localizer["Name"]</label>
+									<input asp-for="DName" class="form-control my-2  text-end force-persian" oninput="validateDariInput(this)" required />
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-6">
+								<div class="form-group">
+									<label asp-for="EName">@Localizer["English Name"]</label>
+									<input asp-for="EName" class="form-control my-2  text-start force-english" maxlength="20" oninput="validateEnglishInput(this)" required />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 col-md-6">
+								<div class="form-group">
+									<label asp-for="DLastName">@Localizer["Last Name"]</label>
+									<input asp-for="DLastName" class="form-control my-2 p-2 text-end force-persian" oninput="validateDariInput(this)" required />
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-6">
+								<div class="form-group">
+									<label asp-for="ELastName">@Localizer["English Last Name"]</label>
+									<input asp-for="ELastName" class="form-control my-2  text-start force-english" oninput="validateEnglishInput(this)" required />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 col-md-6">
+								<div class="form-group">
+									<label asp-for="DFatherName">@Localizer["Father Name"]</label>
+									<input asp-for="DFatherName" class="form-control my-2 p-2 text-end force-persian" oninput="validateDariInput(this)" required />
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-6">
+								<div class="form-group">
+									<label asp-for="EFatherName">@Localizer["English Father Name"]</label>
+									<input asp-for="EFatherName" class="form-control my-2 text-start force-english" oninput="validateEnglishInput(this)" required />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 col-md-6">
+								<div class="form-group">
+									<label asp-for="DGrandFatherName">@Localizer["Grand Father Name"]</label>
+									<input asp-for="DGrandFatherName" class="form-control my-2 text-end force-persian" oninput="validateDariInput(this)" required />
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-6">
+								<div class="form-group">
+									<label asp-for="EGrandFatherName">@Localizer["English Grand Father Name"]</label>
+									<input asp-for="EGrandFatherName" class="form-control my-2 text-start force-english" oninput="validateEnglishInput(this)" required />
+								</div>
+							</div>
+						</div>
+
+						@*---------birth date --------------*@
+						<div class="row">
+							<div class="col-sm-12 col-md-6">
+								<div class="form-group">
+									<input type="text" id="shamsiDate" class="form-control my-2 " placeholder="تاریخ تولد را انتخاب کنید" />
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-6">
+								<input asp-for="DateOfBirth" class="form-control my-2" type="text" id="gregorianDate" placeholder="تاریخ تولد را انتخاب کنید" />
+								<input type="hidden" id="age" />
+							</div>
+						</div>
+						@*---------- end----------------*@
+						<div class="row">
+							<div class="col-sm-12 col-md-6">
+								<div class="form-group">
+									<label class=" my-2">@Localizer["محل تولد"]</label>
+									@if (Model.AllCitiesForBirth != null && Model.AllCitiesForBirth.Any())
+									{
+										<select asp-for="SelectedBirthCityId" class="form-select"
+												asp-items="@(new SelectList(Model.AllCitiesForBirth, "Id", "NameLocal"))" required>
+											<option value="">-- محل تولد --</option>
+										</select>
+									}
+									else
+									{
+										<p class="text-danger">لیست محل تولد بارگذاری نشد.</p>
+									}
+								</div>
+							</div>
+
+							<div class="col-sm-12 col-md-6">
+								<div class="form-group">
+									<label class=" my-2">@Localizer["Profession"]</label>
+									<select asp-for="ProfessionId" asp-items="Model.AllProfessions" class="form-select my-2" id="ProfessionId" required>
+										<option value="">---</option>
+									</select>
+									<span asp-validation-for="ProfessionId" class="text-danger"></span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 col-md-6">
+								<div class="form-group">
+									<label class=" my-2">@Localizer["Gender"]</label>
+									<select asp-for="GenderId" asp-items="@(new SelectList(Model.Genders, "Id", "DName"))" class="form-select my-2" required>
+										<option value="">---</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-6">
+								<div class="form-group">
+									<label asp-for="Height">@Localizer["Height"]</label>
+									<input asp-for="Height" id="Height" type="text" class="form-control my-2" />
+
+									<span asp-validation-for="Height" class="text-danger"></span>
+								</div>
+							</div>
+						</div>
+						<hr />
+						@*-------------------------------------------------------------------*@
+						<div class="row">
+							<div class="col-sm-12 col-md-3 mb-2">
+								<label id="" for="validationDefault04" class="form-label">@Localizer["Identity Document Type"]</label>
+								<select asp-for="IdentityDocumentTypeId" class="form-select" required>
+									<option value="">انتخاب نوع سند</option>
+									@foreach (var item in Model.IdentityDocumentTypes)
+									{
+										<option value="@item.Id">@item.Name</option>
+									}
+								</select>
+
+							</div>
+							@*------------------Paper Sheets------------------------*@
+							<div id="PaperNumber" class="col-sm-12 col-md-3">
+								<label asp-for="NIDNumber">@Localizer["NID Number"]</label>
+								<input asp-for="NIDNumber" class="form-control my-2" required />
+							</div>
+						</div>
+
+						@*-----------------Passport Leve-----------------------*@
+						<div class="card custom-card bg-light p-2 mb-3">
+							<div class="row">
+								<div class="col-sm-12 col-md-12">
+									<div class="form-group">
+										<label class=" my-2">@Localizer["Passport Type"]</label>
+										<select asp-for="SelectedPassportTypeId" asp-items="@(new SelectList(Model.PassportTypes, "Id", "Type"))" class="form-select my-2" id="PassportType" required>
+											<option value="">---</option>
+										</select>
+									</div>
+								</div>
+
+								<!-- Commercial Passport-->
+								<div class=" card custom-card bg-light p-2 mb-3 custom-card-width" id="commercialPassportSection" style="display: none; margin-top: 20px; width:90%; margin: 0 auto;">
+									<div class="card-body">
+										<h3>مشخصات جواز تجاری</h3>
+										<div class="row">
+											<div class="col-sm-12 col-md-4">
+												<div class="form-group">
+													<label for="validationDefault04" class="form-label">موقف</label>
+													<select asp-for="Position" class="form-select" id="">
+														<option selected disabled value=""></option>
+														<option>رئیس</option>
+														<option>معاون</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-4">
+												<div class="form-group">
+													<label for="businessLicenseNumber">شماره جواز تجاری</label>
+													<input asp-for="LicenseNumber" type="text" id="businessLicenseNumber" class="form-control" />
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-4">
+												<div class="form-group">
+													<label for="TIN">نمبر TIN</label>
+													<input asp-for="TIN" type="text" class="form-control" />
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-5">
+												<div class="form-group">
+													<label for="businessLicenseDate">تاریخ صدور جواز</label>
+													<input asp-for="IssueDate" type="date" id="businessLicenseDate" class="form-control" />
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-4">
+												<div class="form-group">
+													<label for="businessLicenseDate">تاریخ ختم جواز</label>
+													<input asp-for="ExpiryDate" type="date" id="businessLicenseDate" class="form-control" />
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-4">
+												<div class="form-group">
+													<label for="businessLicenseCountry">آدرس شرکت</label>
+													<textarea asp-for="CompanyAddress" class="form-control"> </textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-sm-12 col-md-4">
+									<div class="form-group">
+										<label class=" my-2">@Localizer["Appointment Type"]</label>
+										<select asp-for="SelectedAppoinmentTypeId" asp-items="@(new SelectList(Model.AppoinmentTypes, "Id", "Type"))" class="form-select my-2" id="AppointmentType" required>
+											<option value="">---</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<div class="form-group">
+										<label class=" my-2">@Localizer["Passport Duration"]</label>
+										<select asp-for="SelectedPassportDurationId" asp-items="@(new SelectList(Model.PassportDurations, "Id", "Name"))" class="form-select my-2" id="PassportDuration" required>
+											<option value="">---</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<div class="form-group">
+										<label class=" my-2">@Localizer["Payment Type"]</label>
+										<select asp-for="SelectedPaymentTypeId" asp-items="@(new SelectList(Model.PaymentTypes, "Id", "Type"))" class="form-select my-2" id="PaymentType" required>
+											<option value="">---</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						@*------------------Address-----------------------*@
+						<div class="card custom-card bg-light p-2 ">
+							<div class="text-center mt-3 ">
+								<h6 class="border-bottom mx-sm-5 p-2 ">@Localizer["Enter your address to receive your passport."]</h6>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6 mb-3">
+
+									<label for="CityForProcessing"> پروسس اسناد</label>
+									<select name="SelectedProcessingCityId" id="SelectedProcessingCityId" class="form-select" required>
+										<option value="">-- محل پروسس اسناد --</option>
+										@foreach (var city in Model.ActiveCitiesForProcessing)
+										{
+											<option value="@city.Id">@city.NameLocal</option>
+										}
+									</select>
+
+									<label class="my-2">@Localizer["Postal Address"]</label>
+									<select asp-for="PostalAddressId" class="form-select" id="postalAddressSelect" required>
+										<option value="">-- انتخاب پوسته خانه --</option>
+										@foreach (var PostAdd in Model.PostalAddresses.Where(pa => pa.IsActive))
+										{
+											<option value="@PostAdd.Id" data-city="@PostAdd.CityId">@PostAdd.Name</option>
+										}
+									</select>
+
+									<span asp-validation-for="PostalAddressId" class="text-danger"></span>
+
+								</div>
+
+
+								<div class="col-md-6 mb-3">
+									<div class="">
+								
+										<label asp-for="AddressDetails" class="form-label">@Localizer["آدرس: کشور، ولایت، محل،...."]</label>
+										<textarea asp-for="AddressDetails" id="AddressDetails" class="form-control my-2" rows="4" required placeholder="مثلاً: افغانستان، کابل، ناحیه ۳، گلایی دواخانه،  سرک پنجم"></textarea>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6 mb-3">
+
+
+
+									<div class="mb-3">
+										<label for="PrimaryPhone">@Localizer["Primary Phone"]</label>
+											
+
+										<input type="text" id="PrimaryPhone" asp-for="PrimaryPhone"
+											   class="form-control"
+											   maxlength="13"
+											   dir="ltr"
+											   style="text-align:left;" />
+
+									</div>
+
+								</div>
+
+								<div class="col-md-6 mb-3">
+
+									<div class="mb-3">
+										<label for="SecondaryPhone">@Localizer["Secondary Phone"]</label>
+										<input type="text" id="SecondaryPhone" asp-for="SecondaryPhone"
+											   class="form-control"
+											   maxlength="13"
+											   dir="ltr"
+											   style="text-align:left;" />
+									
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						@*------------------End Address-----------------------*@
+						<div class="col-sm-12 col-md-12 ">
+							<div class="card bg-light p-2 mt-3" id="FixedPayAmount" style="display:none;">
+								<label class="text-center" for="FixedAmount">@Localizer["Payment Amount"]</label>
+								<input type="text" id="FixedAmount" name="FixedAmount" class="bg-body" value="3,500 افغانی" readonly />
+							</div>
+						</div>
+						<br />
+						<div class="text-center">
+					
+							<button type="button" class="btn btn-primary" onclick="showPreview()" id="previewBtn">
+								مشاهده معلومات
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade " id="dataPreviewModal" tabindex="-1" aria-labelledby="dataPreviewModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable ">
+			<div class="modal-content shadow rounded-4 ">
+				<div class="modal-header  rounded-top">
+					<button type="button" class="btn-close bg-light ms-3" data-bs-dismiss="modal" aria-label="Close"></button>
+					<h5 class="modal-title text-center" id="dataPreviewModalLabel text-center">مشاهده‌ معلومات </h5>
+				</div>
+				<div class="modal-body p-4 ">
+					<div id="previewContent" class="row g-3 ">
+						<!-- data -->
+					</div>
+				</div>
+				<div class="text-center">
+
+					<h5>لطفاً معلومات‌تان را به دقت مرور نمایید.</h5>
+					<h6>
+						اگر تمامی معلومات درست و مطابق با واقعیت است، لطفاً دکمه‌ی "تایید و ثبت" را فشار دهید.<br />
+						در صورت مشاهده‌ی هرگونه اشتباه یا نیاز به اصلاح، می‌توانید با کلیک بر دکمه‌ی "ویرایش" معلومات خود را تصحیح نمایید.<br />
+
+						موفق باشید.
+					</h6>
+					<label>کد امنیتی</label>
+					<div class="d-flex justify-content-between">
+						<div id="captchaCode" style="font-weight:bold; font-size:20px; letter-spacing:5px; user-select:none; margin-bottom:5px;"></div>
+						<div>
+							<button type="button" onclick="generateCaptcha()">بازسازی کد</button>
+						</div>
+					</div>
+					
+					<div class="d-flex justify-content-between">
+						<input type="text" id="captchaInput" name="CaptchaInput" class="form-control mb-2" required placeholder="کد امنیتی را وارد کنید" />
+						
+					</div>
+					
+
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ویرایش</button>
+					<button type="submit" class="btn btn-success" form="registerForm">تایید و ثبت</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
+<!-- Modal -->
+<input type="text" id="dtp1" class="form-control" placeholder="تاریخ را انتخاب کنید" />
+<span data-name="dtp1-text"></span>
+<input type="hidden" data-name="dtp1-date" />
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/calendar/mds.bs.datetimepicker.js"></script>
+<script src="~/js/registration/create.js"></script>
+
+<!--Post office-->
+<script>
+		document.addEventListener("DOMContentLoaded", function () {
+		const citySelect = document.getElementById("SelectedProcessingCityId");
+	const postalSelect = document.getElementById("postalAddressSelect");
+
+	citySelect.addEventListener("change", function () {
+			const selectedCityId = this.value;
+			Array.from(postalSelect.options).forEach(option => {
+				const cityId = option.getAttribute("data-city");
+
+	if (!cityId) return;
+
+	if (selectedCityId === "" || cityId === selectedCityId) {
+		option.hidden = false;
+				} else {
+		option.hidden = true;
+				}
+			});
+	postalSelect.value = "";
+		});
+	});
+</script>
+@* Phone numbers *@
+<script>
+	function setupPhoneField(id) {
+		const input = document.getElementById(id);
+		if (!input) return;
+
+		const allowedCodes = ["70", "71", "72", "73", "74", "75", "76", "77", "78", "79"];
+
+		input.addEventListener("focus", function () {
+			if (!input.value.startsWith("+93")) {
+				input.value = "+93";
+			}
+		});
+
+		input.addEventListener("keydown", function (e) {
+			if ((input.selectionStart <= 3 && (e.key === "Backspace" || e.key === "Delete")) || input.selectionStart < 3) {
+				e.preventDefault();
+			}
+		});
+
+		input.addEventListener("input", function () {
+			
+			if (!input.value.startsWith("+93")) {
+				input.value = "+93";
+			}
+
+			
+			const digits = input.value.replace(/\D/g, "").substring(2); 
+
+			
+			if (digits.length >= 2) {
+				const code = digits.substring(0, 2);
+				if (!allowedCodes.includes(code)) {
+					input.classList.add("is-invalid");
+					input.classList.remove("is-valid");
+				} else {
+					input.classList.remove("is-invalid");
+					input.classList.add("is-valid");
+				}
+			} else {
+				input.classList.remove("is-invalid", "is-valid");
+			}
+
+			
+			input.value = "+93" + digits;
+		});
+	}
+
+	setupPhoneField("PrimaryPhone");
+	setupPhoneField("SecondaryPhone");
+</script>
+
+<style>
+	.is-valid {
+		border-color: #198754 !important;
+	}
+
+	.is-invalid {
+		border-color: #dc3545 !important;
+	}
+</style>
+
+
+<!--Height -->
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const heightInput = document.getElementById("Height");
+
+		heightInput.addEventListener("input", function () {
+			let val = this.value.replace(/[^0-9]/g, '');
+
+			if (val === '') {
+				this.value = '';
+				return;
+			}
+
+			if (val.length <= 2) {
+				this.value = val;
+				return;
+			}
+
+			if (val.length === 3) {
+				let num = parseInt(val);
+				if (num > 210) {
+		
+					this.value = '';
+					return;
+				} else {
+					this.value = val;
+					return;
+				}
+			}
+
+			this.value = val.substring(0, 3);
+		});
+
+		heightInput.addEventListener("blur", function () {
+
+			let val = this.value;
+			if (val === '') return;
+
+			let num = parseInt(val);
+			if (num < 30 || num > 210) {
+				alert("اندازه قد را باید بین ۳۰ تا ۲۱۰ سانتی متر انتخاب کنید!");
+				this.value = '';
+			}
+		});
+	});
+
+</script>
+<!--AddressDetails -->
+<script>
+	const addressField = document.getElementById("AddressDetails");
+
+	addressField.addEventListener("input", function () {
+		const val = addressField.value;
+		if (val.endsWith("،") && !val.endsWith("، ")) {
+			addressField.value = val + " ";
+		}
+		if (addressField.value.length > 250) {
+			addressField.value = addressField.value.substring(0, 250);
+		}
+	});
+</script>
+<!--IdentityDocumentType -->
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const docTypeSelect = document.getElementById("IdentityDocumentTypeId");
+		const nidInput = document.getElementById("NIDNumber");
+
+		let formatEnabled = false;
+		let maxDigits = null;
+
+		docTypeSelect.addEventListener("change", function () {
+			const selectedValue = this.value;
+
+			if (selectedValue === "2") {
+				
+				formatEnabled = true;
+				maxDigits = 13;
+				nidInput.value = "";
+				nidInput.placeholder = " 00000-0000-0000";
+			} else if (selectedValue === "1" || selectedValue === "3") {
+				
+				formatEnabled = false;
+				maxDigits = 13;
+				nidInput.value = "";
+				nidInput.placeholder = "نمبر کارت شناسایی را وارد کنید";
+			} else {
+				formatEnabled = false;
+				maxDigits = null;
+				nidInput.value = "";
+				nidInput.placeholder = "";
+			}
+		});
+
+		nidInput.addEventListener("input", function () {
+			let digits = this.value.replace(/\D/g, ''); 
+
+			if (maxDigits !== null && digits.length > maxDigits) {
+				digits = digits.slice(0, maxDigits);
+			}
+
+			if (formatEnabled) {
+				
+				let formatted = '';
+				if (digits.length <= 4) {
+					formatted = digits;
+				} else if (digits.length <= 8) {
+					formatted = digits.slice(0, 4) + '-' + digits.slice(4);
+				} else {
+					formatted = digits.slice(0, 4) + '-' + digits.slice(4, 8) + '-' + digits.slice(8);
+				}
+				this.value = formatted;
+			} else {
+				
+				this.value = digits;
+			}
+		});
+	});
+</script>
+@* Current captcha *@
+<script>
+	let currentCaptcha = '';
+
+	function generateCaptcha() {
+		const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'; //
+		let captcha = '';
+		for (let i = 0; i < 6; i++) {
+			captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+		}
+		currentCaptcha = captcha;
+		document.getElementById('captchaCode').textContent = captcha;
+	}
+
+	window.onload = generateCaptcha;
+
+	document.querySelector('form').addEventListener('submit', function (e) {
+		const entered = document.getElementById('captchaInput').value.trim().toUpperCase(); 
+
+		if (entered !== currentCaptcha) {
+			e.preventDefault();
+			alert('کد امنیتی اشتباه است. لطفاً دوباره تلاش کنید.');
+			generateCaptcha();
+			document.getElementById('captchaInput').value = '';
+		}
+	});
+</script>

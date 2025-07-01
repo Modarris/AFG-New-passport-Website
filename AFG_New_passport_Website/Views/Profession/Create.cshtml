@@ -1,0 +1,75 @@
+﻿@model AFG_New_passport_Website.Models.Domain.Profession
+
+@{
+    Layout = "_DashboardLayout";
+}
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+
+
+@* ---------------------------------------------------------------------------------------------------- *@
+<body class="light  dark ">
+    <div class="form-container enhanced-form w-50">
+        <div class="card shadow">
+        <h4 class="text-center mb-4 text-success" style="font-size: 1.1rem;">
+            <i class="fas fa-plus me-2 text-success"></i> افزودن شغل
+        </h4>
+            <hr />
+            <br />
+            <form id="professionForm" method="post" class="w-75 mx-auto border border-success rounded p-4">
+            @if (ViewBag.DuplicateMessage != null)
+            {
+                <div class="alert alert-warning">
+                    @Html.Raw(ViewBag.DuplicateMessage)
+                </div>
+            }
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="NameLocal" class="form-label">نام شغل به دری</label>
+                <input asp-for="NameLocal" type="text" id="persianfield" class=" form-control" placeholder="نام به فارسی"  />
+                <span asp-validation-for="NameLocal" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="form-label">نام شغل به انگلیسی</label>
+                <input asp-for="Name" type="text" id="englishfield" class=" form-control" placeholder="Name in English" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+
+          <a asp-action="Index" class="btn btn-secondary mt-3"> <i class="fas fa-arrow-right me-2"></i>بازگشت</a>
+				<button type="submit" class="btn btn-success mt-3"><i class="fas fa-check-circle me-2"></i>ثبت</button
+        </form>
+    </div>
+</div>
+</body>
+@* ---------------------------------------------------------------------------------------------------- *@
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<script src="~/js/kayboardcontroll.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

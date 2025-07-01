@@ -1,0 +1,54 @@
+﻿
+@* مسیر: Views/Shared/_newsLayout.cshtml *@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="utf-8" />
+    <title>اخبار | پاسپورت افغانستان</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+        }
+
+        footer {
+            background-color: #f1f1f1;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+            border-top: 1px solid #ccc;
+        }
+
+        .main-content {
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body dir="rtl">
+    <header>
+        <h1>خبرهای تازه</h1>
+    </header>
+
+    <div class="container main-content">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <p>© 2025 ریاست عمومی پاسپورت افغانستان. همه حقوق محفوظ است.</p>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

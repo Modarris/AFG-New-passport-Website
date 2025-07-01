@@ -1,0 +1,107 @@
+﻿.main-card {
+    background-color: #f4f4f4;
+    padding: 20px 50px;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.main-text {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.hero-btn {
+    margin: 10px;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: 0.8s;
+    background-color: #3e8e7e;
+    color: white;
+}
+
+    .hero-btn:hover {
+        background-color: #0056b3;
+        color: white;
+    }
+
+.search-box {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 0.375rem 0 0 0.375rem;
+}
+
+.search-button {
+    padding: 10px 20px;
+    background-color: #3e8e7e;
+    color: white;
+    border: none;
+    border-radius: 0 0.375rem 0.375rem 0;
+    cursor: pointer;
+    transition: 0.8s;
+}
+
+    .search-button:hover {
+        background-color: #0056b3;
+    }
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+media (max-width: 576px) {
+    .search-container
+
+{
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.search-box,
+.search-button {
+    border-radius: 0.375rem !important;
+    width: 100%;
+}
+
+.search-button {
+    margin-top: 10px;
+}
+
+.btn:hover {
+}
+
+.card {
+    height: 380px; /* ارتفاع دلخواه؛ مقدار را کمتر یا بیشتر کن به دلخواه */
+}
+
+.card-body {
+    overflow: hidden; /* اگر محتوای زیاد بود، بریده می‌شود */
+}
+
+.btn-sm:hover {
+    color: white;
+    background: #b85042
+}
+
+.container {
+    font-family: Arial;
+}
+
+.text-center {
+    color: #800000;
+}
+
+.card-news {
+    background-color: gray;
+}

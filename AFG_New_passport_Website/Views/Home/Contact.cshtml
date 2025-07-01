@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "تماس با ما";
+}
+<link href="~/css/Contact.css" rel="stylesheet" />
+<style>
+    .section-2{
+        padding:0;
+     
+        width: 100%;
+        height: 85vh;
+        background-attachmsrc()ze: cover;
+        background-position: center;
+        background-image: src('~/images/photo/tech-photo1.jpg');
+        margin-top:30px;
+    }
+    .title-color{
+        color:white;       
+        padding-top:50px;
+    }
+    .content-class{
+        padding-top:70px;
+    }
+</style>
+
+<div class="container-fluid section-2">
+    <h1 class="d-block text-center my-5 title-color">@ViewData["Title"]</h1>
+    <div class="d-flex justify-content-around content-class row text-center">
+        <div class="col-sm-12 col-md-4 card" style="width: 20rem;">
+            <img src="~/images/icon/9800512.png" class="card-img-top d-block my-3" style="width:50px; margin-right:auto; margin-left:auto;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title text-center">آدرس</h5>
+                <hr class="my-3 w-50-center" />
+                <p class="card-text text-center">سرک دارالامان - کارته سه</p>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 card" style="width: 20rem;">
+            <img src="~/images/icon/18154191 (1).png" class="card-img-top d-block my-3" style="width:50px; margin-right:auto; margin-left:auto;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">ایمیل</h5>
+                <hr class="my-3 w-50-center" />
+                <p class="card-text">pass@gmail.com</p>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 card" style="width: 20rem;">
+            <img src="~/images/icon/3687004.png" class="card-img-top d-block my-3" style="width:50px; margin-right:auto; margin-left:auto;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">شماره تماس</h5>
+                <hr class="my-3 w-50-center" />
+                <p class="card-text">020 2511 707</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

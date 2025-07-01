@@ -1,0 +1,70 @@
+﻿@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "مدیریت اخبار";
+}
+
+<style>
+    .news-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 15px;
+    }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+    .news-img {
+        height: 180px;
+        object-fit: cover;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+</style>
+
+<div class="container py-4" style="max-width: 1200px;>
+    <h3 class="text-center fw-bold text-primary mb-4">
+        📰 لیست اخبار جدید
+    </h3>
+
+    <div class="row g-4">
+        <!-- خبر ۱ -->
+        <div class="col-md-4">
+            <div class="card news-card border-0 shadow-sm">
+                <img src="https://source.unsplash.com/400x200/?news,passport" class="news-img" alt="خبر">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">افتتاح مرکز جدید پاسپورت</h5>
+                    <p class="card-text text-muted small">تاریخ: ۱۴۰۳/۰۱/۲۰</p>
+                    <p class="card-text">ریاست عمومی پاسپورت، مرکز جدیدی را در ولایت بلخ افتتاح کرد...</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">ادامه مطلب</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- خبر ۲ -->
+        <div class="col-md-4">
+            <div class="card news-card border-0 shadow-sm">
+                <img src="https://source.unsplash.com/400x200/?documents,office" class="news-img" alt="خبر">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">تغییر در زمان توزیع پاسپورت</h5>
+                    <p class="card-text text-muted small">تاریخ: ۱۴۰۳/۰۱/۱۵</p>
+                    <p class="card-text">به اطلاع شهروندان می‌رساند که زمان توزیع پاسپورت از این پس به صورت نوبتی خواهد بود...</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">ادامه مطلب</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- خبر ۳ -->
+        <div class="col-md-4">
+            <div class="card news-card border-0 shadow-sm">
+                <img src="https://source.unsplash.com/400x200/?afghanistan,flag" class="news-img" alt="خبر">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">اطلاعیه امنیتی جدید</h5>
+                    <p class="card-text text-muted small">تاریخ: ۱۴۰۳/۰۱/۱۰</p>
+                    <p class="card-text">جهت حفظ نظم در روند درخواست پاسپورت، تدابیر امنیتی جدید در ورودی ساختمان اجرا می‌شود...</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">ادامه مطلب</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

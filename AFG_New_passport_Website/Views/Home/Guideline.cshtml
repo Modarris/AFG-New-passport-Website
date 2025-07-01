@@ -1,0 +1,416 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+<style>
+	body {
+		font-family: "Noto Naskh Arabic", "Tahoma", sans-serif;
+		background-color: #f4f4f4;
+		margin: 0;
+		padding: 0;
+		direction: rtl;
+	}
+
+	.div-content.register {
+		
+		margin: 30px auto;
+		background-color: #fff;
+		padding: 30px;
+		box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+		border-radius: 12px;
+	}
+
+	.profile-header {
+		background: linear-gradient(to left, #3e8e7e, #2a6f62);
+		padding: 20px;
+		color: white;
+		border-radius: 12px;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+
+	.headingMain {
+		font-size: 28px;
+		margin: 0;
+		font-weight: bold;
+	}
+
+	.headingSub {
+		font-size: 20px;
+		margin-top: 10px;
+	}
+
+	.tracking {
+		text-align: center;
+		margin: 20px 0;
+	}
+
+	.track {
+		background-color: #2a6f62;
+		color: black;
+		padding: 10px 25px;
+		font-size: 16px;
+		border: none;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+
+		.track:hover {
+			background-color: #21574e;
+		}
+
+	.info {
+		background-color: #eafaf6;
+		border-right: 4px solid #2a6f62;
+		padding: 20px;
+		border-radius: 10px;
+		margin-bottom: 30px;
+		font-size: 16px;
+		line-height: 1.8;
+	}
+
+	.note {
+		color: #d9534f;
+		font-weight: bold;
+	}
+
+	.form-header {
+		background-color: #2a6f62;
+		color: white;
+		padding: 12px 20px;
+		border-radius: 8px 8px 0 0;
+		margin-bottom: 10px;
+	}
+
+	.modal-title {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.round-bullet {
+		background-color: #fff;
+		color: #2a6f62;
+		border-radius: 50%;
+		width: 28px;
+		height: 28px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: bold;
+		border: 2px solid #fff;
+	}
+
+	.form-body-wrapper {
+		background-color: #fff;
+		border: 1px solid #ddd;
+		border-top: none;
+		padding: 20px;
+		border-radius: 0 0 8px 8px;
+		margin-bottom: 25px;
+	}
+
+	.main-list {
+		padding-right: 20px;
+		font-size: 16px;
+		line-height: 1.9;
+	}
+
+		.main-list > li {
+			margin-bottom: 15px;
+		}
+
+	.sub-list {
+		list-style-type: square;
+		padding-right: 20px;
+		margin-top: 10px;
+		font-size: 15px;
+		line-height: 1.8;
+	}
+
+	h2 {
+		color: white;
+		margin-bottom: 15px;
+	}
+
+	.form-controls.bodyContent {
+		padding-right: 10px;
+	}
+
+	.div-content.register p,
+	.div-content.register ul,
+	.div-content.register ol,
+	.div-content.register li,
+	.div-content.register .info,
+	.div-content.register .main-list,
+	.div-content.register .sub-list {
+		direction: rtl;
+		text-align: right;
+		line-height: 1.8;
+		font-size: 16px;
+		color: black;
+	}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<div class="container div-content register">
+	<div class="div-form div-screen clearfix">
+		<div class="div-form-box">
+			<div class="box round profile-header">
+				<div>
+					<div class="profile-cover">
+						<div class="row">
+							<div class="mainHeading">
+								<div>
+								</div>
+								<div>
+									<h1 class="headingMain"> امارت اسلامی افغانستان</h1>
+									<h2 class="headingSub">رهنمود برای متقاضیان پاسپورت</h2>
+								</div>
+								<div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="div-row info">
+						متقاضیان محترم! <br />
+						<p>برای تکمیل شدن و چاپ پاسپورت نیاز به معلومات و مدارک ذیل میباشد لطفاً در تهیه مدارک و تکمیل فورم انلاین مطابق با رهنمود های آتی عمل کنید. </p>
+						<p>
+							<span class="note"> یاداشت : </span>
+							فورم درخواست پاسپورت برای یکبار خانه پری میشود.
+						</p>
+						<p>
+							در صورت مواجه شدن به مشکلات تخنیکی به شماره 105 اداره آسان خدمت و در صورت بروز مشکلات در طی مراحل اسناد قانونی پاسپورت به شماره های ذیل اداره مرکزی پاسپورت وزارت امور داخله به تماس شوید.
+						</p>
+						<div class="phone-numbers">
+							<p><i class="fas fa-phone-alt"></i> 020-2500400</p>
+							<p><i class="fas fa-phone-alt"></i> 020-2510984</p>
+						</div>
+					</div>
+
+
+					<!-- Personal Info -->
+					<section>
+						<div class="form-content">
+							<div class="form-header" id="uxPersonalHeader">
+								<div class="modal-title">
+									<label class="round-bullet">۱</label>
+									<label>اسناد مورد ضرورت</label>
+								</div>
+							</div>
+
+							<div class="form-body-wrapper">
+								<div class="form-body">
+
+									<div class="form-controls bodyContent">
+										<h2>اسناد مورد ضرورت عبارت اند از:</h2>
+
+										<ol class="main-list">
+											<li>
+												تذکره تابعیت
+
+												<ol class="sub-list">
+													<li>تذکره افرادی که متقاضی دریافت پاسپورت از مرکز بوده و ساکن اصلی ولایات دیگر میباشند ، باید از طرف اداره محترم مستقل ثبت و احوال نفوس در مرکز تائید گردد.</li>
+													<li>تذکره متقاضی ساکن اصلی کابل باید تائیدی مدیریت عمومی ثبت احوال نفوس ولایت کابل را داشته باشد.</li>
+													<li>تذکره متقاضی که درخواست دریافت پاسپورت از ولایت مربوطه دارند باید توسط مدیریت ثبت و احوال نفوس همان ولایت تائید گردد.</li>
+													<li>کارت تولد اطفال تنها پس از تائیدی اداره مستقل ثبت و احوال نفوس و واحد های دومی آن در ولایات قابل اعتبار میباشد.</li>
+													<li>تذکره اطفال ایکه سن هفت ساله گی را تکمیل کرده اند باید دارای عکس باشد.</li>
+													<li>متقاضی ایکه عکس موجود در تذکره تابعیت شان قابل شناختن نبوده و یا با چهره ظاهری شان همخوانی ندارند مکلف به نصب فوتوی جدید میباشند.</li>
+													<li>تذکره متقاضیان ایکه سکونت اصلی و فعلی شان متفاوت بوده و درخواست صدور پاسپورت محل سکونت فعلی خود دارند باید توسط واحد های دومی اداره ثبت و احوال نفوس صورت بگیرد.</li>
+													<li>متقاضیان ایکه درخارج از کشور متولد شده اند مکلف به ارائیه کارت تولد با تائید اداره محترم مستقل ثبت احوال نفوس میباشند.</li>
+												</ol>
+											</li>
+											<li>تکمیل نمودن فورم آنلاین.</li>
+											<li>چهار قطعه عکس (۵x۴) معیاری  (پس زمینه عکس باید سفید باشد و از عکس متقاضی بیشتر از 6 ماه سپری نشده باشد).</li>
+											<li>رسید تحویلی محصول پاسپورت.</li>
+											<li>درخواست کتبی با نصب فوتوی متقاضی.</li>
+											<li>حضور در اداره مرکزی پاسپورت یا واحد های دومی آن برای بایومتریک و ارائیه اسناد مورد ضرورت.</li>
+											<li>پاسپورت برای متقاضیان زیرسن هجده سال تنها به اساس درخواست کتبی والدین ، ولی ویا وصی قانونی شخص و یا به اجازه محکمه صادر میگردد و اگر درخواست کننده مادر شخص میباشد ملزم به تثبیت قرابت خود ازنواحی محل زیست میباشد.</li>
+											<li>پاسپورت برای اشخاص مبتلا به اختلالات دماغی به اساس درخواست اقارب اصولی انها صادر میشود.</li>
+											<li>تاجران ملی متقاضی پاسپورت تجارتی مکلف به ارائیه جواز معتبر و مکتوب وزارت های محترم تجارت و سایر ادارات مربوط مطابق قانون میباشد.</li>
+											<li>
+												افراد زیر علاوه بر موارد فوق ملزم به ارایه کارت هویت و مکتوب رسمی میباشند که از طرف اداره صاحب صلاحیت صادر شده و روی عکس شخص متقاضی و آمر تائید کننده شخص که به مکتوب الحاق گردیده مهر شده باشد.
+
+												<ol class="sub-list">
+													<li>محصلان ایکه ازطرف دولت برای ادامه تحصیل به خارج از کشور میروند.</li>
+													<li>مریضان و همراه شان که به معرفی وزارت صحت عامه و یا سره میاشت برای تداوی به خارج از کشور میروند.</li>
+													<li>مجروحان نیروهای امنیتی که غرض تداوی به خارج فرستاده میشوند.</li>
+													<li>ورزشکاران ایکه برای شرکت در برنامه های ورزشی خارج از کشور توسط کمیته ملی المپیک و ریاست عمومی تربیت بدنی معرفی میشوند ماموران خدمات ملکی بست سوم و بالاتر ازآن.</li>
+													<li>منسوبین نظامی دارای رتبه دگروالی وبالاتر ازآن.</li>
+												</ol>
+											</li>
+
+										</ol>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section>
+						<div class="form-content">
+							<div class="form-header">
+								<div class="modal-title">
+									<label class="round-bullet">۲</label>
+									<label>مدت اعتبار پاسپورت </label>
+								</div>
+							</div>
+
+							<div class="form-body-wrapper">
+								<div class="form-body">
+									<div class="form-controls bodyContent">
+										<ol class="main-list">
+											<li>پاسپورت نظر به درخواست شخص برای مدت پنج و یا ده سال صادر گردیده در صورت انقضای مدت اعتبار قابل تجدید میباشد.</li>
+											<li>برای افرادی که مدت اعتبار پاسپورت شان تمام نشده اما نسبت به سفرهای متعدد از اوراق ان استفاده گردیده در برابر پرداخت محصول معینه پاسپورت جدید صادر میگردد و اگر پاسپورت قبلی ویزای معتبر یکی از کشورها را داشته باشد کنسل گردیده و ضمیمه پاسپورت جدید میشود.</li>
+											<li>پاسپورت افرادی که هنوز مدت اعتبار آن منقضی نشده اما مدت اعتبار کمتر از شرایط تعین شده کشور یا کشورهای میزبان را دارد به درخواست دارنده گان آن تجدید میگردد.</li>
+										</ol>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section>
+						<div class="form-content">
+							<div class="form-header">
+								<div class="modal-title">
+									<label class="round-bullet">۳</label>
+									<label>مبالغ قابل پرداخت </label>
+								</div>
+							</div>
+
+							<div class="form-body-wrapper">
+								<div class="form-body">
+									<div class="form-controls bodyContent">
+										<ol class="main-list">
+											<li>محصول پاسپورت برای مدت پنج سال مبلغ (۵۵۰۰) افغانی وبرای اطفال زیر پانزده سال ، ماموران خدمات ملکی بست سوم و بالاتر از آن ، منسوبان نظامی دارای رتبه دگروال و بالا تر ازآن و برای مریضان و همراه شان که مکتوب رسمی کمیسون صحی وزارت محترم صحت عامه را داشته باشند (۳۲۵۰) افغانی میباشد.</li>
+											<li>محصول پاسپورت دارای مدت اعتبار ده سال درصورت درخواست متقاضیان که هجده سالگی را تکمیل کرده اند مبلغ (۱۱۰۰۰) افغانی میباشد.</li>
+											<li>محصول پاسپورت برای کسانیکه پاسپورت شان را تخریب کرده اند (۳۰۰۰۰) افغانی میباشد.</li>
+											<li>متقاضیان علاوه بر پرداخت محصول پاسپورت  ملزم به پرداخت (۱۰) افغانی اعانه هلال احمر افغانی و هزینه خدمات پستی به مبلغ (۲۰۰) افغانی درکابل و (۵۰۰) افغانی درولایات میباشند.</li>
+											<li>محصول پاسپورت متقاضیان ایکه پاسپورت شان حریق شده پس از ارائه تصدیق اداره پولیس محل  رخداد همان مبلغ قانونی فوق میباشد.</li>
+											<li>محصول پاسپورت متقاضیان ایکه پاسپورت شان مفقود شده پس از ارائیه تصدیق افغان اعلانات در داخل و تصدیق ریاست امور قونسلی وزارت امور خارجه در خارج از کشور دو برابر محصول تعین شده میباشد.</li>
+										</ol>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<div class="form-content">
+							<div class="form-header">
+								<div class="modal-title">
+									<label class="round-bullet">۳</label>
+									<label>چگونگی پرداخت </label>
+								</div>
+							</div>
+
+							<div class="form-body-wrapper">
+								<div class="form-body">
+									<div class="form-controls bodyContent">
+										<ol class="main-list">
+											<li>پس از تکمیل فورم آنلاین ثبت نام با همراه داشتن یک کاپی از فورم تکمیل شده به یکی از نماینده گی های دافغانستان بانک در کابل یا ولایات مراجعه کرده و در مقابل پرداخت مبالغ تعین شده فوق رسید دریافت کنند.</li>
+										</ol>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section>
+						<div class="form-content">
+							<div class="form-header">
+								<div class="modal-title">
+									<label class="round-bullet">۴</label>
+									<label>صدور پاسپورت رایگان</label>
+								</div>
+							</div>
+
+							<div class="form-body-wrapper">
+								<div class="form-body">
+									<div class="form-controls bodyContent">
+										<ol class="main-list">
+											پاسپورت برای افراد زیر به صورت رایگان صادر میشود :
+											<li>مشمولان بورسیه های تحصیلی دولتی با معرفی وزارت محترم تحصیلات عالی ، معارف و یا سایر ادارات دولتی و یا با ارائیه اسناد تحصیلی از نماینده گی های محترم سیاسی و قونسلی به تصدیق وزارت محترم امور خارجه .</li>
+											<li>ورزشکاران ایکه از طرف ریاست عمومی تربیت بدنی و یا کمیته ملی المپیک برای شرکت در رقابت های بین المللی ورزشی معرفی میشوند.</li>
+											<li>منسوبین نظامی که در راه دفاع از حریم کشور مجروح یا معلول شده اند و یکتن همراه شان با تصدیق کمیسون های صحی وزارت محترم دفاع ، امور داخله و ریاست عمومی امنیت ملی و دیگر ادارات ایکه تشکیلات نظامی دارند.</li>
+											<li>اطفال مریض و یک تن همراه شان که از طرف جمعیت هلال احمر افغانی غرض تداوی به خارج از کشور فرستاده میشوند.</li>
+										</ol>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<div class="form-content">
+							<div class="form-header">
+								<div class="modal-title">
+									<label class="round-bullet">۵</label>
+									<label> موانع صدور پاسپورت</label>
+								</div>
+							</div>
+
+							<div class="form-body-wrapper">
+								<div class="form-body">
+									<div class="form-controls bodyContent">
+										<ol class="main-list">
+											برای متقاضیان زیر پاسپورت صادر نمیشود :
+											<li>افراد ایکه بنا بر مقروض بودن و یا هرگونه تعهد انجام نشده ازجانب نهاد های ذیصلاح ممنوع الخروج شده باشند.</li>
+											<li>محکومان قضایای جزائی ، مدنی وتجارتی به حکم محکمه صالح .</li>
+											<li>اطفال ایکه والدین وصی ، و یا وکیل قانونی نداشته باشند.</li>
+											<li>درصورت ایکه دستگاه بیف و بایومتریک ممنوع الخروج بودن شانرا تثبیت کند.</li>
+										</ol>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section>
+						<div class="form-content">
+							<div class="form-header">
+								<div class="modal-title">
+									<label class="round-bullet">۶</label>
+									<label> چگونگی تکمیل فورم آنلاین</label>
+								</div>
+							</div>
+
+							<div class="form-body-wrapper">
+								<div class="form-body">
+									<div class="form-controls bodyContent">
+										<ol class="main-list">
+											پس از انتخاب گزینه درخواست در پایان این رهنمود فورم آنلاین باز میشود که درتکمیل ان به نکات ذیل دقت کنید :
+											<li>نام ، تخلص ، تاریخ دقیق تولد به روز ، سال و ماه ، محل تولد ،  نمبر صکوک تذکره ، شماره تیلفون و اندازه قد بصورت دقیق تحریر شود.</li>
+											<li>عکس ای را که در فورم ضمیمه ( آپلود ) میکنید باید رنگه بدون چوکات به انداز ( ۵x۴ ) بوده فوتو شاپ نشده وشخص درآن بدون لنز وعینک چشم باشد وبرای نشان دادن چهره واقعی گوش های شخص باید در عکس نمایان باشد (پس زمینه عکس باید سفید باشد و از عکس متقاضی بیشتر از 6 ماه سپری نشده باشد).</li>
+											<li>امضا در داخل چوکات بگونه قرار بگیرد که با خطوط چوکات تماس نداشته باشد.</li>
+											<li>نشان انگشت متقاضیان ایکه امضا ندارند باید بگونه ای باشد که خطوط انگشت آن مشخص باشد.</li>
+											<li>والدین اطفال متقاضی پاسپورت میتوانند بجای نشان انگشت نام فرزند شانرا در چوکات بنویسند.</li>
+										</ol>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<div class="div-row info">
+						<span class="note"> تذکر : </span>
+						<ol class="sub-list">
+							<li>اداره پاسپورت برویت این فورم و تذکره تابعیت متقاضی اقدام به صدور پاسپورت میکند اگر پس ازچاپ پاسپورت به اساس معلومات نادرست و یا هرگونه درخواست تغیر دیگری از جانب متقاضی که  نیاز به صدور پاسپورت جدید شود متقاضی مکلف به پرداخت محصول دوباره میباشد.</li>
+							<li>متقاضیان پاسپورت تنها مکلف به پرداخت مبالغ تعین شده فوق میباشند درصورت مطالبه مبلغ دیگری توسط هر شخص و نهاد و یا هر قانون شکنی دیگری به شماره‌های (۰۲۰۲۵۱۰۹۸۴ ، ۰۲۰۲۵۰۰۴۰۰) اداره پاسپورت و شماره (۱۱۹) پولیس گزارش دهید</li>
+							<li>فورم آنلاین پاسپورت در مراحل اولیه قرار دارد. نظریات ، پیشنهادات وانتقادات سازنده شما جهت غنامندی فورم آنلاین پاسپورت ما را حمایت میکند.</li>
+							<li>آنعده متقاضیانی که دارنده تذکره الکترونیکی میباشند، تذکره شان نیاز به تایید اداره مستقل ثبت و احوال نفوس ندارد.</li>
+						</ol>
+					</div>
+
+					<section>
+						<footer>
+							<p style="color:white; justify-content:center;" class="text-center">با آگاهی کامل معلومات فوق را به صورت دقیق مطالعه نمودم و تایید می نمایم. </p>
+							<a href="@Url.Action("Create", "Registration")" class="btn btn-primary hero-btn">
+								<i class="fas fa-passport"></i> @Localizer["I Agree"]
+							</a>
+							<p style="color:white; justify-content:center;" class="text-center">با کلیک نمودن روی دکمه بالا میتواند وارد فرم ثبت نام شوید </p>
+						</footer>
+					</section>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

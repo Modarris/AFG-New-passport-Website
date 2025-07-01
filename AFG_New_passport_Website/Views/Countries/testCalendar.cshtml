@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+@{
+    Layout = null;
+}
+<head>
+    <meta charset="UTF-8">
+    <title>تست کلندر شمسی</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+
+    <link href="~/calendar/mds.bs.datetimepicker.style.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/calendar/jalaali.min.js"></script>
+    <script src="~/calendar/mds.bs.datetimepicker.js"></script>
+</head>
+<body class="bg-light p-5">
+    <div class="container row d-flex justify-content-center">
+        <div class="col-md-2">
+            <div class="mb-3">
+                <label for="persianDate">تاریخ شمسی</label>
+                <input type="text" id="persianDate" class="form-control" placeholder="تاریخ شمسی" autocomplete="off">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="mb-3">
+                <label for="gregorianDate">تاریخ میلادی</label>
+                <input type="text" id="gregorianDate" class="form-control" placeholder="تاریخ میلادی" autocomplete="off">
+            </div>
+        </div>
+    </div>
+
+    <script>
+               const persianInput = document.getElementById("persianDate");
+        const gregorianInput = document.getElementById("gregorianDate");
+        let isSyncing = false;
+
+        // کلندر شمسی
+        new mds.MdsPersianDateTimePicker(persianInput, {
+            targetTextSelector: "#persianDate",
+            enableTimePicker: false,
+            textFormat: "yyyy/MM/dd",
+            onDateChange: function (event) {
+                if (isSyncing || !event.date) return;
+                isSyncing = true;
+
+                const [y, m, d] = event.date.split("/").map(Number);
+                const g = toGregorian(y, m, d);
+                const gStr = `${g.gy}/${String(g.gm).padStart(2, '0')}/${String(g.gd).padStart(2, '0')}`;
+                gregorianInput.value = gStr;
+
+                isSyncing = false;
+            }
+        });
+
+        // کلندر میلادی
+        new mds.MdsPersianDateTimePicker(gregorianInput, {
+            targetTextSelector: "#gregorianDate",
+            enableTimePicker: false,
+            isGregorian: true,
+            textFormat: "yyyy/MM/dd",
+            onDateChange: function (event) {
+                if (isSyncing || !event.date) return;
+                isSyncing = true;
+
+                const [y, m, d] = event.date.split("/").map(Number);
+                const p = toJalaali(y, m, d);
+                const pStr = `${p.jy}/${String(p.jm).padStart(2, '0')}/${String(p.jd).padStart(2, '0')}`;
+                persianInput.value = pStr;
+
+                isSyncing = false;
+            }
+        });
+
+    </script>
+</body>
+</html>

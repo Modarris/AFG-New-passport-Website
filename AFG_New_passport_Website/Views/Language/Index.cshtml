@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null; // این صفحه بدون Layout باشد تا Navbar نمایش داده نشود
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>انتخاب زبان</title>
+    <style>
+        body {
+            text-align: center;
+            margin-top: 100px;
+            background-image: url('~/Images/phoe/tech-photo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .card{
+            background-image: url('@Url.Content("~/Images/photo/bg.webp")');
+            background-repeat:no-repeat;
+            background-size:cover;
+            background-position-y:center;
+            height: 700px;
+           
+            object-fit: cover;
+        }
+
+        .formLang{
+            margin-top:20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card shadow">
+            <h4 class="pt-5">لطفاً زبان مورد نظر را انتخاب کنید</h4>
+            <br />
+            <form method="post" action="@Url.Action("SetLanguage", "Language")" class="formLang">
+                <button type="submit" name="lang" value="en" class="btn btn-primary">English</button>
+                <button type="submit" name="lang" value="ps" class="btn btn-primary">پشتو</button>
+                <button type="submit" name="lang" value="fa" class="btn btn-primary">دری</button>
+            </form>
+        </div>
+      
+    </div>
+
+</body>
+</html>

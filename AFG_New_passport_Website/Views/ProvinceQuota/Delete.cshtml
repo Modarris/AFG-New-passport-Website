@@ -1,0 +1,21 @@
+﻿@* @model AFG_New_passport_Website.Models.Domain.ProvinceQuota
+
+@{
+    ViewData["Title"] = "حذف سهمیه ولایت";
+    Layout = "_DashboardLayout";
+}
+
+<h2>آیا مطمئن هستید؟</h2>
+
+<div>
+    <h4></h4>
+    <p>سهمیه روزانه: @Model.DailyQuota</p>
+    <p>فعال: @(Model.IsActive ? "بلی" : "نخیر")</p>
+
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">حذف</button>
+        <a asp-action="List" class="btn btn-secondary">لغو</a>
+    </form>
+</div>
+ *@

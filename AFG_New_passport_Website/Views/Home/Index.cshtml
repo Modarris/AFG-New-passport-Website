@@ -1,0 +1,98 @@
+﻿@model AFG_New_passport_Website.Models.NewsIndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<!-- استایل‌ها و کتابخانه‌ها -->
+<link href="~/css/HomeIndexStyle.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/persian-datepicker/dist/css/persian-datepicker.min.css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/persian-date/dist/persian-date.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/persian-datepicker/dist/js/persian-datepicker.min.js"></script>
+
+<div class="container p-2 mb-4">
+    <div class="position-relative w-100" style="height: auto;">
+        <img src="~/images/photo/view.jpeg" alt="بنر اخبار"
+             class="w-100 img-fluid d-block"
+             style="max-height: 100vh; object-fit: contain;" />
+    </div>
+</div>
+
+
+
+
+
+
+<div class="container">
+    <a href="@Url.Action("Create", "Registration")" class="btn btn-primary hero-btn">
+        <i class="fas fa-passport"></i> @Localizer["I Agree"]
+    </a>
+    <h2 class="mb-4 text-center fw-bold">آخرین اخبار در باره‌ی روند توزیع پاسپورت را اینجا دنبال کنید!</h2>
+    <hr />
+</div>
+
+<div class="container rounded-0">
+    <div class="p-4 mb-5 rounded-0 shadow-sm border border-light-subtle" style="background-color: white;">
+        <div class="row g-3 rounded-0">
+            @foreach (var news in Model.NewsItems)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="card h-100 shadow-sm border-0 rounded-0 overflow-hidden p-4 card-news" style="background-color: #f4f4f4; border-block:double;">
+                        <img src="~/images/news/@news.ImagePath" class="card-img-top " style="height: 160px; object-fit: cover;" alt="@news.Title" />
+                        <div class="card-body d-flex flex-column">
+                            <h6 class="card-title fw-bold text-dark">@news.Title.Substring(0, Math.Min(30, news.Title.Length))...</h6>
+                            <p class="text-muted mb-1" style="font-size: 13px;">📅 @news.PublishDate.ToString("yyyy/MM/dd")</p>
+                            <p class="card-text" style="font-size: 14px;">
+                                @news.Content.Substring(0, Math.Min(50, news.Content.Length))...
+                            </p>
+                            <div class="mt-auto">
+                                <a href="@Url.Action("Details", "News", new { id = news.Id })" class="btn btn-outline-primary btn-sm w-100 rounded-3">مشاهده جزئیات</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- صفحه‌بندی -->
+    <div class="d-flex justify-content-center mt-4">
+        @if (Model.TotalPages > 1)
+        {
+            <nav>
+                <ul class="pagination pagination-sm">
+                    @if (Model.CurrentPage > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", "Home", new { page = Model.CurrentPage - 1 })">قبلی</a>
+                        </li>
+                    }
+
+                    @for (var i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("Index", "Home", new { page = i })">@i</a>
+                        </li>
+                    }
+
+                    @if (Model.CurrentPage < Model.TotalPages)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", "Home", new { page = Model.CurrentPage + 1 })">بعدی</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+    </div>
+
+
+

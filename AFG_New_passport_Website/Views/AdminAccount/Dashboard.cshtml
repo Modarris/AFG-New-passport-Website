@@ -1,0 +1,174 @@
+﻿@{
+    Layout = "_DashboardLayout";
+}
+
+<h2 class="text-center text-light">به داشبورد خوش آمدید</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* @{
+    Layout = null;
+}
+@using Microsoft.AspNetCore.Mvc.Localization
+    @inject IViewLocalizer Localizer
+<!DOCTYPE html>
+<html lang="en, fa" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Afg passport Website</title>
+    <link href="~/css/dashboardstyle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="card h-100">
+            <header>
+                <div class="text-center container">
+                    <h3 class="logo pt-5 pb-2 text-white">@Localizer["Directorate of Passport"]</h3>
+                </div>
+
+                <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow">
+                    <div class="container">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="javascript:void(0);" id="loadNews">@Localizer["News"]</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="javascript:void(0);" id="loadUsers">@Localizer["Users"]</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="javascript:void(0);" id="loadList">@Localizer["Forms List"]</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="javascript:void(0);" id="loadCreate">@Localizer["Add Gender"]</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="javascript:void(0);" id="loadIndex" >@Localizer["List Gender"]</a>
+                                </li>
+
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <!-- Div برای بارگذاری محتوا -->
+            <div id="dynamicContent">
+                <!-- محتوای داینامیک اینجا بارگذاری می‌شود -->
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+            
+
+        // Nesw
+        $('#loadNews').click(function () {
+            $.ajax({
+                url: '@Url.Action("LoadNews", "YourController")', 
+                type: 'GET',
+                success: function (response) {
+                    $('#dynamicContent').html(response); 
+                }
+            });
+        });
+           // Gender List
+        $('#loadIndex').click(function () {
+            $.ajax({
+                url: '@Url.Action("LoadIndex", "Gender")', 
+                type: 'GET',
+                success: function (response) {
+                    $('#dynamicContent').html(response);
+                }
+            });
+        });
+        // Users
+        $('#loadUsers').click(function () {
+            $.ajax({
+                url: '@Url.Action("LoadUsers", "YourController")', 
+                type: 'GET',
+                success: function (response) {
+                    $('#dynamicContent').html(response); 
+                }
+            });
+        });
+
+        // Create Gender
+             $('#loadCreate').click(function () {
+            $.ajax({
+                url: '@Url.Action("loadCreate", "Gender")', 
+                type: 'GET',
+                success: function (response) {
+                    $('#dynamicContent').html(response); 
+                }
+            });
+        });
+       
+
+         // بارگذاری سایر بخش‌ها مشابه
+          $('#loadList').click(function () {
+            $.ajax({
+                url: '@Url.Action("LoadList", "Registration")', // کنترلر و اکشن برای بارگذاری کاربران
+                type: 'GET',
+                success: function (response) {
+                    $('#dynamicContent').html(response); // محتوای جدید را در بخش dynamicContent بارگذاری می‌کنیم
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+ *@

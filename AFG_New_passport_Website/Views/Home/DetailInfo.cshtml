@@ -1,0 +1,799 @@
+﻿@{
+	ViewData["Title"] = " جزییات ثبت نام";
+}
+
+<div class="container-fluid p-3" style="background-color:#fff; border-color:inherit; border:solid; border-width:1px;">
+
+
+
+	<!--------------------- سن   --------------------------->
+	<div class="row " style="background-color:#E4E7E9; padding-bottom:2px;">
+		<h5 class="d-block text-center p-3 title-color" style="">@ViewData["Title"]</h5>
+		<div class="col-sm-12 col-md-4 p-2">
+			<label for="DisplayAge" class="p-2"> چند ساله هستید؟<span class="required">*</span></label>
+			@* <input type="number" class="form-control" name="DisplayAge" id="DisplayAge" required> *@
+			<input type="number" class="form-control" id="Age" value="">
+		</div>
+	</div>
+	<!------------------------------------------------------------------------------------>
+	<!--------------------- معیار پاسپورت --------------------------->
+	<div class="row " style="background-color:#E4E7E9; padding-bottom:2px;margin-top:2px;">
+		<hr />
+		<div id="passspecies" class="col-sm-12 col-md-12 p-2">
+			<label for="PassportLevel" class="form-label">معیار پاسپورت</label>
+			<select name="PassportLevel" id="PassportLevel" class="form-select">
+				<option id="FiveYears" value="FiveYears">5 ساله</option>
+				<option id="TenYears" value="TenYears">10 ساله</option>
+			</select>
+		</div>
+	</div>
+
+	<!--------------------- نوعیت پاسپورت : شرکت،انفرادی --------------------------->
+	<div class="row " style="background-color:#E4E7E9; padding-bottom:2px;margin-top:2px;">
+		<hr />
+		<div id="passspecies" class="col-sm-12 col-md-12 p-2">
+			<label for="PassportType" class="form-label">نوعیت پاسپورت</label>
+			<select name="PassportType" id="PassportType" class="form-select">
+				<option id="individual" value="individual">عادی</option>
+				<option id="corporate" value="corporate">تجاری</option>
+			</select>
+		</div>
+	</div>
+	<!------------------------------------------------------------------->
+	<!---------------------   پاسپورت تجاری --------------------------->
+	<div id="bPassport">
+		<div class="row " style="background-color:#E4E7E9; ">
+			<div id="Cclass" class="col-sm-12 col-md-4 p-2">
+				<label for="validationDefault04" class="form-label"> موقف</label>
+				<select class="form-select" id="">
+					<option selected disabled value="">---</option>
+					<option>---</option>
+					<option>---</option>
+					<option>---</option>
+				</select>
+			</div>
+			<div id="Cplace" class="col-sm-12 col-md-4 p-2">
+				<label for="validationDefault04" class="form-label"> مکان</label>
+				<select class="form-select" id="" required>
+					<option selected disabled value="">---</option>
+					<option>ارزگان</option>
+					<option>بادغیس</option>
+					<option>بامیان</option>
+					<option>بدخشان</option>
+					<option>بغلان</option>
+					<option>بلخ</option>
+					<option>پروان</option>
+					<option>پکتیا</option>
+					<option>پکتیکا</option>
+					<option>پنجشیر</option>
+					<option>تخار</option>
+					<option>جوزجان</option>
+					<option>خوست</option>
+					<option>دایکندی</option>
+					<option>زابل</option>
+					<option>سرپل</option>
+					<option>سمنگان</option>
+					<option>غزنی</option>
+					<option>غور</option>
+					<option>فاریاب</option>
+					<option>فراه</option>
+					<option>قندهار</option>
+					<option>کابل</option>
+					<option>کاپیسا</option>
+					<option>کندز</option>
+					<option>کنر</option>
+					<option>لغمان</option>
+					<option>لوگر</option>
+					<option>ننگرهار</option>
+					<option>نورستان</option>
+					<option>نیمروز</option>
+					<option>میدان وردک</option>
+					<option>هرات</option>
+					<option>هلمند</option>
+				</select>
+			</div>
+			<div id="Cnumber" class="col-sm-12 col-md-4 p-2">
+				<label for="validationDefault04" nam="شماره سند" class="form-label">نمبر جواز شرکت</label>
+				<input type="text" class="form-control" id="" value="">
+			</div>
+		</div>
+		<div class="row " style="background-color:#E4E7E9; ">
+			<div id="Ctin" class="col-sm-12 col-md-3 p-2">
+				<label for="validationDefault04" class="form-label"> نمبر TIN</label>
+				<input type="text" class="form-control" id="" value="">
+			</div>
+
+			<div id="Ckindb" class="col-sm-12 col-md-3 p-2">
+				<label for="validationDefault04" class="form-label"> نوع تجارت</label>
+				<select class="form-select" id="">
+					<option selected disabled value="">---</option>
+					<option>---</option>
+					<option>---</option>
+					<option>---</option>
+					<option>---</option>
+				</select>
+			</div>
+			<div id="CdateI" class="col-sm-12 col-md-3 p-2">
+				<label for="validationDefault04" class="form-label"> تاریخ صدور جواز</label>
+				<input type="date" class="form-control" id="" value="">
+			</div>
+
+			<div id="CdateE" class="col-sm-12 col-md-3 p-2">
+				<label for="validationDefault04" class="form-label"> تاریخ ختم جواز</label>
+				<input type="date" class="form-control" id="" value="">
+			</div>
+		</div>
+		<div class="row " style="background-color:#E4E7E9;">
+			<div id="Cadd" class="mb-3 col-sm-12 col-md-12">
+				<label for="exampleFormControlTextarea1" class="form-label"> آدرس دقیق شرکت </label>
+				<textarea class="form-control" id="" rows="3"></textarea>
+			</div>
+		</div>
+	</div>
+
+	<!------------------------------------------------------------------------------------->
+	<!--------------------- نوعیت پرداخت --------------------------->
+	<div class="row " style="background-color:#E4E7E9; padding-bottom:2px;margin-top:2px;">
+		<hr />
+		<div id="passspecies" class="col-sm-12 col-md-12 p-2">
+			<label for="PayType" class="form-label">نوعیت پرداخت</label>
+			<select name="PayType" id="PayType" class="form-select">
+				<option id="Normal" value="normal">عادی</option>
+				<option id="Superior" value="Superior">مافوق رتبه</option>
+			</select>
+		</div>
+	</div>
+	<!------------------------------------------------------------------->
+	<!---------------------   سطح تحصیلات --------------------------->
+	<div id="educationLevel">
+		<div class="row " style="background-color:#E4E7E9; padding-bottom:2px;margin-top:2px;">
+			<hr style="border: solid 2px red;" />
+			<div class="col-sm-12 col-md-12 p-2">
+				<h6 style="padding-bottom:8px; display:inline;" id=" smallPayment">  لطفا معلومات در باره بالا ترین سطح تحصیل و مقام تان را وارد نمایید ! </h6>
+			</div>
+		</div>
+		<div class="row " style="background-color:#E4E7E9; ">
+			<div id="E1" class="col-sm-12 col-md-4 p-2">
+				<label for="validationDefault04" class="form-label"> میزان تحصیلات</label>
+				<select class="form-select" id="" required>
+					<option selected disabled value="">---</option>
+					<option>فارغ 12 </option>
+					<option>لیسانس</option>
+					<option>ماستر</option>
+					<option>دکترا</option>
+
+				</select>
+			</div>
+			<div id="E2" class="col-sm-12 col-md-4 p-2">
+				<label for="validationDefault04" class="form-label"> نوع انیستیتوت</label>
+				<select class="form-select" id="" required>
+					<option selected disabled value="">---</option>
+					<option>----</option>
+					<option>----</option>
+					<option>----</option>
+					<option>----</option>
+					<option>----</option>
+
+				</select>
+			</div>
+			<div id="E3" class="col-sm-12 col-md-4 p-2">
+				<label for="validationDefault04" class="form-label"> مکان تحصیل</label>
+				<select class="form-select" id="" required>
+					<option selected disabled value="">---</option>
+					<option>ارزگان</option>
+					<option>بادغیس</option>
+					<option>بامیان</option>
+					<option>بدخشان</option>
+					<option>بغلان</option>
+					<option>بلخ</option>
+					<option>پروان</option>
+					<option>پکتیا</option>
+					<option>پکتیکا</option>
+					<option>پنجشیر</option>
+					<option>تخار</option>
+					<option>جوزجان</option>
+					<option>خوست</option>
+					<option>دایکندی</option>
+					<option>زابل</option>
+					<option>سرپل</option>
+					<option>سمنگان</option>
+					<option>غزنی</option>
+					<option>غور</option>
+					<option>فاریاب</option>
+					<option>فراه</option>
+					<option>قندهار</option>
+					<option>کابل</option>
+					<option>کاپیسا</option>
+					<option>کندز</option>
+					<option>کنر</option>
+					<option>لغمان</option>
+					<option>لوگر</option>
+					<option>ننگرهار</option>
+					<option>نورستان</option>
+					<option>نیمروز</option>
+					<option>میدان وردک</option>
+					<option>هرات</option>
+					<option>هلمند</option>
+				</select>
+			</div>
+		</div>
+		<div class="row " style="background-color:#E4E7E9; ">
+			<div id="E4" class="col-sm-12 col-md-3 p-2">
+				<label for="validationDefault04" nam="شماره سند" class="form-label">نام انیستیتوت</label>
+				<input type="text" class="form-control" id="" value="">
+			</div>
+			<div id="E5" class="col-sm-12 col-md-3 p-2">
+				<label for="validationDefault04" nam="شماره سند" class="form-label">نام انیستیتوت به انگلیسی</label>
+				<input type="text" class="form-control" id="" value="">
+			</div>
+			<div id="E6" class="col-sm-12 col-md-3 p-2">
+				<label for="validationDefault04" class="form-label"> آغاز دوره تحصیلی</label>
+				<input type="date" class="form-control" id="" value="">
+			</div>
+			<div id="E7" class="col-sm-12 col-md-3 p-2">
+				<label for="validationDefault04" class="form-label"> ختم دوره تحصیلی</label>
+				<input type="date" class="form-control" id="" value="">
+			</div>
+		</div>
+
+		<!----------------------------------------------------------------------->
+	</div>
+
+
+	<!---------------------------  وظیفه --------------------------->
+	<div id="yourJob">
+		<div class="row " id="" style="background-color:#E4E7E9; padding-bottom:2px;margin-top:2px;">
+			<hr />
+			<div id="J1" class="col-sm-12 col-md-3 p-2">
+				<label for="validationDefault04" class="form-label"> موقعیت وظیفه</label>
+				<select class="form-select" id="" required>
+					<option selected disabled value="">---</option>
+					<option>ارزگان</option>
+					<option>بادغیس</option>
+					<option>بامیان</option>
+					<option>بدخشان</option>
+					<option>بغلان</option>
+					<option>بلخ</option>
+					<option>پروان</option>
+					<option>پکتیا</option>
+					<option>پکتیکا</option>
+					<option>پنجشیر</option>
+					<option>تخار</option>
+					<option>جوزجان</option>
+					<option>خوست</option>
+					<option>دایکندی</option>
+					<option>زابل</option>
+					<option>سرپل</option>
+					<option>سمنگان</option>
+					<option>غزنی</option>
+					<option>غور</option>
+					<option>فاریاب</option>
+					<option>فراه</option>
+					<option>قندهار</option>
+					<option>کابل</option>
+					<option>کاپیسا</option>
+					<option>کندز</option>
+					<option>کنر</option>
+					<option>لغمان</option>
+					<option>لوگر</option>
+					<option>ننگرهار</option>
+					<option>نورستان</option>
+					<option>نیمروز</option>
+					<option>میدان وردک</option>
+					<option>هرات</option>
+					<option>هلمند</option>
+				</select>
+			</div>
+
+			<div id="J2" class="col-sm-12 col-md-3 p-2">
+				<label for="validationDefault04" nam="شماره سند" class="form-label">موقف</label>
+				<input type="text" class="form-control" id="" value="">
+			</div>
+
+			<div id="J3" class="col-sm-12 col-md-3 p-2">
+				<label for="validationDefault04" class="form-label">موقف به انگلیسی</label>
+				<input type="text" class="form-control" id="" value="">
+			</div>
+
+			<div id="J4" class="col-sm-12 col-md-3 p-2">
+				<label for="validationDefault04" class="form-label"> نام اداره</label>
+				<input type="text" class="form-control" id="" value="">
+			</div>
+		</div>
+		<div class="row " style="background-color:#E4E7E9; ">
+			<div id="J5" class="col-sm-12 col-md-3 p-2">
+				<label for="validationDefault04" class="form-label">نام اداره به انگلیسی</label>
+				<input type="text" class="form-control" id="" value="">
+			</div>
+
+			<div id="J6" class="col-sm-12 col-md-3 p-2">
+				<label for="validationDefault04" class="form-label"> تاریخ شروع کار</label>
+				<input type="date" class="form-control" id="" value="">
+			</div>
+
+			<div id="J7" class="col-sm-12 col-md-3 p-2">
+				<label for="validationDefault04" class="form-label"> تاریخ ختم کار</label>
+				<input type="date" class="form-control" id="" value="">
+			</div>
+			<hr style="border: solid 3px  green; margin-bottom:-0px;" />
+		</div>
+
+		<!------------------------------------------------------------------->
+
+	</div>
+
+
+
+
+	<!---------------------------  آدرس دریافت پاسپورت--------------------------->
+	<div class="row " style="background-color:#E4E7E9; padding-bottom:2px;margin-top:2px;">
+		<hr />
+		<div class="col-sm-12 col-md-12 p-2" style="margin-bottom:15px;">
+			<h6 style="padding-bottom:8px; display:inline;" id=" smallPayment">  مبلغ قابل چرداخت شما : </h6><input id="result" type="text" name="" value="" />
+
+		</div>
+	</div>
+
+
+
+	<div class="row " style="background-color:#E4E7E9; padding-bottom:2px;margin-top:2px;">
+		<hr />
+		<h6 style="padding-top:3px;"> آدرس دلخواه تان برای دریافت پاسپورت را وارد نمایید!</h6>
+		<div class="col-sm-12 col-md-3 p-2">
+			<label for="validationDefault04" class="form-label"> ولایت</label>
+			<select class="form-select" id="provinceName" required>
+				<option selected disabled value="">---</option>
+				<option id="1" value="1">ارزگان</option>
+				<option value="2">بادغیس</option>
+				<option value="3">بامیان</option>
+				<option value="4">بدخشان</option>
+				<option value="5">بغلان</option>
+				<option value="6">بلخ</option>
+				<option value="7">پروان</option>
+				<option value="8">پکتیا</option>
+				<option value="9">پکتیکا</option>
+				<option value="10">پنجشیر</option>
+				<option value="11">تخار</option>
+				<option value="12">جوزجان</option>
+				<option value="13">خوست</option>
+				<option value="14">دایکندی</option>
+				<option value="15">زابل</option>
+				<option value="16">سرپل</option>
+				<option value="17">سمنگان</option>
+				<option value="18">غزنی</option>
+				<option value="19">غور</option>
+				<option value="20">فاریاب</option>
+				<option value="21">فراه</option>
+				<option value="22">قندهار</option>
+				<option value="23">کابل</option>
+				<option value="24">کاپیسا</option>
+				<option value="25">کندز</option>
+				<option value="26">کنر</option>
+				<option value="27">لغمان</option>
+				<option value="28">لوگر</option>
+				<option value="29">ننگرهار</option>
+				<option value="30">نورستان</option>
+				<option value="31">نیمروز</option>
+				<option value="32">میدان وردک</option>
+				<option value="33">هرات</option>
+				<option value="34">هلمند</option>
+			</select>
+		</div>
+		<div class="col-sm-12 col-md-3 p-2">
+			<label for="validationDefault04" class="form-label"> پوسته خانه</label>
+			<select class="form-select" id=" postAdd" >
+				<option selected disabled value="">---</option>
+				<option id="100" value="100">ارزگان</option>
+				<option id="101" value="101">بادغیس</option>
+				<option value="102">بامیان</option>
+				<option value="103">بدخشان</option>
+				<option value="104">بغلان</option>
+				<option value ="105">بلخ</option>
+				<option>پروان</option>
+				<option>پکتیا</option>
+				<option>پکتیکا</option>
+				<option>پنجشیر</option>
+				<option>تخار</option>
+				<option>جوزجان</option>
+				<option>خوست</option>
+				<option>دایکندی</option>
+				<option>زابل</option>
+				<option>سرپل</option>
+				<option>سمنگان</option>
+				<option>غزنی</option>
+				<option>غور</option>
+				<option>فاریاب</option>
+				<option>فراه</option>
+				<option>قندهار</option>
+				<option>کابل</option>
+			     	<option>احمد شاه بابا مینه</option>
+			    	<option>بریکوت</option>
+			  	    <option>بگرامی</option>
+				    <option>پارک های صنعتی</option>
+			    	<option>پل خشک</option>
+				    <option>پل محمود خان</option>
+				    <option>پشتونستان</option> 
+				    <option>پل چرخی</option>
+			    	<option> تایمنی</option>
+				    <option>توزیع تا به خانه ها </option>
+				    <option>خوشحال خان</option>
+			    	<option>خیرخانه</option>
+			    	<option>چهل ستون</option>
+			    	<option>چمتله - سرکوتل</option>
+			    	<option>دارالامان</option>
+			    	<option>دشت برچی</option>
+		    		<option>شاه شهید</option>
+			    	<option>شهرک آریا</option>
+			    	<option>شهر نو</option>
+			    	<option>سید نورمحمد شاه مینه</option>
+			    	<option>کارته نو</option>
+		    		<option>کارته 4</option>
+			    	<option>کارته پروان </option>
+				    <option>کمپنی </option>
+				    <option> قصبه </option>
+			    	<option> قلعه فتح الله </option>
+			    	<option>مکروریان اول</option>
+			    	<option>مکروریان سوم</option>
+				<option>کاپیسا</option>
+				<option>کندز</option>
+				<option>کنر</option>
+				<option>لغمان</option>
+				<option>لوگر</option>
+				<option>ننگرهار</option>
+				<option>نورستان</option>
+				<option>نیمروز</option>
+				<option>میدان وردک</option>
+				<option>هرات</option>
+	    		 	<option>جبر ییل</option>
+	    			<option>شیندند</option>
+		    		<option>هرات</option>
+				<option>هلمند</option>
+			</select>
+		</div>
+		<div class="col-sm-12 col-md-3 p-2">
+			<label for="validationDefault04" class="form-label">نمبر تماس</label>
+			<input type="text" class="form-control" id="" value="">
+		</div>
+		<div class="col-sm-12 col-md-3 p-2">
+			<label for="validationDefault04" class="form-label"> نمبر تماس دوم</label>
+			<input type="text" class="form-control" id="" value="">
+		</div>
+	</div>
+	<div class="row " style="background-color:#E4E7E9; ">
+		<div class="mb-3 col-sm-12 col-md-12">
+			<label for="exampleFormControlTextarea1" class="form-label">آدرس کامل</label>
+			<textarea class="form-control" id="" rows="3"></textarea>
+		</div>
+		<br />
+		<!---------------------------------------------------------------------->
+	</div>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+
+<script>
+
+    document.getElementById('Age').addEventListener('keyup', calculateFixedNumber);
+	document.getElementById('PassportLevel').addEventListener('change', calculateFixedNumber);
+	document.getElementById('PassportType').addEventListener('change', calculateFixedNumber);
+
+	function calculateFixedNumber() {
+	let Age = parseInt(document.getElementById('Age').value);
+	let PassportLevel = document.getElementById('PassportLevel').value;
+	let PassportType = document.getElementById('PassportType').value;
+
+		
+	    if(Age < 15 && PassportLevel === 'FiveYears' && PassportType === 'individual'){
+		     TenYears.style.display = 'none';
+		   	 corporate.style.display = 'none';
+			 Superior.style.display = 'none';
+		     document.getElementById('result').value = '3,250 افغانی'; // عدد ثابت از پیش تعیین شد
+	    }
+
+	    else if (Age >= 15 && Age <= 150 && PassportLevel === 'FiveYears' && PassportType === 'individual') {
+		     TenYears.style.display = 'block';
+		     corporate.style.display = 'block';
+		     Superior.style.display = 'block';
+		     document.getElementById('result').value = '5,500 افغانی ';
+	    }
+	    else if(Age >= 15 && Age <= 150 && PassportLevel === 'TenYears' && PassportType === 'individual'){
+		     TenYears.style.display = 'block';
+			 corporate.style.display = 'block';
+			 Superior.style.display = 'block';
+		     document.getElementById('result').value = '10,000 افغانی';
+	    }
+	    else if(Age >= 15 && Age <= 150 && PassportLevel === 'FiveYears' && PassportType === 'corporate'){
+	 	     TenYears.style.display = 'block';
+			 corporate.style.display = 'block';
+			 Superior.style.display = 'block';
+			 document.getElementById('result').value = '16,000 افغانی';
+		}
+		else if(Age >= 15 && Age <= 150 && PassportLevel === 'TenYears' && PassportType === 'corporate'){
+			 TenYears.style.display = 'block';
+			 corporate.style.display = 'block';
+			 Superior.style.display = 'block';
+			 document.getElementById('result').value = '31,000 افغانی';
+		}
+	    else {
+		     document.getElementById('result').value = " ...";
+	    }
+	}
+</script>
+
+<script>
+
+	 const PayType = document.getElementById('PayType');
+		 yourJob.style.display = 'none';
+		 educationLevel.style.display = 'none';
+
+		 PayType.addEventListener('change', (event) => {
+			  const selected = event.target.value;
+
+				 switch(selected){
+
+					  case 'normal':
+						   yourJob.style.display = 'none';
+						   educationLevel.style.display = 'none';
+						   console.log('normal');
+					  break;
+
+					  case 'Superior':
+						   yourJob.style.display = 'block';
+						   educationLevel.style.display = 'block';
+						   console.log('Superior')
+						 break;
+				 };
+		 });
+
+	 const PassportType = document.getElementById('PassportType');
+		 bPassport.style.display= 'none';
+		 PassportType.addEventListener('change', (event) =>{
+			 const selected = event.target.value;
+
+				 switch(selected){
+
+					  case 'corporate':
+						   Superior.style.display = 'none';
+						   bPassport.style.display= 'block';
+					  break
+
+					  case 'individual':
+						   bPassport.style.display= 'none';
+					  break;
+				 };
+	 	});
+
+	 const provinceName = document.getElementById('provinceName');
+	 const postAdd = document.getElementById('postAdd');
+	      provinceName.addEventListener('change', (event) =>{
+	         const selected = event.target.value;
+	             switch(selected){
+
+					 case '1':
+				     '100'.style.display= 'block';
+					 '101'.style.display = 'none';
+					 break;
+					 case 2:
+					 console.log('no');
+					 break;
+					 
+
+	             };
+	      });
+
+
+							 //    ------------------Business Pass--------------------------
+							 //  const passspecies = document.getElementById('passspecies');
+							 //  const Cclass = document.getElementById('Cclass');
+							 //  const Cplace = document.getElementById('Cplace');
+							 //  const Cnumber = document.getElementById('Cnumber');
+							 //  const Ctin = document.getElementById('Ctin');
+							 //  const Ckindb = document.getElementById('Ckindb');
+							 //  const CdateI = document.getElementById('CdateI');
+							 //  const CdateE = document.getElementById('CdateE');
+							 //  const Cadd = document.getElementById('Cadd');
+
+							 //        Cclass.style.display = 'none'
+							 //        Cplace.style.display = 'none'
+							 //        Cnumber.style.display = 'none'
+							 //        Ctin.style.display = 'none'
+							 //        Ckindb.style.display = 'none'
+							 //        CdateI.style.display = 'none'
+							 //        CdateE.style.display = 'none'
+							 //        Cadd.style.display = 'none'
+
+							 // passspecies.addEventListener('change',(event) =>{
+							 // const selected = event.target.value;
+
+							 // switch(selected){
+							 //     case 'individual':
+							 //         Cclass.style.display = 'none'
+							 //         Cplace.style.display = 'none'
+							 //         Cnumber.style.display = 'none'
+							 //         Ctin.style.display = 'none'
+							 //         Ckindb.style.display = 'none'
+							 //         CdateI.style.display = 'none'
+							 //         CdateE.style.display = 'none'
+							 //         Cadd.style.display = 'none'
+							 //         applyspecies2.style.backgroundColor = 'white';
+							 //         console.log('individual');
+							 //     break;
+
+							 //     case 'corporate':
+							 //         Cclass.style.display = 'block'
+							 //         Cplace.style.display = 'block'
+							 //         Cnumber.style.display = 'block'
+							 //         Ctin.style.display = 'block'
+							 //         Ckindb.style.display = 'block'
+							 //         CdateI.style.display = 'block'
+							 //         CdateE.style.display = 'block'
+							 //         Cadd.style.display = 'block'
+							 //         applyspecies2.style.backgroundColor = '#FDF5E6';
+							 //         console.log('corporate');
+							 //     break;
+							 // };
+							 // });
+
+				// ------------------سطح تحصیلات--------------------------
+				//       const EducationLevel = document.getElementById('EducationLevel');
+				//       const E1 = document.getElementById('E1');
+				//       const E2 = document.getElementById('E2');
+				//       const E3 = document.getElementById('E3');
+				//       const E4 = document.getElementById('E4');
+				//       const E5 = document.getElementById('E5');
+				//       const E6 = document.getElementById('E6');
+				//       const E7 = document.getElementById('E7');
+
+				//             E1.style.display = 'none';
+				//             E2.style.display = 'none';
+				//             E3.style.display = 'none';
+				//             E4.style.display = 'none';
+				//             E5.style.display = 'none';
+				//             E6.style.display = 'none';
+				//             E7.style.display = 'none';
+				//             EducationLevel.style.backgroundColor='#F5F5F5';
+
+				//      EducationLevel.addEventListener('change',(event) =>{
+				//      const selected = event.target.value;
+
+				//      switch(selected){
+
+
+				//          case 'Literate':
+				//             E1.style.display = 'block';
+				//             E2.style.display = 'block';
+				//             E3.style.display = 'block';
+				//             E4.style.display = 'block';
+				//             E5.style.display = 'block';
+				//             E6.style.display = 'block';
+				//             E7.style.display = 'block';
+				//             EducationLevel.style.backgroundColor = '#FDF5E6';
+				//             console.log('Literate');
+				//          break;
+				//          case 'IlLiterate':
+				//             E1.style.display = 'none';
+				//             E2.style.display = 'none';
+				//             E3.style.display = 'none';
+				//             E4.style.display = 'none';
+				//             E5.style.display = 'none';
+				//             E6.style.display = 'none';
+				//             E7.style.display = 'none';
+				//             EducationLevel.style.backgroundColor = 'white';
+				//             console.log('IlLiterate');
+				//          break;
+				//      };
+				//      });
+
+
+
+				// ------------------وظیفه --------------------------
+				//       const Job = document.getElementById('Job');
+				//       const J1 = document.getElementById('J1');
+				//       const J2 = document.getElementById('J2');
+				//       const J3 = document.getElementById('J3');
+				//       const J4 = document.getElementById('J4');
+				//       const J5 = document.getElementById('J5');
+				//       const J6 = document.getElementById('J6');
+				//       const J7 = document.getElementById('J7');
+
+				//             J1.style.display = 'none';
+				//             J2.style.display = 'none';
+				//             J3.style.display = 'none';
+				//             J4.style.display = 'none';
+				//             J5.style.display = 'none';
+				//             J6.style.display = 'none';
+				//             J7.style.display = 'none';
+				//             Job.style.backgroundColor='#F5F5F5';
+
+				//      Job.addEventListener('change',(event) =>{
+				//      const newone = event.target.value;
+
+				//      switch(newone){
+
+
+				//          case 'SelfE':
+				//             J1.style.display = 'none';
+				//             J2.style.display = 'none';
+				//             J3.style.display = 'none';
+				//             J4.style.display = 'none';
+				//             J5.style.display = 'none';
+				//             J6.style.display = 'none';
+				//             J7.style.display = 'none';
+				//             EducationLevel.style.backgroundColor = 'white';
+				//             console.log('SelfE');
+				//          break;
+				//          case 'Empo':
+				//              J1.style.display = 'block';
+				//              J2.style.display = 'block';
+				//              J3.style.display = 'block';
+				//              J4.style.display = 'block';
+				//              J5.style.display = 'block';
+				//              J6.style.display = 'block';
+				//              J7.style.display = 'block';
+				//              EducationLevel.style.backgroundColor = '#FDF5E6';
+				//              console.log('Empo');
+				//          break;
+				//      };
+				//      });
+
+
+	//                ------------------سابقه جرمی --------------------------
+	//                   const Crime = document.getElementById('Crime');
+	//                   const CR1 = document.getElementById('CR1');
+	//                   const CR2 = document.getElementById('CR2');
+	//                   const CR3 = document.getElementById('CR3');
+	//                   const CR4 = document.getElementById('CR4');
+	//                   const CR5 = document.getElementById('CR5');
+	//                   const CR6 = document.getElementById('CR6');
+	//                   const CR7 = document.getElementById('CR7');
+	//                   const CR8 = document.getElementById('CR8');
+
+	//                         CR1.style.display = 'none';
+	//                         CR2.style.display = 'none';
+	//                         CR3.style.display = 'none';
+	//                         CR4.style.display = 'none';
+	//                         CR5.style.display = 'none';
+	//                         CR6.style.display = 'none';
+	//                         CR7.style.display = 'none';
+	//                         CR8.style.display = 'none';
+	//                         Crime.style.backgroundColor='#F5F5F5';
+
+	//                  Crime.addEventListener('change',(event) =>{
+	//                  const selected = event.target.value;
+
+	//                  switch(selected){
+
+	//                      case 'Hove':
+	//                         CR1.style.display = 'block';
+	//                         CR2.style.display = 'block';
+	//                         CR3.style.display = 'block';
+	//                         CR4.style.display = 'block';
+	//                         CR5.style.display = 'block';
+	//                         CR6.style.display = 'block';
+	//                         CR7.style.display = 'block';
+	//                         CR8.style.display = 'block';
+	//                                     Crime.style.backgroundColor = '#FDF5E6';
+	//                                     Hav.style.addEventListener = 'white',
+	//                         Crime.style.color = 'white';
+	//                         Crime.style.fontSize = 'bold';
+	//                         console.log('Hove');
+	//                      break;
+	//                      case 'Dhave':
+	//                         CR1.style.display = 'none';
+	//                         CR2.style.display = 'none';
+	//                         CR3.style.display = 'none';
+	//                         CR4.style.display = 'none';
+	//                         CR5.style.display = 'none';
+	//                         CR6.style.display = 'none';
+	//                         CR7.style.display = 'none';
+	//                         CR8.style.display = 'none';
+	//                         Crime.style.backgroundColor = 'white';
+	//                         console.log('Dhave');
+	//                      break;
+	// ;
+	//                  };
+	//                  });
+</script>

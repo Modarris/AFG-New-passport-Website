@@ -1,0 +1,31 @@
+﻿@model AFG_New_passport_Website.Models.Domain.ProvinceOfBirth
+
+@{
+    Layout = "_DashboardLayout"; // استفاده از لی‌اوت داشبورد برای این صفحه
+}
+
+<div class="d-flex justify-content-center  min-vh-50 mt-3 bg-light">
+    <div class="card shadow-sm p-4 rounded-4" style="width: 100%; max-width: 500px; font-size: 0.9rem;">
+        <h5 class="text-center mb-4"><i class="fas fa-edit text-primary"></i> ویرایش شهر </h5>
+
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group mb-3">
+                <label asp-for="DName" class="form-label" style="">نام شهر</label>
+                <input asp-for="DName" class="form-control form-control-lg" />
+                <span asp-validation-for="DName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="EName" class="form-label">City Name</label>
+                <input asp-for="EName" class="form-control form-control-lg" />
+                <span asp-validation-for="EName" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">
+                <i class="fas fa-save me-1"></i> ذخیره تغییرات
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+﻿@model AFG_New_passport_Website.Models.Domain.PassportDuration
+
+@{
+    Layout = "_DashboardLayout"; // استفاده از لی‌اوت داشبورد برای این صفحه
+}
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+<div class="form-container">
+    <div class="card">
+        <h5 class="text-center mb-4"><i class="fas fa-edit text-primary"></i> ویرایش مدت پاسپورت</h5>
+
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="form-label">مدت پاسپورت</label>
+                <input asp-for="Name" class="form-control form-control-lg" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <a asp-action="Index" class="btn btn-secondary"><i class="fas fa-arrow-right me-2"></i>باز گشت</a>
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-save me-1"></i> ذخیره تغییرات
+            </button>
+        </form>
+    </div>
+</div>

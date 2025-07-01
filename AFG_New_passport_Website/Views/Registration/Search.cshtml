@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "جستجو";
+    
+}
+
+<h2>جستجوی پروفایل</h2>
+
+<form id="searchForm" method="post" asp-action="Result" asp-controller="Registration">
+    <input type="text" name="code" id="searchCode" placeholder="کد پیگیری" class="form-control mb-3" />
+    <button type="submit" class="btn btn-primary">جستجو</button>
+</form>
+
+<!-- مودال نمایش خطا -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="errorModalLabel">خطا</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
+            </div>
+            <div class="modal-body" id="errorMessage"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">باشه</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+                $('#searchForm').submit(function (e) {
+            e.preventDefault();
+
+            var code = $('#searchCode').val();
+
+            $.ajax({
+                url: '@Url.Action("Result", "Registration")',
+                type: 'POST',
+                data: { code: code },
+                success: function (response) {
+                    if (response.redirectToProfile) {
+                        // این خط باعث ریدایرکت میشه
+                        window.location.href = response.redirectUrl;
+                    } else if (response.errorMessage) {
+                        $('#errorMessage').text(response.errorMessage);
+                        var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                        errorModal.show();
+                    }
+                },
+                error: function () {
+                    $('#errorMessage').text('خطایی رخ داده است. لطفاً دوباره تلاش کنید.');
+                    var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                    errorModal.show();
+                }
+            });
+        });
+
+    </script>
+}

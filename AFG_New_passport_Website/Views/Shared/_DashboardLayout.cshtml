@@ -1,0 +1,394 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+@{
+	var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+	var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+}
+<head>
+	<meta charset="utf-8">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AFG Passport Admin</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fortawesome/fontawesome-free/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/gh/rastikerdar/tanha-font@v1.0.0/dist/font-face.css" rel="stylesheet" />
+
+	<style>
+		body {
+			font-family: 'Vazir', sans-serif !important;
+		}
+
+		h1, h5, .title {
+			font-family: 'Tanha', sans-serif !important;
+		}
+	</style>
+	<style>
+	
+		body {
+			font-family: 'Vazirmatn', sans-serif;
+			background-color: #f0f2f5;
+			margin: 0;
+			padding: 0;
+		}
+
+		.sidebar {
+			background-color: #fff;
+			color: black;
+			min-height: 100vh;
+			padding-top: 1rem;
+			width: 250px;
+			position: fixed;
+			margin-right: 20px;
+		}
+
+			.sidebar a {
+				color: black;
+				padding: 0.5rem 1rem;
+				display: block;
+				transition: background-color 0.3s ease, padding-left 0.3s ease;
+				text-decoration: none;
+			}
+
+				.sidebar a:hover {
+					background-color: #343a40;
+					text-decoration: none;
+					color: #fff;
+				}
+
+			.sidebar .nav-item {
+				margin-bottom: 0.5rem;
+			}
+
+		.navbar {
+			background-color: #ffffff;
+			border-bottom: 1px solid #dee2e6;
+			padding: 1rem;
+		}
+
+		.brand {
+			font-size: 1.4rem;
+			font-weight: bold;
+			padding: 1rem 1rem 0.5rem;
+			color: #f8f9fa;
+			text-align: center;
+			border-bottom: 1px solid #444;
+		}
+
+		.main-footer {
+			background-color: #ffffff;
+			padding: 1rem;
+			border-top: 1px solid #dee2e6;
+			font-size: 0.9rem;
+			color: #6c757d;
+		}
+
+		.content {
+			padding: 1.5rem;
+			background-color: #ffffff;
+			border-radius: 0.5rem;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+			min-height: 80vh;
+		}
+
+		.sidebar .nav-item .nav-link {
+			padding-left: 1rem;
+			margin-top: -5px;
+		}
+
+			.sidebar .nav-item .nav-link.active {
+				padding-left: 2rem;
+				background-color: #495057;
+				color: #fff;
+			}
+
+
+		.nav-item .nav-treeview {
+			display: none;
+			padding-left: 1rem;
+			border: gray solid 1px;
+		}
+
+		.nav-item.open .nav-treeview {
+			display: block;
+		}
+
+
+
+		media (max-width: 768px) {
+			.sidebar
+
+		{
+			position: fixed;
+			right: -250px;
+			top: 0;
+			height: 100%;
+			z-index: 1050;
+			transition: right 0.3s ease;
+		}
+
+		.sidebar.active {
+			right: 0;
+			box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+		}
+
+		main {
+			margin-right: 0 !important;
+		}
+
+		.nav-link.active {
+			background-color: #198754;
+			color: white;
+			font-weight: bold;
+		}
+
+		.menu-open > .nav-treeview {
+			display: block !important;
+		}
+
+	</style>
+	<style>
+		/* styles.css */
+		/* تعریف مود لایت به صورت پیش‌فرض */
+		body.light {
+			background-color:black;
+			padding:20px;
+		}
+
+		/* تعریف مود دارک */
+		body.dark {
+			--bg-color: #121212;
+			--text-color: #ffffff;
+			--button-bg: #333333;
+			--button-text: #ffffff;
+		}
+		/* استفاده از متغیرها */
+		body {
+			background-color: var(--bg-color);
+			color: var(--text-color);
+		}
+
+		button {
+			background-color: var(--button-bg);
+			color: var(--button-text);
+		}
+		/* Light Mode */
+		body.light main,
+		body.light nav,
+		body.light footer {
+			background-color: #fff;
+			color: #000;
+		}
+
+		/* Dark Mode */
+		body.dark main,
+		body.dark nav,
+		body.dark footer {
+			background-color: #191c2c;
+			color: #FDD39A;
+		}
+
+		body.dark main nav h2
+         {
+			
+				color: #FDD39A;
+		}
+
+			body.dark main .content {
+				background-color: #212436;
+				color: #FDD39A;
+			}
+
+		body.dark .header {
+			color: #FDD39A;
+		}
+
+		body.dark nav ul .card a{
+			color: #FDD39A;
+		}
+
+		body.dark nav ul .card a:hover {
+			color: #fff;
+		}
+
+	</style>
+</head>
+<body class="light  dark  ">
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Sidebar -->
+			<nav class="col-md-2 sidebar">
+				<button class="btn btn-outline-dark d-md-none" id="menu-toggle">
+					<i class="fas fa-bars"></i>
+				</button>
+				<button onclick="toggleMode()" class="text-center mb-3">🌓 تغییر حالت</button>
+
+
+				<div class="header" > مدیریت سیستم </div>
+				<ul class="nav flex-column">
+
+					<div class="card" style="border:solid 1px lightgray; padding-top:12px; margin-top:12px;">
+						<li class="nav-item"><a href="/Countries/Index" class="nav-link @(currentAction == "Index" && currentController == "Countries" ? "active" : "")"><i class="fas fa-globe me-2"></i>کشورها</a></li>
+						<li class="nav-item"><a href="/City/Index" class="nav-link @(currentAction == "Index" && currentController == "City" ? "active" : "")"><i class="fas fa-city me-2"></i>شهر ‌ها</a></li>
+					<li class="nav-item"><a href="/ProvinceQuota/List" class="nav-link @(currentAction == "List" && currentController == "ProvinceQuota" ? "active" : "")"><label><i class="fas fa-calendar-check me-2"></i> ‌سهمیه ولایات</label></a></li>
+					<li class="nav-item"><a href="/PublicHolidays/Index" class="nav-link @(currentAction == "Index" && currentController == "PublicHolidays" ? "active" : "")"><label><i class="fas fa-calendar-check me-2"></i> ‌ تعطیلات</label></a></li>
+						<li class="nav-item"><a href="/PostalAddress/Index" class="nav-link @(currentAction == "Create" && currentController == "PostalAddress" ? "active" : "")"><label><i class="fas fa-map-marker-alt me-2"></i> پوسته خانه ها</label></a></li>
+		            </div>
+
+					<div class="card" style="border:solid 1px lightgray; padding-top:12px; margin-top:12px;">
+						<li class="nav-item"><a href="/AppoinmentType/Index" class="nav-link @(currentAction == "Index" && currentController == "AppoinmentType" ? "active" : "")"><label><i class="fas fa-file-alt me-2"></i> نوعیت درخواست</label> ‌</a></li>
+						<li class="nav-item"><a href="/PassportType/Index" class="nav-link @(currentAction == "Index" && currentController == "PassportType" ? "active" : "")"> ‌<label><i class="fas fa-passport me-2"></i> نوعیت پاسپورت</label></a></li>
+						<li class="nav-item"><a href="/PassportDuration/Index" class="nav-link @(currentAction == "Index" && currentController == "PassportDuration" ? "active" : "")"><label><i class="fas fa-hourglass-half me-2"></i> مدت پاسپورت</label> </a></li>
+						<li class="nav-item"><a href="/PaymentTypes/Index" class="nav-link @(currentAction == "Index" && currentController == "PaymentTypes" ? "active" : "")"><label><i class="fas fa-credit-card me-2"></i> نوعیت پرداخت</label> ‌</a></li>
+		            	<li class="nav-item"><a href="/BankAccounts/Index" class="nav-link @(currentAction == "Index" && currentController == "BankAccounts" ? "active" : "")"><label><i class="fa fa-money-check-alt me-2"></i> اکونت بانک ها</label> ‌</a></li>						
+					</div>
+
+					<div class="card" style="border:solid 1px lightgray; padding-top:12px; margin-top:12px;">
+						<li class="nav-item"><a href="/IdentityDocumentType/Index" class="nav-link @(currentAction == "Index" && currentController == "IdentityDocumentType" ? "active" : "")"><label><i class="fas fa-file-alt"></i> سند شناسایی</label></label> ‌</a></li>
+						<li class="nav-item"><a href="/Profession/Index" class="nav-link @(currentAction == "Index" && currentController == "Profession" ? "active" : "")"><label><i class="fas fa-briefcase me-2"></i> شغل</label></label> ‌</a></li>
+						<li class="nav-item"><a href="/Gender/Index" class="nav-link @(currentAction == "Index" && currentController == "Gender" ? "active" : "")">  <label><i class="fas fa-venus-mars me-2"></i> جنسیت</label></label></a></li>
+					</div>
+
+					<div class="card" style="border:solid 1px lightgray; padding-top:12px; margin-top:12px;">
+						<li class="nav-item has-treeview @(currentController == "News" ? "menu-open" : "")">
+							<a href="#" class="nav-link @(currentController == "News" ? "active" : "")">
+								<i class="nav-icon fas fa-flag me-2"></i>
+								<p>اخبار<i class="right fas fa-angle-left"></i></p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item"><a href="/News/Create" class="nav-link @(currentAction == "Create" && currentController == "News" ? "active" : "")">افزودن خبر</a></li>
+								<li class="nav-item"><a href="/News/Index" class="nav-link @(currentAction == "Index" && currentController == "News" ? "active" : "")">لیست اخبار</a></li>
+							</ul>
+						</li>
+					</div>
+
+					<div class="card" style="border:solid 1px lightgray; padding-top:12px; margin-top:12px;">
+
+						<li class="nav-item">
+							<a class="nav-link @(currentController == "Users" ? "active" : "")" href="/Users">
+								<i class="fas fa-users ms-2"></i>
+								مدیریت کاربران
+							</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link @(currentController == "Settings" ? "active" : "")" href="/Settings">
+								<i class="fas fa-cogs ms-2"></i>
+								تنظیمات سیستم
+							</a>
+						</li>
+
+						<li class="nav-item has-treeview @(currentController == "News" ? "menu-open" : "")">
+							<a href="#" class="nav-link @(currentController == "News" ? "active" : "")">
+								<i class="nav-icon fas fa-flag me-2"></i>
+								<p>اخبار<i class="right fas fa-angle-left"></i></p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item"><a href="/News/Create" class="nav-link @(currentAction == "Create" && currentController == "News" ? "active" : "")">افزودن خبر</a></li>
+								<li class="nav-item"><a href="/News/Index" class="nav-link @(currentAction == "Index" && currentController == "News" ? "active" : "")">لیست اخبار</a></li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link @(currentController == "Dashboard" ? "active" : "")" href="/Dashboard">
+								<i class="fas fa-tachometer-alt ms-2"></i>
+								داشبورد
+							</a>
+						</li>
+					</div>
+					<br />
+					<br />
+					<br />
+					<br />
+
+				</ul>
+			</nav>
+
+		<!-- Main content -->
+		<main class="col-md-10 ms-sm-auto px-md-4">
+			<nav class="navbar navbar-expand-lg mb-4">
+				<div class="container-fluid">
+					<h2 class="navbar-brand text-center" >ریاست عمومی پاسپورت افغانستان</h2>
+				</div>
+			</nav>
+			<div class="content">
+					@RenderBody()
+			</div>
+			<footer class="main-footer text-center mt-4">
+				<strong>سیستم مدیریت پاسپورت افغانستان</strong>
+			</footer>
+		</main>
+	</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+@* 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script> *@
+	@* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> *@
+	<script>
+		$(document).ready(function () {
+			
+			$('.nav-treeview').hide();
+
+			
+			$('.has-treeview > .nav-link').click(function (e) {
+				e.preventDefault();
+
+				var $thisSubmenu = $(this).next('.nav-treeview');
+
+				
+				if ($thisSubmenu.is(':visible')) {
+					$thisSubmenu.slideUp();
+				} else {
+				
+					$('.nav-treeview').slideUp();
+					
+					$thisSubmenu.slideDown();
+				}
+			});
+		});
+	</script>
+	<script>
+		const currentUrl = window.location.pathname;
+		document.querySelectorAll('.sidebar a').forEach(link => {
+			if (link.getAttribute('href') === currentUrl) {
+				link.classList.add('active');
+				let parent = link.closest('.has-treeview');
+				if (parent) {
+					parent.classList.add('open');
+				}
+			}
+		});
+	</script>
+	<script>
+		document.getElementById("menu-toggle").addEventListener("click", function () {
+			document.querySelector(".sidebar").classList.toggle("active");
+		});
+	</script>
+
+	<script>
+		window.onload = function () {
+		  const mode = localStorage.getItem("mode") || "light";
+		  document.body.classList.add(mode);
+		};
+
+		function toggleMode() {
+		  const body = document.body;
+
+		  if (body.classList.contains("light")) {
+			body.classList.remove("light");
+			body.classList.add("dark");
+			localStorage.setItem("mode", "dark");
+		  } else {
+			body.classList.remove("dark");
+			body.classList.add("light");
+			localStorage.setItem("mode", "light");
+		  }
+		}
+	</script>
+
+
+
+	@RenderSection("Scripts", required: false)
+</body>
+</html>

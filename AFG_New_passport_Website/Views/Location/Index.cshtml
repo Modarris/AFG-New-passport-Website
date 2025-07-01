@@ -1,0 +1,63 @@
+﻿@{
+    Layout = "_DashboardLayout"; // لی‌اوت داشبورد
+}
+@model List<AFG_New_passport_Website.Models.Domain.Location>
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+<div class="form-container">
+    <div class="card">
+        <h5 class="text-center mb-4">
+            <i class="fas fa-map-marker-alt text-primary"></i> لیست تمام شهرهای دنیا
+        </h5>
+
+        <p>
+            <a href="/Location/Create" class="btn btn-primary mb-3">
+                <i class="fas fa-plus me-2"></i> اضافه کردن شهر جدید
+            </a>
+        </p>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>آی‌دی</th>
+                    <th>نام دری</th>
+                    <th>نام انگلیسی</th>
+                    <th>وضعیت</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var location in Model)
+                {
+                    <tr>
+                        <td>@location.Id</td>
+                        <td>@location.NameLocal</td>
+                        <td>@location.Name</td>
+                        <td>
+                            @if (location.IsActive)
+                            {
+                                <span class="text-success">فعال</span>
+                            }
+                            else
+                            {
+                                <span class="text-danger">غیرفعال</span>
+                            }
+                        </td>
+                        <td class="d-flex justify-content-between">
+                            <a href="/Location/Edit/@location.Id" class="btn btn-warning btn-sm me-1">
+                                <i class="fas fa-edit"></i> ویرایش
+                            </a>
+                            <form asp-action="ToggleStatus" asp-route-id="@location.Id" method="post">
+                                <button type="submit" class="btn @(location.IsActive ? "btn-warning" : "btn-success")">
+                                    @(location.IsActive ? "غیرفعال کن" : "فعال کن")
+                                </button>
+                            </form>
+                            <a href="/Location/Delete/@location.Id" class="btn btn-danger btn-sm">
+                                حذف
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<AFG_New_passport_Website.Models.Domain.CompanyOfficial>
+
+@{
+	Layout = "_DashboardLayout";
+}
+<div class="d-flex justify-content-center  min-vh-70 mt-3 bg-light">
+	<div class="card shadow-sm p-4 rounded-4" style="width: 100%; max-width: 800px; font-size:0.9rem;">
+		<h2>لیست آیتم‌ها</h2>
+		<p><a href="/CompanyOfficial/Create" class="btn btn-primary mb-3">اضافه کردن پوزیشن جدید<i class="fas fa-plus me-2"></i> </a></p>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>عملیات</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>@item.Id</td>
+						<td>@item.Name</td>
+						<td class="d-flex justify-content-between">
+							<a href="/CompanyOfficial/Edit/@item.Id" class="btn btn-warning btn-sm">
+								<i class="fas fa-edit me-1"></i> ویرایش
+							</a>
+
+							<a href="/CompanyOfficial/Delete/@item.Id" class="btn btn-danger btn-sm">حذف</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+
+	</div>
+</div>

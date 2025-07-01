@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en, fa" dir="rtl">
+    @using Microsoft.AspNetCore.Mvc.Localization
+    @inject IViewLocalizer Localizer
+@{
+    Layout = null;
+}
+@model List<AFG_New_passport_Website.Models.Profile>
+
+@{
+    ViewData["Title"] = "Profile List";
+}
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+<style>
+    h2 {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 4px 15px rgba(0, 0, 0, 0.1); /* باکس شادو */
+        transition: box-shadow 0.3s ease;
+    }
+   .table thead tr th{
+        background-color:lightgray;
+    }
+</style>
+<div class="container-fluid">
+    <h2>@Localizer["Registration List"]</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>@Localizer["Code"]</th>
+                <th>@Localizer["Name"]</th>     
+                <th>@Localizer["Last Name"]</th>               
+                <th>@Localizer["Father Name"]</th>          
+                <th>@Localizer["Place of Birth"]</th>    
+                <th>@Localizer["Actions"]</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var profile in Model)
+            {
+                <tr>
+                    <td>@profile.Profile_Id</td>
+                    <td>@profile.Code</td>
+                    <td>@profile.DName</td>
+                    <td>@profile.DLastName</td>                  
+                    <td>@profile.DFatherName</td>                                  
+                    <td></td>     
+                    <td>
+                        <button class="btn btn-info" onclick="showDetails(@profile.Profile_Id)">🔍 @Localizer["View"]</button>
+                        <button class="btn btn-danger" action="submit"> @Localizer["Delete"]</button>
+                    </td>
+                </tr>
+                <tr id="details-@profile.Profile_Id" style="display: none;">
+                    <td colspan="7">
+                        <hr>
+                        @*------Childs tabls------*@
+                        <table class="table table-bordered">
+
+                            @*Content*@
+                            <thead>
+                                <tr> 
+                                    <th>@Localizer["Name (English)"]</th>  
+                                    <th>@Localizer["Last Name (English)"]</th>  
+                                    <th>@Localizer["Father Name (English)"]</th>
+                                    <th>@Localizer["Grand Father Name"]</th>
+                                    <th>@Localizer["Grand Father Name (English)"]</th>
+                                    <th>@Localizer["Date of Birth"]</th>        
+                                    <th>@Localizer["Gender"]</th>
+                                    <th>@Localizer["Height"]</th>   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@profile.EName</td>
+                                    <td>@profile.ELastName</td>              
+                                    <td>@profile.EFatherName</td>
+                                    <td>@profile.DGrandFatherName</td>
+                                    <td>@profile.EGrandFatherName</td>
+                                    <td>@profile.DateOfBirth</td>      
+                                    <td>@profile.Gender</td>
+                                    <td>@profile.Height</td>
+                                </tr>
+                            </tbody>
+
+                            @*paper sheets, elec sheets and Birth Card*@
+                            <thead>
+                                <tr>
+                                    <th>@Localizer["Paper Number"]</th>
+                                    <th>@Localizer["Paper Section"]</th>
+                                    <th>@Localizer["Paper Page"]</th>
+                                    <th>@Localizer["Register Number"]</th>
+                                    <th>@Localizer["Electronic Card Number"]</th>
+                                    <th>@Localizer["Birth Card Number"]</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>(profile.PaperSheet?.PaperNumber??"خالی")</td>
+                                    <td>(profile.PaperSheet?.Peper_section??"خالی")</td>
+                                    <td></td>
+                                    <td>(profile.PaperSheet?.Ragister_Number??"خالی")</td>
+                                     <td>(profile.ElecSheet?.ElecSheetNumber??"خالی") </td>
+                                    <td>(profile.BirthCard?.BirthCardNumber??"خالی") </td>
+                                </tr>
+                            </tbody>
+
+                                    @*Type of passport*@
+                            <thead>
+                                <tr style="background-color:blue;">
+                                    <th>@Localizer["Type of Passport"]</th>
+                                    <th>@Localizer["Lvel of Passport"]</th>
+                                    <th>@Localizer["Type of Pay"]</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>PassportType</td>
+                                    <td>.PassportLevel</td>
+                                    <td></td>
+                                
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                        @* ---------------------------------------------------------*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    function showDetails(profileId) {
+        var detailsRow = document.getElementById("details-" + profileId);
+        if (detailsRow.style.display === "none") {
+            detailsRow.style.display = "table-row";
+        } else {
+            detailsRow.style.display = "none";
+        }
+    }
+</script>

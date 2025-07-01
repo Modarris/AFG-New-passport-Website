@@ -1,0 +1,96 @@
+﻿@model AFG_New_passport_Website.Models.NewsIndexViewModel
+
+@{
+    ViewData["Title"] = "لیست اخبار";
+}
+<style>
+    .card {
+        height: 380px; /* ارتفاع دلخواه؛ مقدار را کمتر یا بیشتر کن به دلخواه */
+    }
+
+    .card-body {
+        overflow: hidden; /* اگر محتوای زیاد بود، بریده می‌شود */
+    }
+    .btn-sm:hover{
+        color:white;
+       background: #b85042
+
+    }
+
+    .container {
+        font-family:Arial;
+    }
+
+    .text-center{
+        color: #800000;
+    }
+</style>
+<div class="container mb-4">
+    <img src="~/images/photo/bg-masthead.jpg" alt="بنر اخبار" class="img-fluid rounded shadow-sm object-fit: cover" style="height: 400px; object-fit: cover; width: 100%;" />
+</div>
+
+<div class="container">
+    <div class="">
+        <h2 class="mb-4 text-center">آخرین اخبار در باره ی روند توزیع پاسپورت را اینجا دنبال کنید !</h2>
+    </div>
+    <hr />
+</div>
+
+
+<div class="container">
+    <div class="row">
+        @foreach (var news in Model.NewsItems)
+        {
+            <div class="col-md-3 mb-4">
+                <!-- col-md-4 برای ۳ ستون -->
+                <div class="card h-100 shadow-sm rounded">
+                    <img src="~/images/news/@news.ImagePath" class="card-img-top " style="height: 200px; object-fit: cover;" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">@news.Title.Substring(0, Math.Min(30, news.Title.Length))...</h5>
+                        <p class="card-text text-muted" style="font-size: 14px;">
+                            @news.PublishDate.ToString("yyyy/MM/dd")
+                        </p>
+                        <p class="card-text">
+                            @news.Content.Substring(0, Math.Min(50, news.Content.Length))...
+                            @* @(item.Content.Length > 100 ? item.Content.Substring(0, 100) + "..." : item.Content) *@
+                        </p>
+                        <div class="mt-auto">
+                            <a href="@Url.Action("Details", "News", new { id = news.Id })" class="btn btn-sm" style=" background-color:#c6d7eb;">جزئیات  خبر</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- صفحه‌بندی -->
+    <div class="d-flex justify-content-center">
+        @if (Model.TotalPages > 1)
+        {
+            <nav>
+                <ul class="pagination">
+                    @if (Model.CurrentPage > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", "News", new { page = Model.CurrentPage - 1 })">قبلی</a>
+                        </li>
+                    }
+
+                    @for (var i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("Index", "News", new { page = i })">@i</a>
+                        </li>
+                    }
+
+                    @if (Model.CurrentPage < Model.TotalPages)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", "News", new { page = Model.CurrentPage + 1 })">بعدی</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+    </div>
+</div>

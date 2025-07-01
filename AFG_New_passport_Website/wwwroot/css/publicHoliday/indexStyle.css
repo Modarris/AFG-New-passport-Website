@@ -1,0 +1,41 @@
+﻿body {
+}
+.google-style-pagination {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.g-page-item {
+    list-style: none;
+}
+
+.g-page-link {
+    display: inline-block;
+    padding: 6px 12px;
+    min-width: 35px;
+    text-align: center;
+    border-radius: 50%;
+    font-weight: 500;
+    color: #999999;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    background-color: transparent;
+}
+
+    .g-page-link:hover {
+        background-color: #e8f0fe;
+        color: #1a73e8;
+    }
+
+.g-page-item.active .g-page-link {
+    background-color: #1a73e8;
+    color: white !important;
+}
+
+.g-page-link i {
+    font-size: 14px;
+    vertical-align: middle;
+}

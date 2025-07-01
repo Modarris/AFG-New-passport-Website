@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "_DashboardLayout"; // استفاده از لی‌اوت داشبورد برای این صفحه
+}
+@model IEnumerable<AFG_New_passport_Website.Models.Domain.ProvinceOfBirth>
+
+<div class="d-flex justify-content-center  min-vh-50 mt-3 bg-light">
+    <div class="card shadow-sm p-4 rounded-4" style="width: 100%; max-width: 800px; font-size: 0.9rem;">
+        <h5 class="text-center mb-4"><i class="fas fa-map-marker-alt text-primary"></i> مدیریت محل تولد</h5>
+        <p><a href="/ProvinceOfBirth/Create" class="btn btn-primary mb-3"><i class="fas fa-plus me-2"></i> اضافه کردن محل (شهر) جدید</a></p>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>نام شهر </th>
+                    <th>City Name</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var provinceOfBirth in Model)
+                {
+                    <tr>
+                        <td>@provinceOfBirth.Id</td>
+                        <td>@provinceOfBirth.DName</td>
+                        <td>@provinceOfBirth.EName</td>
+                        <td class="d-flex justify-content-between">
+                            <a href="/ProvinceOfBirth/Edit/@provinceOfBirth.Id" class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit me-1"></i> ویرایش
+                            </a>
+
+                            <form method="post" asp-action="Delete" asp-route-id="@provinceOfBirth.Id" onsubmit="return confirm('آیا مطمئن هستید؟');">
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash-alt me-1"></i> حذف
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

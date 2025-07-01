@@ -1,0 +1,38 @@
+﻿@* @model AFG_New_passport_Website.Models.ProvinceQuotaViewModel
+
+@{
+	ViewData["Title"] = "ویرایش سهمیه ولایت";
+	Layout = "_DashboardLayout";
+}
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+<div class="form-container">
+	<div class="card">
+		<h2>ویرایش سهمیه ولایت</h2>
+
+		<form asp-action="Edit" method="post">
+			<div class="form-group">
+				<label asp-for="DocumentProcessingProvinceId">ولایت</label>
+				
+				<span asp-validation-for="DocumentProcessingProvinceId" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="DailyQuota">سهمیه روزانه</label>
+				<input asp-for="DailyQuota" class="form-control" />
+				<span asp-validation-for="DailyQuota" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="IsActive">فعال؟</label>
+				<input asp-for="IsActive" type="checkbox" class="form-check-input" />
+			</div>
+
+			<a asp-action="Index" class="btn btn-secondary"><i class="fas fa-arrow-right me-2"></i>باز گشت</a>
+			<button type="submit" class="btn btn-success">
+				<i class="fas fa-save me-1"></i> ذخیره تغییرات
+			</button>
+		</form>
+	</div>
+</div>
+
+ *@

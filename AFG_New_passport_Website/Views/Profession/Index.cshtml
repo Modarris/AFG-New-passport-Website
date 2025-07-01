@@ -1,0 +1,63 @@
+﻿@{
+	Layout = "_DashboardLayout"; // استفاده از لی‌اوت داشبورد برای این صفحه
+}
+@model IEnumerable<AFG_New_passport_Website.Models.Domain.Profession>
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+
+@* --------------------------------------------------------------------------- *@
+<body class="light  dark ">
+	<div class="form-container enhanced-form w-75">
+		<div class="card shadow">
+
+			<h5 class="text-center mb-4"><i class="fas fa-briefcase text-primary"></i> مدیریت شغل ‌ها</h5>
+			<p><a href="/Profession/Create" class="btn btn-primary mb-3">اضافه کردن شغل جدید<i class="fas fa-plus me-2"></i> </a></p>
+
+
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr class="text-center">
+						<th>آی دی</th>
+						<th>نام شغل</th>
+						<th>Profession Name</th>
+						<th colspan="2">حالت</th>
+						<th>عملیات</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var profession in Model)
+					{
+						<tr>
+							<td>@profession.Id</td>
+							<td>@profession.NameLocal</td>
+							<td>@profession.Name</td>
+							<td>
+								@if (profession.IsActive)
+								{
+									<span class="text-success">فعال</span>
+								}
+								else
+								{
+									<span class="text-success">غیرفعال</span>
+								}
+							</td>
+							<td>
+								<form asp-action="ToggleStatus" asp-route-id="@profession.Id" method="post" style="display:inline;">
+									<button type="submit" class="btn @(profession.IsActive ? "btn-secondary" : "btn-success") btn-sm me-1">
+										@(profession.IsActive ? "غیرفعال کن" : "فعال کن")
+									</button>
+								</form>
+							</td>
+							<td class="d-flex justify-content-between">
+								<a href="/Profession/Edit/@profession.Id" class="btn btn-warning btn-sm">
+									<i class="fas fa-edit me-1"></i> ویرایش
+								</a>
+								
+								<a href="/Profession/Delete/@profession.Id" class="btn btn-danger btn-sm">حذف</a>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>

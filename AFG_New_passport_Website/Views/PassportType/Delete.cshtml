@@ -1,0 +1,30 @@
+﻿@model AFG_New_passport_Website.Models.Domain.PassportType
+
+@{
+	Layout = "_DashboardLayout";
+}
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+
+
+@* --------------------------------------------------------------------------- *@
+<body class="light  dark ">
+	<div class="form-container enhanced-form w-50">
+		<div class="card shadow">
+			<h2>@ViewData["Title"]</h2>
+
+			<p class="text-danger">آیا مطمئن هستید که می‌خواهید نوع پاسپورت زیر راحذف کنید؟</p>
+
+			<div class="mb-3">
+				<strong>نام:</strong> @Model.Type
+			</div>
+
+			<form asp-action="Delete" method="post">
+				<input type="hidden" asp-for="Id" />
+				<button type="submit" class="btn btn-danger">بله، حذف کن</button>
+				<a asp-action="Index" class="btn btn-secondary">لغو</a>
+			</form>
+
+		</div>
+	</div>
+</body>
+@* --------------------------------------------------------------------------- *@

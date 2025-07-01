@@ -1,0 +1,66 @@
+﻿@model AFG_New_passport_Website.Models.Domain.Location
+
+@{
+    Layout = "_DashboardLayout";
+}
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+<div class="form-container">
+
+    <div class="card">
+<h2>اضافه کردن شهر جدید</h2>
+
+<form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+
+            <!-- NameLocal Input -->
+            <div class="form-group">
+                <label for="NameLocal" class="control-label">نام محلی</label>
+                <input name="NameLocal" id="NameLocal" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+
+            <!-- Name Input -->
+            <div class="form-group">
+                <label for="Name" class="control-label">نام</label>
+                <input name="Name" id="Name" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+
+            <!-- IsActive Checkbox -->
+            <div class="form-group">
+                <label for="IsActive" class="control-label">فعال</label>
+                <input name="IsActive" id="IsActive" type="checkbox" />
+                <span class="text-danger"></span>
+            </div>
+
+            <!-- UsageType Dropdown -->
+            <div class="form-group">
+                <label for="UsageType" class="control-label">نوع استفاده</label>
+                <select name="UsageType" id="UsageType" class="form-control">
+                    <option value="1">Birth</option>
+                    <option value="2">Processing</option>
+                    <option value="3">Both</option>
+                </select>
+                <span class="text-danger"></span>
+            </div>
+
+  @*   <div class="form-group">
+                <label asp-for="Location.CountryId" class="control-label"></label>
+                <select asp-for="Location.CountryId" class="form-control"
+                asp-items="@(new SelectList(Model.Countries, "Id", "DName"))">
+            <option value="">-- لطفا یک کشور انتخاب کنید --</option>
+        </select>
+                <span asp-validation-for="Location.CountryId" class="text-danger"></span>
+    </div> *@
+
+    <button type="submit" class="btn btn-primary">ثبت</button>
+</form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<AFG_New_passport_Website.Models.Domain.City>
+
+@{
+	Layout = "_DashboardLayout";
+}
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+
+@* ---------------------------------------------------------------------------------------------------- *@
+<body class="light  dark ">
+	<div class="form-container enhanced-form">
+		<div class="card shadow">
+			<h2 class="text-center">لیست شهرها</h2>
+			<hr />
+			<p>
+				<a href="/City/Create" class="btn btn-primary mb-3">
+					<i class="fas fa-plus me-2"></i> اضافه کردن شهر جدید
+				</a>
+			</p>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Country Id</th>
+						<th>DName</th>
+						<th>City Id</th>
+						<th>NameLocal</th>
+						<th>فعال برای محل تولد</th>
+						<th>فعال برای پروسس اسناد</th>
+						<th>عملیات</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var city in Model)
+					{
+						<tr>
+							<td>@city.Country.Id</td>
+							<td>@city.Country.DName</td>
+							<td>@city.Id</td>
+							<td>@city.NameLocal</td>
+							<td>
+								<form method="post" asp-action="ToggleBirthStatus" asp-controller="City">
+									<input type="hidden" name="id" value="@city.Id" />
+									<button type="submit" class="btn btn-sm @(city.IsBirthPlace ? "btn-success" : "btn-secondary")">
+										@(city.IsBirthPlace ? "فعال" : "غیرفعال")
+									</button>
+								</form>
+							</td>
+							<td>
+								<form method="post" asp-action="ToggleProcessStatus" asp-controller="City">
+									<input type="hidden" name="id" value="@city.Id" />
+									<button type="submit" class="btn btn-sm @(city.IsDocumentProcessPlace ? "btn-success" : "btn-secondary")">
+										@(city.IsDocumentProcessPlace ? "فعال" : "غیرفعال")
+									</button>
+								</form>
+							</td>
+							<td>
+								<a href="/City/Edit/@city.Id" class="btn btn-warning btn-sm">ویرایش</a>
+								<a href="/City/Delete/@city.Id" class="btn btn-danger btn-sm">
+									حذف
+								</a>
+							</td>
+						</tr>
+					}
+				</tbody>
+
+			</table>
+			<br />
+		
+		</div>
+	</div>
+</body>

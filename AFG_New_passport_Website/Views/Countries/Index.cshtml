@@ -1,0 +1,85 @@
+﻿@using X.PagedList.Mvc.Core
+@{
+	Layout = "_DashboardLayout";
+}
+@using X.PagedList
+@using Microsoft.AspNetCore.Mvc.Localization
+    @inject IViewLocalizer Localizer
+@model IPagedList<AFG_New_passport_Website.Models.Domain.Country>
+
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+<link href="~/css/dashboardliststyle/pagination.style.css" rel="stylesheet" />
+
+<body class="light  dark ">
+	<div class="form-container enhanced-form">
+		<div class="card shadow">
+			<h2 class="text-center">لیست کشور ها</h2>
+			<hr />
+			<p>
+				<a href="/Countries/Create" class="btn btn-primary mb-3">
+					<i class="fas fa-plus me-2"></i> اضافه کردن کشور جدید
+				</a>
+			</p>
+
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr class="text-center" style="background-color:lightgray;">
+						<th>Country ID</th>
+						<th>@Localizer["Country Name"]</th>
+						<th>Country Name</th>
+						<th>@Localizer["State"]</th>
+
+						<th>عملیات</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var country in Model)
+					{
+						<tr>
+							<td>@country.Id</td>
+							<td>@country.DName</td>
+							<td>@country.EName</td>
+							<td>
+								@if (country.IsActive)
+								{
+									<span class="text-success">فعال</span>
+								}
+								else
+								{
+									<span class="text-danger">غیرفعال</span>
+								}
+							</td>
+							<td class="d-flex justify-content-between">
+								<a href="/Countries/Edit/@country.Id" class="btn btn-warning btn-sm me-1">
+									<i class="fas fa-edit"></i> ویرایش
+								</a>
+								<form asp-action="ToggleStatus" asp-route-id="@country.Id" method="post" style="display:inline;">
+									<button type="submit" class="btn @(country.IsActive ? "btn-secondary" : "btn-success") btn-sm me-1">
+										@(country.IsActive ? "غیرفعال کن" : "فعال کن")
+									</button>
+								</form>
+								<a href="/Countries/Delete/@country.Id" class="btn btn-danger btn-sm">
+									حذف
+								</a>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+			<div class="text-center mt-4">
+				<ul class="pagination justify-content-center">
+					@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+						{
+							DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+							DisplayLinkToLastPage = PagedListDisplayMode.Never,
+							DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+							DisplayLinkToNextPage = PagedListDisplayMode.Always,
+							LinkToPreviousPageFormat = "<i class='bi bi-chevron-left'></i> قبل",
+							LinkToNextPageFormat = "بعد <i class='bi bi-chevron-right'></i>"
+						})
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</body>

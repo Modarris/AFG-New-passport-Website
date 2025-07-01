@@ -1,0 +1,34 @@
+﻿@model AFG_New_passport_Website.Models.Domain.Gender
+
+@{
+    Layout = "_DashboardLayout";
+}
+
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+
+<div class="form-container">
+    <div class="card">
+        <h5 class="text-center mb-4">پیش‌نمایش اطلاعات جنسیت</h5>
+
+        <form method="post" asp-action="Create">
+            <p><strong>نام:</strong> @Model.DName</p>
+            <p><strong>Name:</strong> @Model.EName</p>
+
+            @* فیلدهای مخفی برای ارسال داده *@
+            <input type="hidden" name="DName" value="@Model.DName" />
+            <input type="hidden" name="EName" value="@Model.EName" />
+
+            <div class="text-center mt-4">
+           
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-save me-1"></i> تایید و ذخیره اطلاعات
+                </button>
+            </div>
+        </form>
+        <form method="post" asp-action="PreviewEdit" class="d-inline">
+            <input type="hidden" name="DName" value="@Model.DName" />
+            <input type="hidden" name="EName" value="@Model.EName" />
+            <button type="submit" class="btn btn-warning">ویرایش</button>
+        </form>
+    </div>
+</div>

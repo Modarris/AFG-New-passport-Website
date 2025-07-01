@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> userManager
+@inject SignInManager<AppUser> signInManager
+
+@{
+    AppUser currentUser = null;
+    if (signInManager.IsSignedIn(User))
+    {
+        currentUser = await userManager.GetUserAsync(User);
+    }
+}
+
+@if (currentUser != null)
+{
+    <div class="dropdown">
+        <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            @currentUser.Name
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">خروج</a></li>
+        </ul>
+    </div>
+}

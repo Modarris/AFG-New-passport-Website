@@ -1,0 +1,53 @@
+﻿@model AFG_New_passport_Website.Models.CityViewModel
+
+@{
+	Layout = "_DashboardLayout";
+}
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+<link href="~/css/dashboardliststyle/pagination.style.css" rel="stylesheet" />
+
+@* ---------------------------------------------------------------------------------------------------- *@
+<body class="light  dark ">
+	<div class="form-container enhanced-form">
+		<div class="card shadow">
+			<h2 class="text-center">اضافه کردن شهر جدید</h2>
+			<hr />
+
+			<form asp-action="Create" method="post">
+				<select asp-for="CountryId" asp-items="@(new SelectList(Model.Countries, "Id", "DName"))" class="form-select my-2">
+					<option value="">---</option>
+				</select>
+				<div class="form-group">
+					<label asp-for="NameLocal" class="control-label">نام شهر</label>
+					<input asp-for="NameLocal" class="form-control" />
+					<span asp-validation-for="NameLocal" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Name" class="control-label">City Name</label>
+					<input asp-for="Name" class="form-control" />
+					<span asp-validation-for="Name" class="text-danger"></span>
+				</div>
+
+				<div class="form-check mt-2">
+					<input asp-for="IsBirthPlace" class="form-check-input" />
+					<label asp-for="IsBirthPlace" class="form-check-label">آیا محل تولد است؟</label>
+				</div>
+
+				<div class="form-check mt-2">
+					<input asp-for="IsDocumentProcessPlace" class="form-check-input" />
+					<label asp-for="IsDocumentProcessPlace" class="form-check-label">آیا محل پروسس اسناد است؟</label>
+				</div>
+				<br />
+				<button type="submit" class="btn btn-success mt-3">ثبت</button>
+				<a asp-action="Index" class="btn btn-secondary mt-3">بازگشت</a>
+			</form>
+		</div>
+	</div>
+</body>
+@* ---------------------------------------------------------------------------------------------------- *@
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

@@ -1,0 +1,51 @@
+﻿@model AFG_New_passport_Website.Models.Domain.PaymentType
+
+@{
+	Layout = "_DashboardLayout";
+}
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+
+
+@* --------------------------------------------------------------------------- *@
+<body class="light  dark ">
+	<div class="form-container enhanced-form w-50">
+		<div class="card shadow">
+			<h2>@ViewData["Title"]</h2>
+			<div class="text-center">
+				<p class="text-danger">آیا مطمئن هستید که می‌خواهید نوع پرداخت زیر را حذف کنید؟</p>
+				<hr />
+				<div class="mb-3 d-flex justify-content-center align-items-center ">
+					<table class=" table table-bordered w-50">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Name Local</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>@Model.Id</td>
+								<td>@Model.Type</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<form asp-action="Delete" method="post">
+					<input type="hidden" asp-for="Id" />
+					<button type="submit" class="btn btn-danger">
+						<i class="fas fa-trash-alt "></i>
+						حذف 
+					</button>
+					<a asp-action="Index" class="btn btn-secondary">
+						<i class="fas fa-times-circle me-1"></i>
+						لغو
+					</a>
+				</form>
+			</div>
+		
+
+		</div>
+	</div>
+</body>
+@* --------------------------------------------------------------------------- *@

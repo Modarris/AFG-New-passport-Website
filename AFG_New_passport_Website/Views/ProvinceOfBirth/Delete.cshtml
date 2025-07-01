@@ -1,0 +1,17 @@
+﻿@using AFG_New_passport_Website.Models.Domain
+@model ProvinceOfBirth
+@{
+    ViewData["Title"] = "حذف ولایت";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>آیا از حذف محل تولد "@Model.DName" مطمئن هستید؟</p>
+<p>آیا از حذف محل تولد "@Model.EName" مطمئن هستید؟</p>
+
+<form method="post" action="/ProvinceOfBirth/Delete/@Model.Id">
+    <button type="submit" class="btn btn-danger">حذف</button>
+</form>
+
+<a href="/ProvinceOfBirth/Index" class="btn btn-secondary mt-2">بازگشت به لیست شهر ‌ها</a>
+

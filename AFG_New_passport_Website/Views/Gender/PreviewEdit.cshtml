@@ -1,0 +1,29 @@
+﻿@model AFG_New_passport_Website.Models.Domain.Gender
+
+@{
+    Layout = "_DashboardLayout";
+}
+
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+
+<div class="form-container">
+    <div class="card">
+        <h5 class="text-center mb-4"><i class="fas fa-edit text-warning"></i> ویرایش اطلاعات جنسیت</h5>
+
+        <form method="post" asp-action="Preview">
+            <div class="form-group mb-3">
+                <label for="DName" class="form-label">نام جنسیت</label>
+                <input type="text" id="DName" name="DName" class="form-control" value="@Model.DName" required />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="EName" class="form-label">Gender Name</label>
+                <input type="text" id="EName" name="EName" class="form-control" value="@Model.EName" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                پیش‌نمایش مجدد
+            </button>
+        </form>
+    </div>
+</div>

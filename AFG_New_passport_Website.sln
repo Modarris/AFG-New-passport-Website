@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AFG_New_passport_Website", "AFG_New_passport_Website\AFG_New_passport_Website.csproj", "{094814E0-50C5-4A54-A061-4B14F28FF9FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{094814E0-50C5-4A54-A061-4B14F28FF9FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{094814E0-50C5-4A54-A061-4B14F28FF9FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{094814E0-50C5-4A54-A061-4B14F28FF9FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{094814E0-50C5-4A54-A061-4B14F28FF9FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ACE425AF-C3DC-47F0-B45F-B1BD333B7B29}
+	EndGlobalSection
+EndGlobal

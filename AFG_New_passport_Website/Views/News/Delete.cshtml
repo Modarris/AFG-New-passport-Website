@@ -1,0 +1,83 @@
+﻿@model AFG_New_passport_Website.Models.News
+
+@{
+    ViewData["Title"] = "حذف خبر";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Tahoma', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .delete-card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .news-image {
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .news-content {
+            font-size: 15px;
+            color: #444;
+        }
+
+        media (max-width: 576px) {
+            .news-content
+
+        {
+            font-size: 14px;
+        }
+
+        }
+    </style>
+</head>
+<body>
+
+    <div class="delete-card">
+        <h4 class="text-center mb-4 text-danger">آیا مطمئن هستید که می‌خواهید این خبر را حذف کنید؟</h4>
+
+        <div class="d-flex flex-column flex-md-row gap-3 align-items-start mb-4">
+            <img src="~/images/news/@Model.ImagePath" class="news-image w-100 w-md-50" alt="خبر" />
+            <div>
+                <h5>@Model.Title</h5>
+                <p class="text-muted">@Model.PublishDate.ToShortDateString()</p>
+                <p class="news-content">
+                    @Model.Content.Substring(0, Math.Min(150, Model.Content.Length))...
+                </p>
+            </div>
+        </div>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-danger px-4">بله، حذف شود</button>
+                <a asp-action="Index" class="btn btn-secondary">بازگشت</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

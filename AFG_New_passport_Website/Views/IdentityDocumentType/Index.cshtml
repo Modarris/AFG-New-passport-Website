@@ -1,0 +1,44 @@
+﻿@{
+	Layout = "_DashboardLayout";
+}
+@model IEnumerable<AFG_New_passport_Website.Models.Domain.IdentityDocumentType>
+
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+<body class="light  dark ">
+	<div class="form-container enhanced-form w-50">
+		<div class="card shadow">
+			<h5 class="text-center mb-4"><i class="fas fa-file-alt bg-primary"></i> مدیریت اسناد (شناسنامه)</h5>
+			<p><a href="/IdentityDocumentType/Create" class="btn btn-primary mb-3">اضافه کردن سند   <i class="fas fa-plus me-2"></i> </a></p>
+
+
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th> ID </th>
+						<th>نوع سند </th>
+						<th>عملیات</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var identity in Model)
+					{
+						<tr>
+							<td>@identity.Id</td>
+							<td>@identity.Name</td>
+							<td class="d-flex justify-content-between">
+								<a href="/IdentityDocumentType/Edit/@identity.Id" class="btn btn-warning btn-sm">
+									<i class="fas fa-edit me-1"></i> ویرایش
+								</a>
+
+								<a href="/IdentityDocumentType/Delete/@identity.Id" class="btn btn-danger btn-sm">
+									حذف
+								</a>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+

@@ -1,0 +1,22 @@
+﻿
+<label for="address">آدرس (کشور، ولایت، شهر، ناحیه، خیابان، شماره خانه):</label>
+<textarea id="AddressDetails" rows="4" maxlength="250" style="width:100%;" placeholder="مثلاً: افغانستان، کابل، ناحیه ۳، گلایی دواخانه،  سرک پنجم"></textarea>
+<small style="color:gray;">حداکثر ۲۵۰ حرف. بعد از هر کامه فاصله به‌صورت خودکار اضافه می‌شود.</small>
+
+<script>
+	const addressField = document.getElementById("AddressDetails");
+
+	addressField.addEventListener("input", function () {
+		const val = addressField.value;
+
+		// اگر آخرین حرف، کامه بود و فاصله بعدش نبود → فاصله را اضافه کن
+		if (val.endsWith("،") && !val.endsWith("، ")) {
+			addressField.value = val + " ";
+		}
+
+		// جلوگیری از تایپ بیشتر از 250 کاراکتر (اگر maxlength نادیده گرفته شد)
+		if (addressField.value.length > 250) {
+			addressField.value = addressField.value.substring(0, 250);
+		}
+	});
+</script>

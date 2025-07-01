@@ -1,0 +1,1162 @@
+﻿@model AFG_New_passport_Website.Models.ViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+    @inject IViewLocalizer Localizer
+
+
+
+@{
+    ViewData["Title"] = " جزییات ثبت نام";
+}
+<style>
+    .imageContent {
+        height: 333.5px;
+        width: 296.5px;
+        direction:ltr;
+        position:relative;
+        right:20px;
+        left:20px;
+
+    }
+
+    .imageContent .wrapper {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            border-radius: 10px;
+            background: #fff;
+            border: 2px dashed #c2cdda;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+
+        }
+
+    .wrapper.active {
+        border: none;
+    }
+
+
+    .wrapper .image {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .wrapper .image img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+    .wrapper .icon {
+        font-size: 30px;
+        color: gray;
+    }
+
+    .wrapper .text {
+        font-size: 20px;
+        font-weight: 500;
+        color: #58587B;
+    }
+
+    .wrapper #cancel-btn {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        font-size: 20px;
+        cursor: pointer;
+        color: #9658fe;
+        display: none;
+    }
+
+    .wrapper.active:hover #cancel-btn {
+        display: block;
+    }
+
+    .wrapper #cancel-btn:hover {
+        color: red;
+    }
+
+    .wrapper .file-name {
+        position: absolute;
+        bottom: 0px;
+        background: linear-gradient(135deg, #3aBffe 0%,#9658fe 100%);
+        width: 100%;
+        color: #fff;
+        padding: 8px 0;
+        font-size: 18px;
+        display: none;
+    }
+
+    .imageContent #custom-btn {
+        margin-top: 8px;
+        width: 200px;
+        position:absolute;
+        left:55px;
+        align-content:center;
+        height: 40px;
+        display: block;
+        border: none;
+        outline: none;
+        border-radius: 25px;
+        font: 18px;
+        color: #fff;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        cursor: pointer;
+        background: linear-gradient(135deg, #3aBffe 0%,#9658fe 100%);
+    }
+</style>
+
+<h5 class="d-block text-center p-3 title-color" style="padding-top:100px;margin-top:50px;">@ViewData["Title"]</h5>
+<div class="container-fluid p-3" style="background-color:#91A5CB; border-color:inherit; border:solid; border-width:1px;">
+   @*  <form method="post">
+        <!-------------------------- اپلود عکس پروفایل----------------------------->
+        <div class="imageContent">
+            <div class="wrapper text-center">
+                <div class="image">
+                    <img src="" alt="" />
+                </div>
+                <div class="content">
+                    <div class="icon"> <i class="fas fa-cloud-upload-alt"></i> </div>
+                    <div class="text"><h6> اپلود عکس به سایز پاسپورت پس زمینه ی سفید</h6></div>
+                </div>
+                <div id="cancel-btn"> <i class="fas fa-times"></i> </div>
+                <div class="file-name"><i> File name here</i></div>
+            </div>
+            <input id="default-btn" type="file" hidden />
+            <button onclick="defaultBtnActive()" id="custom-btn">انتخاب عکس</button>
+        </div>
+        <!------------------------------------------------------------------->
+    <div class="row " style="background-color:#E4E7E9; padding-bottom:10px;margin-top:20px;">
+        <!-------------------------- معلومات شخصی----------------------------->
+            <div class="form-group">
+                <label asp-for="Code">@Localizer["Code"]</label>
+                <input asp-for="Code" class="form-control my-2 p-2" />
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="DName">@Localizer["Name"]</label>
+                        <input asp-for="DName" class="form-control my-2 p-2" oninput="validateDariInput(this)" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="EName">@Localizer["English Name"]</label>
+                        <input asp-for="EName" class="form-control my-2 p-2" oninput="validateEnglishInput(this)" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="DLastName">@Localizer["Last Name"]</label>
+                        <input asp-for="DLastName" class="form-control my-2 p-2" oninput="validateDariInput(this)" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="ELastName">@Localizer["English Last Name"]</label>
+                        <input asp-for="ELastName" class="form-control my-2 p-2" oninput="validateEnglishInput(this)" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="DFatherName">@Localizer["Father Name"]</label>
+                        <input asp-for="DFatherName" class="form-control my-2 p-2" oninput="validateDariInput(this)" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="EFatherName">@Localizer["English Father Name"]</label>
+                        <input asp-for="EFatherName" class="form-control my-2 p-2" oninput="validateEnglishInput(this)" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="DGrandFatherName">@Localizer["Grand Father Name"]</label>
+                        <input asp-for="DGrandFatherName" class="form-control my-2 p-2" oninput="validateDariInput(this)" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="EGrandFatherName">@Localizer["English Grand Father Name"]</label>
+                        <input asp-for="EGrandFatherName" class="form-control my-2 p-2" oninput="validateEnglishInput(this)" />
+                    </div>
+                </div>
+            </div>
+
+            @*---------birth date --------------*@
+            @*---------birth date --------------*@
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group ">
+                        <label for="gregorianDate">تاریخ شمسی:</label>
+                        <div class="date-container ">
+                            <select id="year"></select>
+                            <select id="month"></select>
+                            <select id="day"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <label asp-for="DateOfBirth">@Localizer["Date Of Birth"]</label>
+                    <input asp-for="DateOfBirth" class="form-control my-2 p-2" type="text" id="gregorianDate" readonly placeholder="تاریخ میلادی نمایش داده می‌شود">
+                    <label for="age">سن:</label>
+                    <input type="text" id="age" readonly placeholder="سن نمایش داده می‌شود">
+
+                </div>
+            </div>
+            @*---------- end----------------*@
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                       
+                            <option selected disabled value="">---</option>
+                            <option>ارزگان</option>
+                            <option>بادغیس</option>
+                            <option>بامیان</option>
+                            <option>بدخشان</option>
+                            <option>بغلان</option>
+                            <option>بلخ</option>
+                            <option>پروان</option>
+                            <option>پکتیا</option>
+                            <option>پکتیکا</option>
+                            <option>پنجشیر</option>
+                            <option>تخار</option>
+                            <option>جوزجان</option>
+                            <option>خوست</option>
+                            <option>دایکندی</option>
+                            <option>زابل</option>
+                            <option>سرپل</option>
+                            <option>سمنگان</option>
+                            <option>غزنی</option>
+                            <option>غور</option>
+                            <option>فاریاب</option>
+                            <option>فراه</option>
+                            <option>قندهار</option>
+                            <option>کابل</option>
+                            <option>کاپیسا</option>
+                            <option>کندز</option>
+                            <option>کنر</option>
+                            <option>لغمان</option>
+                            <option>لوگر</option>
+                            <option>ننگرهار</option>
+                            <option>نورستان</option>
+                            <option>نیمروز</option>
+                            <option>میدان وردک</option>
+                            <option>هرات</option>
+                            <option>هلمند</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Height">@Localizer["Height"]</label>
+                        <input asp-for="Height" class="form-control my-2" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            @*-------------------------------------------------------------------*@
+            <div class="row">
+                <div class="col-sm-12 col-md-3 mb-2">
+                    <label id="" for="validationDefault04" class="form-label">  نوعیت سند</label>
+                    <select class="form-select" id="selectid" class="form-control my-2">
+                        <option value="">---</option>
+                        <option value="paper">تذکره</option>
+                        <option value="card">کارت تولد</option>
+                        <option value="elec">تذکره الکترونیکی</option>
+                    </select>
+                </div>
+         
+
+
+        <div class="col-sm-12 col-md-3 p-2">
+            <label for="validationDefault04" class="form-label"> جنیست</label>
+            <select class="form-select" id="" required>
+                <option selected disabled value="">---</option>
+                <option value="1" onclick="funcClick()">خانم</option>
+                <option>آقا</option>
+            </select>
+        </div>
+        <div class="col-sm-12 col-md-3 p-2">
+            <label for="validationDefault04" class="form-label"> رنگ موی</label>
+            <select class="form-select" id="" required>
+                <option selected disabled value="">---</option>
+                <option>سیاه</option>
+                <option>قهوه یی</option>
+                <option>سفید</option>
+                <option>زرد</option>
+            </select>
+        </div>
+        <div class="col-sm-12 col-md-3 p-2">
+            <label for="validationDefault04" class="form-label"> رنگ چشم</label>
+            <select class="form-select" id="" required>
+                <option selected disabled value="">---</option>
+                <option>سیاه</option>
+                <option>قهوه ی</option>
+                <option>سبز</option>
+                <option>آبی</option>
+            </select>
+        </div>
+        <div class="col-sm-12 col-md-3 p-2">
+            <label for="validationDefault04" class="form-label">قد به سانتی متر</label>
+            <input type="text" required class="form-control" id="" value="">
+        </div>
+        <!------------------------------------------------------------------->
+
+        <!-------------------------- نوعیت تذکره----------------------------->
+        <hr />
+        <div class="col-sm-12 col-md-3 p-2">
+            <label id="" for="validationDefault04" class="form-label">  نوعیت سند</label>
+            <select class="form-select" id="selectid" >  
+                <option value="">---</option>
+                <option value="paper">تذکره</option>
+                <option value="card" >کارت تولد</option>
+                <option value="elec">تذکره الکترونیکی</option>
+            </select>
+        </div>
+        <div id="cardnum"  class="col-sm-12 col-md-3 p-2">
+            <label for="validationDefault04" nam="شماره سند" class="form-label">نمبر سند</label>
+            <input type="text" class="form-control" id="" value="">
+        </div>
+        <div id="season" class="col-sm-12 col-md-2 p-2">
+            <label for="validationDefault04" class="form-label"> جلد</label>
+            <input type="text" class="form-control" id="" value="">
+        </div>
+        <div id="page" class="col-sm-12 col-md-2 p-2">
+            <label for="validationDefault04" class="form-label">صفحه</label>
+            <input type="text" class="form-control" id="" value="">
+        </div>
+        <div id="registnum" class="col-sm-12 col-md-2 p-2">
+            <label for="validationDefault04" class="form-label">شماره ثبت</label>
+            <input type="text" class="form-control" id="" value="">
+        </div>
+        <!------------------------------------------------------------------->
+
+
+            @*-----------------Passport Leve-----------------------*@
+            <div class="form-group">
+                <label >@Localizer["Passport Level"]</label>
+                <select id="PassportLevel" asp-items="@ViewBag.PassportLevel" class="form-control my-2">
+
+                    <option id="FiveYears" value="FiveYears">@Localizer["5 ساله"]</option>
+                    <option id="TenYears" value="TenYears">@Localizer["10  ساله"]</option>
+                </select>
+            </div>
+
+            @*------------------Type of Passport------------------------*@
+
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+
+                    <div class="form-group">
+                        <label ">@Localizer["Passport Type"]</label>
+                        <select  id="PassportType" asp-items="@ViewBag.PassportType" class="form-control my-2">
+
+                            <option id="individual">@Localizer["عادی"]</option>
+                            <option id="Commercial">@Localizer["تجاری"]</option>
+                        </select>
+                    </div>
+                </div>
+                @*------------------Type of Pay-----------------------*@
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label >@Localizer["Pay Type"]</label>
+                        <select id="PayType" asp-items="@ViewBag.PayType" class="form-control my-2">
+
+                            <option id="Normal">@Localizer["عادی"]</option>
+                            <option id="Superior">@Localizer["ویژه"]</option>
+                        </select>
+                    </div>
+                </div>
+                <br />
+                <div class="col-sm-12 col-md-12 p-2" style="margin-bottom:15px;">
+                    <h6 style="padding-bottom:8px; display:inline;" id=" smallPayment">  مبلغ قابل چرداخت شما : </h6><input id="result" type="text" name="" value="" />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">@Localizer["Submit"]</button>
+    </form> 
+</div>
+
+        <script>
+            const wrapper = document.querySelector(".wrapper");
+        const fileName = document.querySelector(".file-name");
+        const cancelBtn = document.querySelector("#cancel-btn");
+        const defaultBtn = document.querySelector("#default-btn");
+        const customBtn = document.querySelector("#custom-btn");
+        const img = document.querySelector("img");
+        let regExp = /[0-9a-zA-z\^\&\'\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_\\]+$/;
+        function defaultBtnActive(){
+            defaultBtn.click();
+        }
+        defaultBtn.addEventListener("change", function(){
+            const file = this.files[0];
+            if(file){
+                const reader = new FileReader();
+                reader.onload = function(){
+                const result = reader.result;
+                img.src = result;
+                wrapper.classList.add('active');
+            }
+            cancelBtn.addEventListener("click", function(){
+             img.src = "";
+            });
+              reader.readAsDataURL(file);
+            }
+            if(this.value){
+                let valuesStore = this.value.match(regExp);
+                fileName.textContent = valuesStore;
+            }
+        });
+
+            //----------------- نوعیت تذکره--------------------
+
+            const selectid = document.getElementById('selectid');
+            const cardnum =  document.getElementById('cardnum');
+            const season =  document.getElementById('season');
+            const page =  document.getElementById('page');
+            const registnum =  document.getElementById('registnum');
+
+                  cardnum.style.display = 'none';
+                  season.style.display = 'none';
+                  page.style.display = 'none';
+                  registnum.style.display = 'none';
+
+            selectid.addEventListener('change', (event) =>{
+                const selected = event.target.value;
+
+                switch(selected){
+                    case 'paper':
+                       cardnum.style.display = 'block';
+                       season.style.display = 'block';
+                       page.style.display = 'block';
+                       registnum.style.display = 'block';
+                       console.log('paper');
+                    break;
+
+                    case 'card':
+                       cardnum.style.display = 'block';
+                       season.style.display = 'none';
+                       page.style.display = 'none';
+                       registnum.style.display = 'none';
+                       console.log('card');
+                    break;
+
+                    case 'elec':
+                       cardnum.style.display = 'block';
+                       season.style.display = 'none';
+                       page.style.display = 'none';
+                       registnum.style.display = 'none';
+                       console.log('elec');
+                    break;
+                };
+            });
+
+
+    //------------------پاسپورت شرکتی--------------------------
+              const passspecies = document.getElementById('passspecies');
+              const Cclass = document.getElementById('Cclass');
+              const Cplace = document.getElementById('Cplace');
+              const Cnumber = document.getElementById('Cnumber');
+              const Ctin = document.getElementById('Ctin');
+              const Ckindb = document.getElementById('Ckindb');
+              const CdateI = document.getElementById('CdateI');
+              const CdateE = document.getElementById('CdateE');
+              const Cadd = document.getElementById('Cadd');
+
+                    Cclass.style.display = 'none'
+                    Cplace.style.display = 'none'
+                    Cnumber.style.display = 'none'
+                    Ctin.style.display = 'none'
+                    Ckindb.style.display = 'none'
+                    CdateI.style.display = 'none'
+                    CdateE.style.display = 'none'
+                    Cadd.style.display = 'none'
+
+             passspecies.addEventListener('change',(event) =>{
+             const selected = event.target.value;
+
+             switch(selected){
+                 case 'individual':
+                     Cclass.style.display = 'none'
+                     Cplace.style.display = 'none'
+                     Cnumber.style.display = 'none'
+                     Ctin.style.display = 'none'
+                     Ckindb.style.display = 'none'
+                     CdateI.style.display = 'none'
+                     CdateE.style.display = 'none'
+                     Cadd.style.display = 'none'
+                     applyspecies2.style.backgroundColor = 'white';
+                     console.log('individual');
+                 break;
+
+                 case 'corporate':
+                     Cclass.style.display = 'block'
+                     Cplace.style.display = 'block'
+                     Cnumber.style.display = 'block'
+                     Ctin.style.display = 'block'
+                     Ckindb.style.display = 'block'
+                     CdateI.style.display = 'block'
+                     CdateE.style.display = 'block'
+                     Cadd.style.display = 'block'
+                     applyspecies2.style.backgroundColor = '#FDF5E6';
+                     console.log('corporate');
+                 break;
+             };
+             });
+
+        </script> 
+
+
+
+
+@*------------------------- date js ---------------------*@
+<script type="module">
+    import jalaali from 'https://cdn.skypack.dev/jalaali-js';
+    const yearSelect = document.getElementById("year");
+    for (let i = 1404; i >= 1304; i--) {
+      yearSelect.add(new Option(i, i));
+    }
+    const monthSelect = document.getElementById("month");
+    const afghanMonths = ["حمل", "ثور", "جوزا", "سرطان", "اسد", "سنبله", "میزان", "عقرب", "قوس", "جدی", "دلو", "حوت"];
+    for (let i = 1; i <= 12; i++) {
+      monthSelect.add(new Option(afghanMonths[i - 1], i));
+    }
+    function isLeapJalaaliYear(year) {
+      return ((year + 2346) * 682 % 2816) < 682;
+    }
+    function updateDays() {
+      const year = parseInt(yearSelect.value);
+      const month = parseInt(monthSelect.value);
+      let daysInMonth = jalaali.jalaaliMonthLength(year, month);
+      if (month === 12 && !isLeapJalaaliYear(year)) {
+        daysInMonth = 29;
+      }
+      const daySelect = document.getElementById("day");
+      daySelect.innerHTML = "";
+      for (let i = 1; i <= daysInMonth; i++) {
+        daySelect.add(new Option(i, i));
+      }
+      convertDate();
+    }
+    yearSelect.addEventListener("change", updateDays);
+    monthSelect.addEventListener("change", updateDays);
+    document.getElementById("day").addEventListener("change", convertDate);
+    updateDays();
+    function convertDate() {
+      const jYear = parseInt(yearSelect.value);
+      const jMonth = parseInt(monthSelect.value);
+      const jDay = parseInt(document.getElementById("day").value);
+      if (!jYear || !jMonth || !jDay) {
+        document.getElementById('gregorianDate').value = "لطفا تاریخ را انتخاب کنید";
+        document.getElementById('age').value = "";
+        return;
+      }
+      const gregorian = jalaali.toGregorian(jYear, jMonth, jDay);
+      const gregorianDate = `${gregorian.gy}/${gregorian.gm}/${gregorian.gd}`;
+      document.getElementById('gregorianDate').value = gregorianDate;
+      calculateAge(gregorian.gy, gregorian.gm, gregorian.gd);
+    }
+    function calculateAge(year, month, day) {
+      const today = new Date();
+      let age = today.getFullYear() - year;
+      if (today.getMonth() + 1 < month || (today.getMonth() + 1 === month && today.getDate() < day)) {
+        age--;
+      }
+      document.getElementById('age').value = age;
+    }
+</script>
+@*---------------------------end date-----------------------*@
+
+
+
+
+
+
+
+
+
+@*---------------------------------------------------------------------------------------------------------------------
+    @{
+    Layout = null;
+}
+<style>
+    .imageContent {
+        height: 333.5px;
+        width: 296.5px;
+        direction:ltr;
+        position:relative;
+        right:20px;
+        left:20px;
+
+    }
+
+    .imageContent .wrapper {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            border-radius: 10px;
+            background: #fff;
+            border: 2px dashed #c2cdda;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            
+        }
+
+    .wrapper.active {
+        border: none;
+    }
+
+
+    .wrapper .image {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .wrapper .image img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+    .wrapper .icon {
+        font-size: 30px;
+        color: gray;
+    }
+
+    .wrapper .text {
+        font-size: 20px;
+        font-weight: 500;
+        color: #58587B;
+    }
+
+    .wrapper #cancel-btn {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        font-size: 20px;
+        cursor: pointer;
+        color: #9658fe;
+        display: none;
+    }
+
+    .wrapper.active:hover #cancel-btn {
+        display: block;
+    }
+
+    .wrapper #cancel-btn:hover {
+        color: red;
+    }
+
+    .wrapper .file-name {
+        position: absolute;
+        bottom: 0px;
+        background: linear-gradient(135deg, #3aBffe 0%,#9658fe 100%);
+        width: 100%;
+        color: #fff;
+        padding: 8px 0;
+        font-size: 18px;
+        display: none;
+    }
+
+    .imageContent #custom-btn {
+        margin-top: 8px;
+        width: 200px;
+        position:absolute;
+        left:55px;
+        align-content:center;
+        height: 40px;
+        display: block;
+        border: none;
+        outline: none;
+        border-radius: 25px;
+        font: 18px;
+        color: #fff;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        cursor: pointer;
+        background: linear-gradient(135deg, #3aBffe 0%,#9658fe 100%);
+    }
+</style>
+
+<h5 class="d-block text-center p-3 title-color" style="padding-top:100px;margin-top:50px;">@ViewData["Title"]</h5>
+<div class="container-fluid p-3" style="background-color:#91A5CB; border-color:inherit; border:solid; border-width:1px;">
+    <form method="post">
+        <!-------------------------- اپلود عکس پروفایل----------------------------->
+        <div class="imageContent">
+            <div class="wrapper text-center">
+                <div class="image">
+                    <img src="" alt="" />
+                </div>
+                <div class="content">
+                    <div class="icon"> <i class="fas fa-cloud-upload-alt"></i> </div>
+                    <div class="text"><h6> اپلود عکس به سایز پاسپورت پس زمینه ی سفید</h6></div>
+                </div>
+                <div id="cancel-btn"> <i class="fas fa-times"></i> </div>
+                <div class="file-name"><i> File name here</i></div>
+            </div>
+            <input id="default-btn" type="file" hidden />
+            <button onclick="defaultBtnActive()" id="custom-btn">انتخاب عکس</button>
+        </div>
+        <!------------------------------------------------------------------->
+    <div class="row " style="background-color:#E4E7E9; padding-bottom:10px;margin-top:20px;">
+        <!-------------------------- معلومات شخصی----------------------------->
+        <div class="col-sm-12 col-md-6 p-2">
+            <label for="floatingInputGrid" class="p-2">نام </label>
+            <input type="text" class="form-control" id="" placeholder="" value="">
+        </div>
+        <div class="col-sm-12 col-md-6 p-2">
+             <label for="floatingInputGrid" class="p-2">Name</label>
+            <input type="text" class="form-control" id="" placeholder="" value="">
+        </div>
+        <div class="col-sm-12 col-md-6 p-2">
+            <label for="floatingInputGrid" class="p-2">تخلص</label>
+            <input type="text" class="form-control" id="" placeholder="" value="">
+        </div>
+        <div class="col-sm-12 col-md-6 p-2">
+            <label for="floatingInputGrid" class="p-2">last name</label>
+            <input type="text" class="form-control" id="" placeholder="" value="">
+        </div>
+        <div class="col-sm-12 col-md-6 p-2">
+            <label for="floatingInputGrid" class="p-2">نام پدر </label>
+            <input type="email" class="form-control" id="" placeholder="" value="">
+        </div>
+        <div class="col-sm-12 col-md-6 p-2">
+            <label for="floatingInputGrid" class="p-2">Father name</label>
+            <input type="text" class="form-control" id="" placeholder="" value="">
+        </div>
+        <div class="col-sm-12 col-md-6 p-2">
+            <label for="floatingInputGrid" class="p-2">نام پدرکلان</label>
+            <input type="text" class="form-control" id="" placeholder="" value="">
+        </div>
+        <div class="col-sm-12 col-md-6 p-2">
+            <label for="floatingInputGrid" class="p-2">Grand father name</label>
+            <input type="text" class="form-control" id="floatingInputGrid" placeholder="" value="">
+        </div>
+        <div class="col-sm-12 col-md-6 p-2">
+            <label for="floatingInputGrid" class="p-2">تولد به تاریخ شمسی</label>
+            <input type="date" class="form-control" id="" value="">
+        </div>
+        <div class="col-sm-12 col-md-6 p-2">
+            <label for="floatingInputGrid" class="p-2">تولد به تاریخ میلادی</label>
+            <input type="date" class="form-control" id=""  value="">
+        </div>
+        <div class="col-sm-12 col-md-4 p-2">
+            <label for="validationDefault04" class="form-label"> محل تولد</label>
+            <select class="form-select" id="" required>
+                <option selected disabled value="">---</option>
+                <option>ارزگان</option>
+                <option>بادغیس</option>
+                <option>بامیان</option>
+                <option>بدخشان</option>
+                <option>بغلان</option>
+                <option>بلخ</option>
+                <option>پروان</option>
+                <option>پکتیا</option>
+                <option>پکتیکا</option>
+                <option>پنجشیر</option>
+                <option>تخار</option>
+                <option>جوزجان</option>
+                <option>خوست</option>
+                <option>دایکندی</option>
+                <option>زابل</option>
+                <option>سرپل</option>
+                <option>سمنگان</option>
+                <option>غزنی</option>
+                <option>غور</option>
+                <option>فاریاب</option>
+                <option>فراه</option>
+                <option>قندهار</option>
+                <option>کابل</option>
+                <option>کاپیسا</option>
+                <option>کندز</option>
+                <option>کنر</option>
+                <option>لغمان</option>
+                <option>لوگر</option>
+                <option>ننگرهار</option>
+                <option>نورستان</option>
+                <option>نیمروز</option>
+                <option>میدان وردک</option>
+                <option>هرات</option>
+                <option>هلمند</option>
+            </select>
+        </div>
+        <div class="col-sm-12 col-md-4 p-2">
+            <label for="validationDefault04" class="form-label">سکونت فعلی</label>
+            <select class="form-select" id="" required>
+                <option selected disabled value="">---</option>
+                <option>ارزگان</option>
+                <option>بادغیس</option>
+                <option>بامیان</option>
+                <option>بدخشان</option>
+                <option>بغلان</option>
+                <option>بلخ</option>
+                <option>پروان</option>
+                <option>پکتیا</option>
+                <option>پکتیکا</option>
+                <option>پنجشیر</option>
+                <option>تخار</option>
+                <option>جوزجان</option>
+                <option>خوست</option>
+                <option>دایکندی</option>
+                <option>زابل</option>
+                <option>سرپل</option>
+                <option>سمنگان</option>
+                <option>غزنی</option>
+                <option>غور</option>
+                <option>فاریاب</option>
+                <option>فراه</option>
+                <option>قندهار</option>
+                <option>کابل</option>
+                <option>کاپیسا</option>
+                <option>کندز</option>
+                <option>کنر</option>
+                <option>لغمان</option>
+                <option>لوگر</option>
+                <option>ننگرهار</option>
+                <option>نورستان</option>
+                <option>نیمروز</option>
+                <option>میدان وردک</option>
+                <option>هرات</option>
+                <option>هلمند</option>
+            </select>
+        </div>
+        <div class="col-sm-12 col-md-4 p-2">
+            <label id="" for="validationDefault04" class="form-label"> حالت مدنی</label>
+            <select class="form-select" id="" required>
+                <option selected disabled value="">---</option>
+                <option>مجرد</option>
+                <option>متاهل</option>
+            </select>
+        </div>
+        <div class="col-sm-12 col-md-3 p-2">
+            <label for="validationDefault04" class="form-label"> جنیست</label>
+            <select class="form-select" id="" required>
+                <option selected disabled value="">---</option>
+                <option value="1" onclick="funcClick()">خانم</option>
+                <option>آقا</option>
+            </select>
+        </div>
+        <div class="col-sm-12 col-md-3 p-2">
+            <label for="validationDefault04" class="form-label"> رنگ موی</label>
+            <select class="form-select" id="" required>
+                <option selected disabled value="">---</option>
+                <option>سیاه</option>
+                <option>قهوه یی</option>
+                <option>سفید</option>
+                <option>زرد</option>
+            </select>
+        </div>
+        <div class="col-sm-12 col-md-3 p-2">
+            <label for="validationDefault04" class="form-label"> رنگ چشم</label>
+            <select class="form-select" id="" required>
+                <option selected disabled value="">---</option>
+                <option>سیاه</option>
+                <option>قهوه ی</option>
+                <option>سبز</option>
+                <option>آبی</option>
+            </select>
+        </div>
+        <div class="col-sm-12 col-md-3 p-2">
+            <label for="validationDefault04" class="form-label">قد به سانتی متر</label>
+            <input type="text" required class="form-control" id="" value="">
+        </div>
+        <!------------------------------------------------------------------->
+
+        <!-------------------------- نوعیت تذکره----------------------------->
+        <hr />
+        <div class="col-sm-12 col-md-3 p-2">
+            <label id="" for="validationDefault04" class="form-label">  نوعیت سند</label>
+            <select class="form-select" id="selectid" >  
+                <option value="">---</option>
+                <option value="paper">تذکره</option>
+                <option value="card" >کارت تولد</option>
+                <option value="elec">تذکره الکترونیکی</option>
+            </select>
+        </div>
+        <div id="cardnum"  class="col-sm-12 col-md-3 p-2">
+            <label for="validationDefault04" nam="شماره سند" class="form-label">نمبر سند</label>
+            <input type="text" class="form-control" id="" value="">
+        </div>
+        <div id="season" class="col-sm-12 col-md-2 p-2">
+            <label for="validationDefault04" class="form-label"> جلد</label>
+            <input type="text" class="form-control" id="" value="">
+        </div>
+        <div id="page" class="col-sm-12 col-md-2 p-2">
+            <label for="validationDefault04" class="form-label">صفحه</label>
+            <input type="text" class="form-control" id="" value="">
+        </div>
+        <div id="registnum" class="col-sm-12 col-md-2 p-2">
+            <label for="validationDefault04" class="form-label">شماره ثبت</label>
+            <input type="text" class="form-control" id="" value="">
+        </div>
+        <!------------------------------------------------------------------->
+
+
+        <!--------------------- نوعیت پاسپورت : شرکت،انفرادی --------------------------->
+        <hr/>
+        <div id="passspecies" class="col-sm-12 col-md-12 p-2">
+            <label for="floatingInputGrid" class="form-label">نوعیت پاسپورت</label>
+            <select id="applyspecies2" class="form-select">
+                <option selected disabled value="">---</option>
+                <option value="individual">ساده</option>
+                <option value="corporate">تجاری</option>
+            </select>
+        </div>
+        <!------------------------------------------------------------------->
+
+        <!---------------------   پاسپورت شرکتی --------------------------->
+        <div id="Cclass" class="col-sm-12 col-md-4 p-2">
+            <label for="validationDefault04" class="form-label"> موقف</label>
+            <select class="form-select" id="" >
+                <option selected disabled value="">---</option>
+                <option>---</option>
+                <option>---</option>
+                <option>---</option>
+            </select>
+        </div>
+        <div id="Cplace" class="col-sm-12 col-md-4 p-2">
+            <label for="validationDefault04" class="form-label"> مکان</label>
+            <select class="form-select" id="" required>
+                <option selected disabled value="">---</option>
+                <option>ارزگان</option>
+                <option>بادغیس</option>
+                <option>بامیان</option>
+                <option>بدخشان</option>
+                <option>بغلان</option>
+                <option>بلخ</option>
+                <option>پروان</option>
+                <option>پکتیا</option>
+                <option>پکتیکا</option>
+                <option>پنجشیر</option>
+                <option>تخار</option>
+                <option>جوزجان</option>
+                <option>خوست</option>
+                <option>دایکندی</option>
+                <option>زابل</option>
+                <option>سرپل</option>
+                <option>سمنگان</option>
+                <option>غزنی</option>
+                <option>غور</option>
+                <option>فاریاب</option>
+                <option>فراه</option>
+                <option>قندهار</option>
+                <option>کابل</option>
+                <option>کاپیسا</option>
+                <option>کندز</option>
+                <option>کنر</option>
+                <option>لغمان</option>
+                <option>لوگر</option>
+                <option>ننگرهار</option>
+                <option>نورستان</option>
+                <option>نیمروز</option>
+                <option>میدان وردک</option>
+                <option>هرات</option>
+                <option>هلمند</option>
+            </select>
+        </div>
+        <div id="Cnumber" class="col-sm-12 col-md-4 p-2">
+            <label for="validationDefault04" nam="شماره سند" class="form-label">نمبر جواز شرکت</label>
+            <input type="text" class="form-control" id="" value="">
+        </div>
+        <div id="Ctin" class="col-sm-12 col-md-4 p-2">
+            <label for="validationDefault04" class="form-label"> نمبر TIN</label>
+            <input type="text" class="form-control" id="" value="">
+        </div>
+        <div id="Ckindb" class="col-sm-12 col-md-4 p-2">
+            <label for="validationDefault04" class="form-label"> نوع تجارت</label>
+            <select class="form-select" id="" >
+                <option selected disabled value="">---</option>
+                <option>---</option>
+                <option>---</option>
+                <option>---</option>
+                <option>---</option>
+            </select>
+        </div>
+        <div id="CdateI" class="col-sm-12 col-md-4 p-2">
+            <label for="validationDefault04" class="form-label"> تاریخ صدور جواز</label>
+            <input type="date" class="form-control" id="" value="">
+        </div>
+        <div id="CdateE" class="col-sm-12 col-md-4 p-2">
+            <label for="validationDefault04" class="form-label"> تاریخ ختم جواز</label>
+            <input type="date" class="form-control" id="" value="">
+        </div>
+        <div id="Cadd" class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label"> آدرس دقیق شرکت </label>
+            <textarea class="form-control" id="" rows="3"></textarea>
+        </div>
+        <!------------------------------------------------------------------------------------->
+
+
+    </div>
+   
+
+    <div class="col-sm-12 col-md-3">
+        <div class="">
+            <label for="validationDefault04" class="form-label">حروف و اعداد</label>
+            <input type="text" class="form-control" id="floatingInputGrid" value="">
+        </div>
+        <div class="">
+            <label for="validationDefault04" class="form-label">حروف و اعداد بالا را اینجا وارد نماید</label>
+            <input type="text" class="form-control" id="floatingInputGrid" value="">
+        </div>
+        <div class=" d-flex" style="position:center; justify-content:center;padding-top:10px;">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Insertphoto">
+                <button asp-area="" type="submit" style="width:100px; height:40px; border:none; background-color:darkred; color:white; border-radius:10px; padding-bottom:20px; margin-bottom:50px;">
+                    ثبت
+                </button>
+            </a>
+        </div>
+
+    </div>
+    </form>
+</div>
+
+        <script>
+            const wrapper = document.querySelector(".wrapper");
+        const fileName = document.querySelector(".file-name");
+        const cancelBtn = document.querySelector("#cancel-btn");
+        const defaultBtn = document.querySelector("#default-btn");
+        const customBtn = document.querySelector("#custom-btn");
+        const img = document.querySelector("img");
+        let regExp = /[0-9a-zA-z\^\&\'\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_\\]+$/;
+        function defaultBtnActive(){
+            defaultBtn.click();
+        }
+        defaultBtn.addEventListener("change", function(){
+            const file = this.files[0];
+            if(file){
+                const reader = new FileReader();
+                reader.onload = function(){
+                const result = reader.result;
+                img.src = result;
+                wrapper.classList.add('active');
+            }
+            cancelBtn.addEventListener("click", function(){
+             img.src = "";
+            });
+              reader.readAsDataURL(file);
+            }
+            if(this.value){
+                let valuesStore = this.value.match(regExp);
+                fileName.textContent = valuesStore;
+            }
+        });
+
+            //----------------- نوعیت تذکره--------------------
+           
+            const selectid = document.getElementById('selectid');
+            const cardnum =  document.getElementById('cardnum');
+            const season =  document.getElementById('season');
+            const page =  document.getElementById('page');
+            const registnum =  document.getElementById('registnum');
+
+                  cardnum.style.display = 'none';
+                  season.style.display = 'none';
+                  page.style.display = 'none';
+                  registnum.style.display = 'none';
+
+            selectid.addEventListener('change', (event) =>{
+                const selected = event.target.value;
+
+                switch(selected){
+                    case 'paper':
+                       cardnum.style.display = 'block';
+                       season.style.display = 'block';
+                       page.style.display = 'block';
+                       registnum.style.display = 'block';
+                       console.log('paper');
+                    break;
+
+                    case 'card':
+                       cardnum.style.display = 'block';
+                       season.style.display = 'none';
+                       page.style.display = 'none';
+                       registnum.style.display = 'none';
+                       console.log('card');
+                    break;
+
+                    case 'elec':
+                       cardnum.style.display = 'block';
+                       season.style.display = 'none';
+                       page.style.display = 'none';
+                       registnum.style.display = 'none';
+                       console.log('elec');
+                    break;
+                };
+            });
+
+
+    //------------------پاسپورت شرکتی--------------------------
+              const passspecies = document.getElementById('passspecies');
+              const Cclass = document.getElementById('Cclass');
+              const Cplace = document.getElementById('Cplace');
+              const Cnumber = document.getElementById('Cnumber');
+              const Ctin = document.getElementById('Ctin');
+              const Ckindb = document.getElementById('Ckindb');
+              const CdateI = document.getElementById('CdateI');
+              const CdateE = document.getElementById('CdateE');
+              const Cadd = document.getElementById('Cadd');
+
+                    Cclass.style.display = 'none'
+                    Cplace.style.display = 'none'
+                    Cnumber.style.display = 'none'
+                    Ctin.style.display = 'none'
+                    Ckindb.style.display = 'none'
+                    CdateI.style.display = 'none'
+                    CdateE.style.display = 'none'
+                    Cadd.style.display = 'none'
+
+             passspecies.addEventListener('change',(event) =>{
+             const selected = event.target.value;
+
+             switch(selected){
+                 case 'individual':
+                     Cclass.style.display = 'none'
+                     Cplace.style.display = 'none'
+                     Cnumber.style.display = 'none'
+                     Ctin.style.display = 'none'
+                     Ckindb.style.display = 'none'
+                     CdateI.style.display = 'none'
+                     CdateE.style.display = 'none'
+                     Cadd.style.display = 'none'
+                     applyspecies2.style.backgroundColor = 'white';
+                     console.log('individual');
+                 break;
+
+                 case 'corporate':
+                     Cclass.style.display = 'block'
+                     Cplace.style.display = 'block'
+                     Cnumber.style.display = 'block'
+                     Ctin.style.display = 'block'
+                     Ckindb.style.display = 'block'
+                     CdateI.style.display = 'block'
+                     CdateE.style.display = 'block'
+                     Cadd.style.display = 'block'
+                     applyspecies2.style.backgroundColor = '#FDF5E6';
+                     console.log('corporate');
+                 break;
+             };
+             });
+
+        </script> *@

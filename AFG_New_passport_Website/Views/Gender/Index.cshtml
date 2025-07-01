@@ -1,0 +1,43 @@
+﻿@{
+	Layout = "_DashboardLayout"; // استفاده از لی‌اوت داشبورد برای این صفحه
+}
+@model IEnumerable<AFG_New_passport_Website.Models.Domain.Gender>
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+<body class="light  dark ">
+	<div class="form-container enhanced-form w-50">
+		<div class="card shadow">
+			<h5 class="text-center mb-4"><i class="fas fa-genderless text-primary"></i> مدیریت جنسیت‌ها</h5>
+			<p><a href="/Gender/Create" class="btn btn-primary mb-3"><i class="fas fa-plus me-2"></i> اضافه کردن جنسیت جدید</a></p>
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>نام جنسیت</th>
+						<th>Gender Name</th>
+						<th>عملیات</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var gender in Model)
+					{
+						<tr>
+							<td>@gender.Id</td>
+							<td>@gender.DName</td>
+							<td>@gender.EName</td>
+							<td class="d-flex justify-content-between">
+								<a href="/Gender/Edit/@gender.Id" class="btn btn-warning btn-sm">
+									<i class="fas fa-edit me-1"></i> ویرایش
+								</a>
+
+								<a href="/Gender/Delete/@gender.Id" class="btn btn-danger btn-sm">
+									حذف
+								</a>
+							</td>
+						</tr>
+					}
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>

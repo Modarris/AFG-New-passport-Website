@@ -1,0 +1,54 @@
+﻿@model IEnumerable<AFG_New_passport_Website.Models.Domain.ProvinceQuota>
+@{
+	Layout = "_DashboardLayout";
+}
+
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+<h2 class="mb-4">@ViewData["Title"]</h2>
+<body class="light  dark ">
+	<div class="form-container enhanced-form w-75">
+		<div class="card shadow">
+			<h5 class="text-center mb-4"><i class="fas fa-briefcase text-primary"></i> مدیریت نوبت دهی ‌</h5>
+			<p><a asp-action="Create" class="btn btn-primary mb-3">اضافه کردن شغل جدید<i class="fas fa-plus me-2"></i> </a></p>
+
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr class="text-center">
+						<th>ولایت</th>
+						<th>تعداد نوبت روزانه</th>
+						<th> آخرین تایم نوبت دهی روزانه</th>
+						<th>عملیات</th>
+					</tr>
+				</thead>
+				<tbody>
+					@if (!Model.Any())
+					{
+						<tr>
+							<td colspan="5" class="text-center">هیچ نوبتی ثبت نشده است.</td>
+						</tr>
+					}
+					else
+					{
+						var i = 1;
+						foreach (var item in Model)
+						{
+							<tr>
+								<td>@item.ProcessingCity?.NameLocal</td>
+								<td>@item.DailyQuota</td>
+								<td>
+									@DateTime.Today.Add(item.EndTime ?? TimeSpan.Zero).ToString("hh:mm tt")
+								</td>
+								<td>
+									<a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">ویرایش</a>
+									<a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">حذف</a>
+								</td>
+							</tr>
+							i++;
+						}
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+			

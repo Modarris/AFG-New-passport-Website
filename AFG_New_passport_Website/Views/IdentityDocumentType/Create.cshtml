@@ -1,0 +1,32 @@
+﻿@model AFG_New_passport_Website.Models.Domain.IdentityDocumentType
+
+@{
+	Layout = "_DashboardLayout";
+}
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+<body class="light  dark ">
+	<div class="form-container enhanced-form w-50">
+		<div class="card shadow">
+			<h5 class="text-center mb-4" style="font-size: 1.1rem;">
+				<i class="fas fa-briefcase text-primary"></i> افزودن سند شناسایی
+			</h5>
+
+			<form method="post" class="w-75 mx-auto border border-success rounded p-4">
+				<div class="form-group mb-3">
+					<label for="Name" class="form-label">سند</label>
+					<input type="text" id="Name" name="Name" class="form-control form-control-sm" placeholder="مثلاً: کارت تولد" required />
+				</div>
+				<button type="submit" class="btn btn-success w-100 btn-sm">
+					<i class="fas fa-save me-1"></i> ذخیره
+				</button>
+			</form>
+		</div>
+	</div>
+</body>
+@* ---------------------------------------------------------------------------------------------------- *@
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

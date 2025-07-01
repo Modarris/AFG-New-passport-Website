@@ -1,0 +1,211 @@
+﻿html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+body {
+    background-color: #f5f5f5;
+    padding-top:50px;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    padding-top: 10px;
+}
+
+.news-col-1 {
+    color: black;
+    text-align: center;
+    border-bottom-left-radius: inherit;
+    text-align: justify;
+}
+
+.newe-col-1 .h2 {
+    text-align: center;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    -moz-box-sizing: border-box;
+}
+
+.lang ul li a {
+    margin: 0 8px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #31344b;
+    font-weight: 400;
+    display: inline-flex;
+    position: relative;
+    transition: all 0.3s;
+    border-radius: 9px;
+   box-shadow:3px, 3px, 3px;
+
+    border-width: 1px;
+}
+
+    .lang ul li a:hover {
+        background-color: #d2dcdc;
+        color: white;
+        transition: 0.3s;
+    }
+
+    .lang ul li a:active {
+        transition: 1000s;
+        opacity: 33;
+    }
+
+.logo {
+    margin: 0 8px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #31344b;
+    font-weight: 400;
+    display: inline-flex;
+    position: relative;
+    transition: all 0.3s ease;
+    padding-right: 50px;
+}
+
+.lang {
+    margin-left: 30px;
+}
+
+    .lang ul li button {
+        border: none;
+        border-radius: 2px;
+    }
+
+.navbar-h {
+    height: 65px;
+    z-index: 100;
+    background-color: #f5f5f5;
+    position: fixed;
+    padding-bottom: 1px;
+    padding-top: 14px;
+}
+.navbar .container-fluid .navbar-collapse {
+    background-color: blue;
+}
+.logo {
+    text-align: center;
+    box-shadow: 1px;
+    padding-top: 5px;
+}
+
+
+
+.navbar .container .navbar-collapse {
+    /*background-color:#12a4d9;*/
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 4px 15px rgba(0, 0, 0, 0.1); /* باکس شادو */
+    transition: box-shadow 0.3s ease; /* افکت انتقال برای باکس شادو */
+}
+
+    .navbar .container .navbar-collapse:h {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 8px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .navbar .container .navbar-collapse ul li {
+        margin-top: 7px;
+        margin-bottom: 7px;
+    }
+
+.navbar-nav li {
+    margin-left: 7px;
+    margin-right: px;
+}
+
+.navbar-nav {
+    margin-right: -33px;
+}
+
+#H {
+    width: 70px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+#I {
+    width: 100px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+#C {
+    width: 80px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+#Index {
+    width: 85px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+#N {
+    width: 75px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+#E {
+    width: 80px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+#D {
+    -moz-border-radius-bottomright width: 80px;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+#P {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.texte-center {
+    display: flex; /* استفاده از flexbox */
+    justify-content: center; /* قرار دادن عناصر در وسط افقی */
+    align-items: center; /* قرار دادن عناصر در وسط عمودی */
+    transform-box: inherit;
+    box-sizing: border-box;
+    box-shadow: 2px 1px 1px gray;
+    margin-top: 8px;
+}
+
+    .texte-center a {
+        margin-right: 5px;
+    }

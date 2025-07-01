@@ -1,0 +1,168 @@
+﻿body {
+			font-family: 'Vazirmatn', sans-serif;
+			background-color: #f0f2f5;
+			margin: 0;
+			padding: 0;
+		}
+
+		.sidebar {
+			background-color: #fff;
+			color: black;
+			min-height: 100vh;
+			padding-top: 1rem;
+			width: 250px;
+			position: fixed;
+			margin-right: 20px;
+		}
+
+			.sidebar a {
+				color: black;
+				padding: 0.5rem 1rem;
+				display: block;
+				transition: background-color 0.3s ease, padding-left 0.3s ease;
+				text-decoration: none;
+			}
+
+				.sidebar a:hover {
+					background-color: #343a40;
+					text-decoration: none;
+					color: #fff;
+				}
+
+			.sidebar .nav-item {
+				margin-bottom: 0.5rem;
+			}
+
+		.navbar {
+			background-color: #ffffff;
+			border-bottom: 1px solid #dee2e6;
+			padding: 1rem;
+		}
+
+		.brand {
+			font-size: 1.4rem;
+			font-weight: bold;
+			padding: 1rem 1rem 0.5rem;
+			color: #f8f9fa;
+			text-align: center;
+			border-bottom: 1px solid #444;
+		}
+
+		.main-footer {
+			background-color: #ffffff;
+			padding: 1rem;
+			border-top: 1px solid #dee2e6;
+			font-size: 0.9rem;
+			color: #6c757d;
+		}
+
+		.content {
+			padding: 1.5rem;
+			background-color: #ffffff;
+			border-radius: 0.5rem;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+			min-height: 80vh;
+		}
+
+		.sidebar .nav-item .nav-link {
+			padding-left: 1rem;
+			margin-top: -5px;
+		}
+
+			.sidebar .nav-item .nav-link.active {
+				padding-left: 2rem;
+				background-color: #495057;
+				color: #fff;
+			}
+
+
+		.nav-item .nav-treeview {
+			display: none;
+			padding-left: 1rem;
+			border: gray solid 1px;
+		}
+
+		.nav-item.open .nav-treeview {
+			display: block;
+		}
+
+
+
+		media (max-width: 768px) {
+			.sidebar
+
+		{
+			position: fixed;
+			right: -250px;
+			top: 0;
+			height: 100%;
+			z-index: 1050;
+			transition: right 0.3s ease;
+		}
+
+		.sidebar.active {
+			right: 0;
+			box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+		}
+
+		main {
+			margin-right: 0 !important;
+		}
+
+		.nav-link.active {
+			background-color: #198754;
+			color: white;
+			font-weight: bold;
+		}
+
+		.menu-open > .nav-treeview {
+			display: block !important;
+		}
+
+	</style>
+	<style>
+		/* styles.css */
+		/* تعریف مود لایت به صورت پیش‌فرض */
+		body.light {
+			--bg-color: #ffffff;
+			--text-color: #000000;
+			--button-bg: #eeeeee;
+			--button-text: #000000;
+		}
+
+		/* تعریف مود دارک */
+		body.dark {
+			--bg-color: #121212;
+			--text-color: #ffffff;
+			--button-bg: #333333;
+			--button-text: #ffffff;
+		}
+		/* استفاده از متغیرها */
+		body {
+			background-color: var(--bg-color);
+			color: var(--text-color);
+		}
+
+		button {
+			background-color: var(--button-bg);
+			color: var(--button-text);
+		}
+		/* Light Mode */
+		body.light main,
+		body.light nav,
+		body.light footer {
+			background-color: #fff;
+			color: #000;
+		}
+
+		/* Dark Mode */
+		body.dark main,
+		body.dark nav,
+		body.dark footer {
+			background-color: #1F2235;
+			color: #E0E0E0;
+		}
+
+		body.dark .header {
+			color: #E0E0E0;
+		}

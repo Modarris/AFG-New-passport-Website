@@ -1,0 +1,51 @@
+﻿@{
+	Layout = "_DashboardLayout"; // استفاده از لی‌اوت داشبورد برای این صفحه
+}
+@model IEnumerable<AFG_New_passport_Website.Models.Domain.PassportType>
+
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+
+
+@* --------------------------------------------------------------------------- *@
+<body class="light  dark ">
+	<div class="form-container enhanced-form w-50">
+		<div class="card shadow">
+			<h5 class="text-center mb-4"><i class="fas fa-passport me-2"></i> لیست انواع پاسپورت ها</h5>
+			<hr />
+			<p>
+				<a href="/PassportType/Create" class="btn btn-primary mb-3">
+					<i class="fas fa-plus me-2"></i>
+					اضافه کردن نوع پاسپورت
+				</a>
+			</p>
+
+
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr class="text-center">
+						<th> ID </th>
+						<th>نوع پاسپورت</th>
+						<th>عملیات</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var passportType in Model)
+					{
+						<tr>
+							<td>@passportType.Id</td>
+							<td>@passportType.Type</td>
+							<td class="d-flex justify-content-between">
+								<a href="/PassportType/Edit/@passportType.Id" class="btn btn-warning btn-sm">
+									<i class="fas fa-edit me-1"></i> ویرایش
+								</a>
+								<a href="/PassportType/Delete/@passportType.Id" class="btn btn-danger btn-sm">
+									حذف
+								</a>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>

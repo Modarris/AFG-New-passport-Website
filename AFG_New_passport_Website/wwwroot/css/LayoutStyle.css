@@ -1,0 +1,180 @@
+﻿body {
+    background-color: #f4f4f4;
+    font-family:Arial;
+}
+
+.logo {
+    text-align: center;
+    box-shadow: 1px;
+    padding-top: 5px;
+}
+
+.navbar .container .navbar-collapse {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+    .navbar .container .navbar-collapse:h {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .navbar .container .navbar-collapse ul li {
+        margin-top: 7px;
+        margin-bottom: 7px;
+    }
+
+.navbar-nav li {
+    margin-left: 7px;
+}
+
+.navbar-nav {
+    margin-right: -33px;
+}
+
+#P.texte-centerexte-center {
+    .navbar border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.texte-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-box: inherit;
+    box-sizing: border-box;
+    margin-top: 8px;
+    background-color: white;
+}
+
+
+.navbar {
+    background-color: white;
+}
+
+.navbar-nav .nav-item .btn {
+    margin: 10px;
+    padding: 10px 25px;
+    font-size: 16px;
+    border-radius: 2px;
+    transition: 0.8s;
+    background-color: #3e8e7e;
+    color: white;
+}
+
+.dropdown .btn {
+    margin: 10px;
+    padding: 10px 25px;
+    font-size: 16px;
+    border-radius: 2px;
+    transition: 0.8s;
+    background-color:black;
+    color: white;
+}
+
+    .dropdown .btn:hover {
+        background-color: #0056b3;
+    }
+
+.dropdown .dropdown-menu .dropdown-item {
+    margin-top: 3px;
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 2px;
+    transition: 0.8s;
+    background-color: #3e8e7e;
+    color: white;
+}
+
+    .dropdown .dropdown-menu .dropdown-item:hover {
+        background-color: #0056b3;
+    }
+
+.dropdown .dropdown-menu {
+    padding: 5px;
+}
+
+.navbar-nav .nav-item .btn:hover {
+    background-color: #0056b3;
+}
+
+.dropdown .dropdown-menu li {
+    margin-left: 5px;
+}
+
+.navbar .container .navbar-collapse ul li {
+    margin: 7px;
+}
+
+
+background-color: #28a745;
+}
+
+.navbar-nav {
+    text-align: center;
+}
+
+    .navbar-nav .nav-item {
+        margin-bottom: 10px;
+    }
+    /*------footer------*/
+.section-2 {
+    padding: 0;
+    width: 100%;
+    height: 20vh;
+    background-attachmsrc()ze: cover;
+    background-position: center;
+    background-image: src('~/images/photo/tech-photo1.jpg');
+    margin-top: 30px;
+}
+
+.title-color {
+    color: white;
+    padding-top: 50px;
+}
+
+.content-class {
+    padding-top: 70px;
+}
+
+.card-news{
+    background-color:gray;
+}
+#trackCard {
+    display: none;
+    transition: all 0.3s ease-in-out;
+}
+
+#backdrop {
+    display: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/*------ sreching box style ------*/
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050;
+}
+
+.search-box {
+    width: 90%;
+    max-width: 500px;
+    background: #fff;
+    border-radius: 15px;
+}
+
+#resultContent {
+    font-family: "Tahoma", "Arial", "sans-serif"; /* یا فونتی که فارسی پشتیبانی کند */
+    direction: rtl;
+    text-align: right;
+}
+

@@ -1,0 +1,174 @@
+﻿.imageContent {
+    height: 333.5px;
+    width: 296.5px;
+    direction: ltr;
+    position: relative;
+    right: 20px;
+    left: 20px;
+}
+
+    .imageContent .wrapper {
+        position: relative;
+        height: 300px;
+        width: 100%;
+        border-radius: 50px;
+        background: #fff;
+        border: 2px dashed #c2cdda;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+.wrapper.active {
+    border: none;
+}
+
+
+.wrapper .image {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .wrapper .image img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+.wrapper .icon {
+    font-size: 30px;
+    color: gray;
+}
+
+.wrapper .text {
+    font-size: 20px;
+    font-weight: 500;
+    color: #58587B;
+}
+
+.wrapper #cancel-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #9658fe;
+    display: none;
+}
+
+.wrapper.active:hover #cancel-btn {
+    display: block;
+}
+
+.wrapper #cancel-btn:hover {
+    color: red;
+}
+
+.wrapper .file-name {
+    position: absolute;
+    bottom: 0px;
+    background: linear-gradient(135deg, #3aBffe 0%,#9658fe 100%);
+    width: 100%;
+    color: #fff;
+    padding: 8px 0;
+    font-size: 18px;
+    display: none;
+}
+
+.imageContent #custom-btn {
+    margin-top: 8px;
+    width: 200px;
+    position: absolute;
+    left: 55px;
+    align-content: center;
+    height: 40px;
+    display: block;
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    font: 18px;
+    color: #fff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: linear-gradient(135deg, #3aBffe 0%,#9658fe 100%);
+}
+/* -------- End image----------------------- */
+label {
+    font-size: 14px;
+    display: block;
+    margin-top: 10px;
+    color: #555;
+}
+
+.date-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+    .date-container select {
+        width: 32%;
+        padding: 8px;
+        font-size: 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background: #fff;
+        cursor: pointer;
+    }
+
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f1f1f1;
+    color: #333;
+    text-align: center;
+}
+/*-------------end date style */
+
+
+* {
+    font-family: Arial !important;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+body {
+    background-color: #f4f4f4;
+    direction: rtl;
+    font-size: 80%;
+}
+
+
+
+strong.ui-state-error {
+    display: block;
+    padding: 3px;
+    text-align: center;
+}
+
+.btn-block {
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.card {
+    background-color: #fff;
+}
+
+h5 {
+    color: white;
+}
+

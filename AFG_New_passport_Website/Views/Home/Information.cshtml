@@ -1,0 +1,213 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+<style>
+	body {
+		font-family: "Noto Naskh Arabic", "Tahoma", sans-serif;
+		background-color: #f4f4f4;
+		margin: 0;
+		padding: 0;
+		direction: rtl;
+	}
+
+	.div-content.register {
+		max-width: 1000px;
+		margin: 30px auto;
+		background-color: #fff;
+		padding: 30px;
+		box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+		border-radius: 12px;
+	}
+
+	.profile-header {
+		background: linear-gradient(to left, #3e8e7e, #2a6f62);
+		padding: 20px;
+		color: white;
+		border-radius: 12px;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+
+	.headingMain {
+		font-size: 28px;
+		margin: 0;
+		font-weight: bold;
+	}
+
+	.headingSub {
+		font-size: 20px;
+		margin-top: 10px;
+	}
+
+	.tracking {
+		text-align: center;
+		margin: 20px 0;
+	}
+
+	.track {
+		background-color: #2a6f62;
+		color: black;
+		padding: 10px 25px;
+		font-size: 16px;
+		border: none;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+
+		.track:hover {
+			background-color: #21574e;
+		}
+
+	.info {
+		background-color: #eafaf6;
+		border-right: 4px solid #2a6f62;
+		padding: 20px;
+		border-radius: 10px;
+		margin-bottom: 30px;
+		font-size: 16px;
+		line-height: 1.8;
+	}
+
+	.note {
+		color: #d9534f;
+		font-weight: bold;
+	}
+
+	.form-header {
+		background-color: #2a6f62;
+		color: white;
+		padding: 12px 20px;
+		border-radius: 8px 8px 0 0;
+		margin-bottom: 10px;
+	}
+
+	.modal-title {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.round-bullet {
+		background-color: #fff;
+		color: #2a6f62;
+		border-radius: 50%;
+		width: 28px;
+		height: 28px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: bold;
+		border: 2px solid #fff;
+	}
+
+	.form-body-wrapper {
+		background-color: #fff;
+		border: 1px solid #ddd;
+		border-top: none;
+		padding: 20px;
+		border-radius: 0 0 8px 8px;
+		margin-bottom: 25px;
+	}
+
+	.main-list {
+		padding-right: 20px;
+		font-size: 16px;
+		line-height: 1.9;
+	}
+
+		.main-list > li {
+			margin-bottom: 15px;
+		}
+
+	.sub-list {
+		list-style-type: square;
+		padding-right: 20px;
+		margin-top: 10px;
+		font-size: 15px;
+		line-height: 1.8;
+	}
+
+	h2 {
+		color: white;
+		margin-bottom: 15px;
+	}
+
+	.form-controls.bodyContent {
+		padding-right: 10px;
+	}
+
+	.div-content.register p,
+	.div-content.register ul,
+	.div-content.register ol,
+	.div-content.register li,
+	.div-content.register .info,
+	.div-content.register .main-list,
+	.div-content.register .sub-list {
+		direction: rtl;
+		text-align: right;
+		line-height: 1.8;
+		font-size: 16px;
+		color: black;
+	}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<div class="div-content register">
+	<div class="div-form div-screen clearfix">
+		<div class="div-form-box">
+			<div class="box round profile-header">
+				<div>
+					<div class="profile-cover">
+						<div class="row">
+							<div class="mainHeading">
+								<div>
+								</div>
+								<div>
+									<h1 class="headingMain">ریاست پاسپورت افغانستان</h1>
+									<h2 class="headingSub">درباره ریاست پاسپورت و خدمات آن</h2>
+								</div>
+								<div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="div-row info">
+						<p>ریاست پاسپورت افغانستان یکی از بخش‌های مهم وزارت امور داخله است که مسئولیت صدور و توزیع پاسپورت‌ها را بر عهده دارد. این اداره برای تسهیل فرآیندهای صدور پاسپورت و ارائه خدمات به شهروندان افغانستانی ایجاد شده است.</p>
+
+						<h3>وظایف و خدمات ریاست پاسپورت افغانستان:</h3>
+						<ul>
+							<li><strong>صدور پاسپورت:</strong> ریاست پاسپورت مسئول صدور پاسپورت برای شهروندان افغانستانی است. این پروسه شامل بررسی و تایید مدارک مورد نیاز برای صدور پاسپورت و ایجاد امنیت در پاسپورت‌ها می‌شود.</li>
+							<li><strong>مدارک مورد نیاز:</strong> شهروندان برای دریافت پاسپورت نیاز به مدارک مختلفی دارند که ممکن است شامل شناسنامه، تذکره (شناسنامه الکترونیکی یا کاغذی)، تصاویر پاسپورتی، و درخواست‌های اضافی برای شهروندانی که در خارج از کشور زندگی می‌کنند باشد.</li>
+							<li><strong>خدمات آنلاین و ثبت‌نام الکترونیکی:</strong> ریاست پاسپورت برای تسهیل در صدور پاسپورت، سیستم‌های آنلاین را برای ثبت‌نام و درخواست پاسپورت ایجاد کرده است.</li>
+							<li><strong>صدور پاسپورت‌های فوری و معمولی:</strong> این اداره دو نوع پاسپورت صادر می‌کند: پاسپورت‌های فوری برای افرادی که به صورت اضطراری نیاز به سفر دارند و پاسپورت‌های معمولی برای کسانی که زمان کافی برای انتظار دارند.</li>
+							<li><strong>اطلاعیه‌ها و اخبار عمومی:</strong> ریاست پاسپورت به صورت منظم اطلاعیه‌ها و اخبار عمومی را به شهروندان از طریق وب‌سایت و دیگر منابع منتشر می‌کند.</li>
+							<li><strong>پاسپورت‌های الکترونیکی:</strong> برای بهبود امنیت، ریاست پاسپورت افغانستان به‌تدریج به سوی استفاده از پاسپورت‌های الکترونیکی حرکت کرده است.</li>
+							<li><strong>ادغام با سیستم‌های بین‌المللی:</strong> افغانستان با بسیاری از کشورها برای تطابق سیستم‌های صدور پاسپورت و شناسایی افراد همکاری می‌کند.</li>
+						</ul>
+
+						<h3>چالش‌ها و مشکلات:</h3>
+						<ul>
+							<li><strong>تأخیر در صدور پاسپورت:</strong> یکی از مشکلات عمده در روند صدور پاسپورت در افغانستان تأخیر در این فرآیند است.</li>
+							<li><strong>ازدحام و کمبود منابع:</strong> دفاتر پاسپورت گاهی با تعداد زیادی متقاضی مواجه هستند که باعث ایجاد صف‌های طولانی می‌شود.</li>
+							<li><strong>مشکلات فنی و تعمیرات تجهیزات:</strong> دستگاه‌های چاپ و دیگر تجهیزات فنی که برای صدور پاسپورت استفاده می‌شوند ممکن است دچار مشکل شوند.</li>
+						</ul>
+
+						<h3>پیشرفت‌ها و ابتکارات:</h3>
+						<ul>
+							<li><strong>استفاده از تکنولوژی‌های نوین:</strong> ریاست پاسپورت به دنبال استفاده از فناوری‌های جدید برای بهبود فرآیند صدور و جلوگیری از جعل پاسپورت است.</li>
+							<li><strong>آسان‌سازی فرآیندهای ثبت‌نام:</strong> با توجه به فشارهای اجتماعی، ریاست پاسپورت تلاش کرده است تا پروسه‌های ثبت‌نام و صدور پاسپورت را آسان‌تر و سریع‌تر کند.</li>
+							<li><strong>ایجاد دفاتر جدید در ولایت‌ها:</strong> دفاتر جدید در مناطق مختلف کشور ایجاد شده‌اند که از فشار دفاتر مرکزی کاسته و خدمات را به‌صورت توزیع‌شده ارائه می‌دهند.</li>
+						</ul>
+
+						<h3>نقش ریاست پاسپورت در مسائل امنیتی:</h3>
+						<p>ریاست پاسپورت افغانستان همچنین نقش مهمی در امنیت ملی ایفا می‌کند. پاسپورت به‌عنوان مدرک شناسایی بین‌المللی، در سفرهای خارجی و ورود و خروج افراد از کشور اهمیت زیادی دارد. این اداره با نظارت دقیق بر روند صدور پاسپورت‌ها، تلاش می‌کند تا از جعل، سرقت هویت و سوءاستفاده از مدارک جلوگیری کند.</p>
+
+						<p>در نهایت، ریاست پاسپورت افغانستان تلاش دارد تا به شهروندان خدمات بهتری ارائه دهد و چالش‌های موجود را با به‌کارگیری فناوری و بهبود زیرساخت‌ها برطرف کند.</p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

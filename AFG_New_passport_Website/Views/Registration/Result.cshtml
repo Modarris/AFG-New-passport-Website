@@ -1,0 +1,623 @@
+﻿<!DOCTYPE html>
+<html lang="en, fa" dir="rtl">
+@model AFG_New_passport_Website.Models.ProfileViewModel
+
+@using Microsoft.AspNetCore.Mvc.Localization
+    @inject IViewLocalizer Localizer
+@{
+	Layout = null;
+}
+@{
+	var pc = new System.Globalization.PersianCalendar();
+	var now = DateTime.Now;
+	var persianDate = $"{pc.GetYear(now)}/{pc.GetMonth(now):00}/{pc.GetDayOfMonth(now):00}";
+}
+<head>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link href="~/css/registration/profilepagestyle.css" rel="stylesheet" />
+	<style>
+		body {
+			background-color: #1e1e1e;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="border">
+		<div id="pdfContainer" class="container card pt-3 mt-3 pb-5">
+
+			@* ------------------ Header --------------------*@
+			<div class="header">
+				@*  ---------- Right logo  --------- *@
+				<div class="logo1">
+					<img src="https://localhost:7278/images/photo/logo2.png" />
+				</div>
+				@* -----------------------------------------------------*@
+				<div class="center">
+					<p id="p1">@Localizer["E The Islamic Emirate of Afghanistan"]</p>
+					<p id="p2">@Localizer["E Ministry of Interior Affairs"]</p>
+					<p id="p3">@Localizer["E Deputy Ministry of Administrative Affairs"]</p>
+					<p id="p3">@Localizer["E General Passport Directorate"]</p>
+				</div>
+				<div class="center">
+					<p id="p1"> @Localizer["The Islamic Emirate of Afghanistan"]</p>
+					<p id="p2"> @Localizer["Ministry of Interior Affairs"]</p>
+					<p id="p3"> @Localizer["Deputy Ministry of Administrative Affairs"]</p>
+					<p id="p3"> @Localizer["General Passport Directorate"]</p>
+				</div>
+				@*------------------ Left Logo --------------------*@
+				<div class="logo2">
+					<img src="https://localhost:7278/images/photo/logo1.jpg" />
+				</div>
+				@* -----------------------------------------------------*@
+			</div>
+			<div id="line" class="text-center">
+				<p id="h6">@Localizer["Online registration passport form"]</p>
+				@{
+					string cityName = Model.Profile.ProcessingCity.NameLocal;
+					bool isKabul = cityName == "کابل";
+				}
+				<div id="ProcessCity" class="text-danger">
+					<p id="h6">  @(isKabul ? "اداره مرکزی:" : "مدیریت پاسپورت ولایت:") @cityName</p>
+				</div>
+
+				<hr />
+
+			</div>
+			<div id="Appointment" class="d-flex justify-content-between w-75">
+				<div class="text-end p-2">
+					<span class="badge  text-dark"> نمبر تعرفه :   @Model.CPDTarifaCode</span>
+				</div>
+
+				@if (Model.AppointmentDate != null)
+				{
+					<div>
+						<span class="badge  text-dark">تاریخ مراجعه : </span>
+						@Model.AppointmentDate?.ToString("yyyy/MM/dd")
+					</div>
+				}
+				else
+				{
+					<div>
+						تاریخ نوبت تعیین نشده است
+					</div>
+				}
+				@if (Model.Appointment != null)
+				{
+					<div>
+						<span class="badge text-dark">نمبر نوبت:</span>
+						@Model.Appointment.AppointmentNumber
+					</div>
+
+				}
+				else
+				{
+					<div>
+						نوبت برای این شخص ثبت نشده است.
+					</div>
+				}
+			</div>
+
+
+			@* ------------------End Header-------------------------*@
+			<div class="imageTable">
+				<div class="table">
+					<table id="firstTable" class="table table-bordered  table1">
+
+						<tr class="DariInfo">
+							<th class="center table-light" id="headerInf" colspan="3">@Localizer["Personal Information"]</th>
+							<td class="center table-light" id="headerIno" colspan="3">
+								<img style="width:300px;" src="@ViewBag.BarcodeImageBase64" alt="Barcode" />
+								<p style="margin-bottom:-5px;"> @ViewBag.BarcodeValue</p>
+							</td>
+							<th id="image" colspan="1" rowspan="5">
+								<div id="ProfileImage" class="">
+
+									@{
+										var baseUrl = $"{Context.Request.Scheme}://{Context.Request.Host}";
+										var fullImageUrl = baseUrl + Model.ProfilePhoto.PhotoPath;
+									}
+
+									@if (Model.ProfilePhoto != null && !string.IsNullOrEmpty(Model.ProfilePhoto.PhotoPath))
+									{
+										<img src="@fullImageUrl" alt="Profile Picture" />
+									}
+									else
+									{
+										<p>عکس موجود نیست</p>
+									}
+
+
+								</div>
+							</th>
+						</tr>
+
+						<tr>
+							<th id="headerIn">نوم / نام</th>
+							<td id="headerIn">@Model.Profile.DName</td>
+							<td class="text-start" id="headerIn">@Model.Profile.EName</td>
+							<th id="headerIn">د زېږېدنې نېټه / تاریخ تولد</th>
+							<td id="headerIn">@Model.Profile.DateOfBirth.ToString("dd-MM-yyyy") </td>
+
+							<td class="text-start" id="headerIn">@Model.Profile.DateOfBirth.ToString("dd-MM-yyyy")</td>
+						</tr>
+
+						<tr>
+							<th id="headerIn">تخلص</th>
+							<td id="headerIn">@Model.Profile.DLastName</td>
+							<td class="text-start" id="headerIn">@Model.Profile.ELastName</td>
+							<th id="headerIn">د زېږېدنې ځای/محل تولد</th>
+							<td id="headerIn"> @Model.Profile.BirthCity?.NameLocal</td>
+							<td class="text-start" id="headerIn">@Model.Profile.BirthCity?.Name</td>
+						</tr>
+
+						<tr>
+							<th id="headerIn">پلارنوم/ نام پدر</th>
+							<td id="headerIn">@Model.Profile.DFatherName</td>
+							<td class="text-start" id="headerIn">@Model.Profile.EFatherName</td>
+							<th id="headerIn">@Localizer["Gender"]</th>
+							<td id="headerIn">@Model.Profile.Gender.DName</td>
+							<td class="text-start" id="headerIn">@Model.Profile.Gender.EName</td>
+						</tr>
+
+						<tr>
+							<th>د نیکه نوم/ نام پدرکلان</th>
+							<td id="headerIn">@Model.Profile.DGrandFatherName</td>
+							<td class="text-start" id="headerIn">@Model.Profile.EGrandFatherName</td>
+							<th id="headerIn"> شغل</th>
+							<td id="headerIn">@Model.Profile.Profession.NameLocal</td>
+							<td class="text-start" id="headerIn">@Model.Profile.Profession.Name</td>
+						</tr>
+
+					</table>
+				</div>
+			</div>
+			<div id="secondTable">
+				<table id="secondT" class="table  table-light table-bordered ">
+
+					<tr>
+						<th>نوعیت سند</th>
+						<td>@Model.Profile.IdentityDocumentType.Name</td>
+						<th>نمبر سند</th>
+						<td>@Model.Profile.NIDNumber</td>
+						<th id="headerIn">لوړوالی/اندازه قد</th>
+						<td id="headerIn">@Model.Profile.Height</td>
+					</tr>
+				</table>
+				<table id="Table3" class="table table-light table-bordered">
+					<tr>
+						<th>@Localizer["نوع پاسپورت"]</th>
+						<td>@Model.PassportType.Type</td>
+						<th>@Localizer["نوع درخواست"]</th>
+						<td>@Model.AppoinmentType.Type</td>
+						<th>@Localizer["نوع پرداخت"]</th>
+						<td>@Model.PaymentType.Type</td>
+						<th>@Localizer["مدت پاسپورت"]</th>
+						<td>@Model.PassportDuration.Name</td>
+					</tr>
+
+				</table>
+				<table id="Table4" class="table table-light table-bordered">
+					<tr>
+						<th>@Localizer[" سکونت فعلی"]</th>
+						<td>@Model.UserAddress.AddressDetails</td>
+						<th>@Localizer["Postal Address"]</th>
+						<td>@Model.PostalAddress.Name</td>
+						<th>@Localizer["Primary Phone"]</th>
+						<td>@Model.UserAddress.PrimaryPhone</td>
+					</tr>
+				</table>
+			</div>
+			<div id="bottomBarcodes" class="d-flex justify-content-between">
+				<div>
+					<img src="@ViewBag.BarcodeImageBase64" alt="Barcode" style="height:30px; width:300px; margin-right:20px;" />
+				</div>
+
+				<div>
+					<img src="@ViewBag.BarcodeImageBase64" alt="Barcode" style="height:30px; width:300px; margin-left:20px;" />
+				</div>
+			</div>
+
+			<div class="my-box" id="footer" style="height: 480px; border: 1px solid #ccc; background-color: white; padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+				<span class="box-title">این بخش مربوط اداره میباشد</span>
+				<div style="flex-grow: 1;">
+					<p>نمبر بایومتریک:</p>
+					<p>اجراآت:</p>
+				</div>
+				<hr style="margin: 0; border-top: 1px solid #666;" />
+				<div style="display: flex; justify-content: space-between; align-items: center; padding-top: 10px;">
+					<div>
+						<p>محل شصت و امضا</p>
+					</div>
+					<div>
+
+
+						<img src="@ViewBag.QRCodeImageBase64" alt="QR Code" style="max-height: 80px;">
+
+					</div>
+				</div>
+			</div>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+
+
+			@if (ViewBag.FixedPayAmount != null)
+			{
+				<div class="card bg-light p-2 mt-3">
+					<label class="text-center">@Localizer["Payment Amount"]</label>
+					<p class="text-center">@ViewBag.FixedPayAmount</p>
+				</div>
+			}
+
+
+			@* Tarifa *@
+			<div id="tarifaContainer" class="container">
+				@* Tarifa 1 *@
+				<div class="card mb-3">
+					<div class="header pt-2">
+						<div class="center">
+							<div>
+								<span class="fw-bold">@Localizer["E The Islamic Emirate of Afghanistan"]</span>
+							</div>
+							<div class="pt-1">
+								<span class="pt-1">@Localizer["د مالی وزارت"]</span>
+							</div>
+						</div>
+						<div class="logo3">
+							<img style="width:80px;" src="https://localhost:7278/images/photo/logo2.png" />
+						</div>
+						<div class="center">
+							<div>
+								<span class="fw-bold">
+									@Localizer["The Islamic Emirate of Afghanistan"]
+								</span>
+							</div>
+							<div class="pt-1">
+								<span>
+									@Localizer[" وزارت مالیه"]
+								</span>
+							</div>
+						</div>
+					</div>
+					<br />
+					<div id="tarifaHeader" class="d-flex justify-content-between">
+						<div class="text-end p-2">
+							<span class="badge  text-dark"> نمبر مسلسل :   @Model.CPDTarifaCode</span>
+						</div>
+						<div class="text-end p-2">
+							<span class="badge  text-dark">تاریخ : @persianDate</span>
+						</div>
+					</div>
+
+					<table class=" table table-bordered table-sm">
+						<tr class="border-0">
+							<th colspan="3" class="border-0 border-top-0 text-center">تعرفه عواید</th>
+							<th class="border-1 border-secondary-subtle">نمبر تشخصیه ( اسم مشتری) </th>
+							<th class="border-1 border-secondary-subtle"> @Model.Profile.DName  ولد  @Model.Profile.DFatherName</th>
+						</tr>
+						<tr class="table-light text-center">
+							<th>کد محل / ولایت</th>
+							<th>کد اداره</th>
+							<th>نام اداره </th>
+							<th>نمبر حساب (افغانستان بانک) </th>
+							<th> نمبر حساب (بانک تجارت)</th>
+						</tr>
+						@foreach (var account in Model.BankAccounts)
+						{
+
+							if (account.AccountHolder?.Trim() == "ریاست پاسپورت")
+							{
+								<tr>
+									<td>@account.LocationCode</td>
+									<td>@account.OrgCode</td>
+									<td>ریاست پاسپورت</td>
+									<td>@account.AccountNumber</td>
+									<td>@account.CamercialBankAccount</td>
+								</tr>
+							}
+						}
+						<tr class="table-light text-center bgcolor">
+							<th>کد مرجع / بخش اداره </th>
+							<th>کد عوایدی / تصنیف</th>
+							<th colspan="2"> تشریح کد عوایدی </th>
+							<th> مبلغ قابل تایید</th>
+						</tr>
+						@foreach (var account in Model.BankAccounts)
+						{
+							if (account.AccountHolder?.Trim() == "ریاست پاسپورت")
+							{
+								<tr>
+									<td>@account.UniteCode</td>
+									<td>@account.PassportRevenueCode</td>
+									<td colspan="2"> عواید محصول پاسپورت  </td>
+									<td>@(Model.PassportPrice.HasValue ? (Model.PassportPrice.Value - 1000).ToString("N0") + " افغانی" : "نامشخص")</td>
+								</tr>
+							}
+						}
+						@foreach (var account in Model.BankAccounts)
+						{
+							if (account.AccountHolder?.Trim() == "ریاست پاسپورت")
+							{
+								<tr>
+									<td>@account.UniteCode</td>
+									<td>@account.PassportBookletRevenueCode</td>
+									<td colspan="2"> قیمت کتابچه پاسپورت  </td>
+									<td>  1,000 افغانی</td>
+								</tr>
+							}
+						}
+
+						<tr>
+							<td colspan="3">مجموع</td>
+							<td>@(Model.PassportPrice.HasValue ? (Model.PassportPrice.Value).ToString("N0") + " افغانی" : "نامشخص")</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>تفصیلات</td>
+							<td colspan="4"></td>
+						</tr>
+
+					</table>
+				</div>
+
+				@* Tarifa 2 *@
+				<div class="card mb-3">
+					<div class="header pt-2">
+						<div class="center">
+							<div>
+								<span class="fw-bold">@Localizer["E The Islamic Emirate of Afghanistan"]</span>
+							</div>
+							<div class="pt-1">
+								<span class="pt-1">@Localizer["د مالی وزارت"]</span>
+							</div>
+						</div>
+						<div class="logo3">
+							<img style="width:80px;" src="https://localhost:7278/images/photo/logo2.png" />
+						</div>
+						<div class="center">
+							<div>
+								<span class="fw-bold">
+									@Localizer["The Islamic Emirate of Afghanistan"]
+								</span>
+							</div>
+							<div class="pt-1">
+								<span>
+									@Localizer[" وزارت مالیه"]
+								</span>
+							</div>
+						</div>
+					</div>
+					<br />
+					<div id="tarifaHeader" class="d-flex justify-content-between">
+						<div class="text-end p-2">
+							<span class="badge  text-dark"> نمبر مسلسل : @Model.PostTarifaCode  </span>
+						</div>
+						<div class="text-end p-2">
+							<span class="badge  text-dark">تاریخ : @persianDate</span>
+						</div>
+					</div>
+					<table class=" table table-bordered table-sm">
+						<tr class="border-0">
+							<th colspan="3" class="border-0 border-top-0 text-center">تعرفه عواید</th>
+							<th class="border-1 border-secondary-subtle">نمبر تشخصیه ( اسم مشتری) </th>
+							<th class="border-1 border-secondary-subtle"> @Model.Profile.DName  ولد  @Model.Profile.DFatherName</th>
+						</tr>
+						<tr class="table-light text-center">
+							<th>کد محل / ولایت</th>
+							<th>کد اداره</th>
+							<th>نام اداره </th>
+							<th>نمبر حساب (افغانستان بانک) </th>
+							<th> نمبر حساب (بانک تجارت)</th>
+						</tr>
+
+						@foreach (var account in Model.BankAccounts)
+						{
+							if (account.AccountHolder?.Trim() == "افغان پست")
+							{
+								<tr>
+									<td>@account.LocationCode</td>
+									<td>@account.OrgCode</td>
+									<td>افغان پست</td>
+									<td>@account.AccountNumber</td>
+									<td>@account.CamercialBankAccount</td>
+								</tr>
+							}
+						}
+						<tr class="table-light text-center bgcolor">
+							<th>کد مرجع / بخش اداره </th>
+							<th>کد عوایدی / تصنیف</th>
+							<th colspan="2"> تشریح کد عوایدی </th>
+							<th> مبلغ قابل تایید</th>
+						</tr>
+						@foreach (var account in Model.BankAccounts)
+						{
+							if (account.AccountHolder?.Trim() == "افغان پست")
+							{
+								<tr>
+									<td>@account.UniteCode</td>
+									<td>@account.PassportRevenueCode</td>
+									<td colspan="2">   خدمات پستی مخابرات و تلگرام  </td>
+									<td>@account.Fee افغانی</td>
+								</tr>
+							}
+						}
+						@foreach (var account in Model.BankAccounts)
+						{
+							if (account.AccountHolder?.Trim() == "افغان پست")
+							{
+								<tr>
+									<td colspan="3">مجموع</td>
+									<td>@account.Fee افغانی</td>
+									<td></td>
+								</tr>
+							}
+						}
+
+						<tr>
+							<td>تفصیلات</td>
+							<td colspan="4"></td>
+						</tr>
+
+					</table>
+				</div>
+
+				@* Tarifa 3 *@
+				<div class="card mb-3">
+					<div class="header pt-2">
+						<div class="center">
+							<div>
+								<span class="fw-bold">@Localizer["E The Islamic Emirate of Afghanistan"]</span>
+							</div>
+							<div class="pt-1">
+								<span class="pt-1">@Localizer["د مالی وزارت"]</span>
+							</div>
+						</div>
+						<div class="logo3">
+							<img style="width:80px;" src="https://localhost:7278/images/photo/logo2.png" />
+						</div>
+						<div class="center">
+							<div>
+								<span class="fw-bold">
+									@Localizer["The Islamic Emirate of Afghanistan"]
+								</span>
+							</div>
+							<div class="pt-1">
+								<span>
+									@Localizer[" وزارت مالیه"]
+								</span>
+							</div>
+						</div>
+					</div>
+					<br />
+					<div id="tarifaHeader" class="d-flex justify-content-between">
+						<div class="text-end p-2">
+							<span class="badge  text-dark"> نمبر مسلسل : @Model.RedCrossTarifaCode </span>
+						</div>
+						<div class="text-end p-2">
+							<span class="badge  text-dark">تاریخ : @persianDate</span>
+						</div>
+					</div>
+					<table class=" table table-bordered table-sm">
+						<tr class="border-0">
+							<th colspan="3" class="border-0 border-top-0 text-center">تعرفه عواید</th>
+							<th class="border-1 border-secondary-subtle">نمبر تشخصیه ( اسم مشتری) </th>
+							<th class="border-1 border-secondary-subtle"> @Model.Profile.DName  ولد  @Model.Profile.DFatherName</th>
+						</tr>
+						<tr class="table-light text-center">
+							<th>کد محل / ولایت</th>
+							<th>کد اداره</th>
+							<th>نام اداره </th>
+							<th>نمبر حساب (افغانستان بانک) </th>
+							<th> نمبر حساب (بانک تجارت)</th>
+						</tr>
+						@foreach (var account in Model.BankAccounts)
+						{
+							if (account.AccountHolder?.Trim() == "سره میاشت")
+							{
+								<tr>
+									<td>@account.LocationCode</td>
+									<td>@account.OrgCode</td>
+									<td> سره میاشت</td>
+									<td>@account.AccountNumber</td>
+									<td>@account.CamercialBankAccount</td>
+								</tr>
+							}
+						}
+
+						<tr class="table-light text-center bgcolor">
+							<th>کد مرجع / بخش اداره </th>
+							<th>کد عوایدی / تصنیف</th>
+							<th colspan="2"> تشریح کد عوایدی </th>
+							<th> مبلغ قابل تایید</th>
+						</tr>
+						@foreach (var account in Model.BankAccounts)
+						{
+							if (account.AccountHolder?.Trim() == "سره میاشت")
+							{
+								<tr>
+									<td>@account.UniteCode</td>
+									<td>@account.PassportRevenueCode</td>
+									<td colspan="2">   سره میاشت  </td>
+									<td>@account.Fee افغانی</td>
+								</tr>
+							}
+						}
+						@foreach (var account in Model.BankAccounts)
+						{
+							if (account.AccountHolder?.Trim() == "سره میاشت")
+							{
+								<tr>
+									<td colspan="3">مجموع</td>
+									<td>@account.Fee افغانی</td>
+
+									<td></td>
+								</tr>
+							}
+						}
+
+						<tr>
+							<td>تفصیلات</td>
+							<td colspan="4"></td>
+						</tr>
+
+					</table>
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<br />
+	<br />
+
+	<div class="container card-body mt-3">
+		<button id="btnPdf" class="btn btn-primary"> @Localizer["Download"]</button>
+	</div>
+	<br />
+	<br />
+	<br />
+</body>
+<script type="text/javascript">
+	$("#btnPdf").click(function(){
+		var html = $("#pdfContainer").html();
+		//
+		var styles = "<style>" + $("head").find("style, link").clone().wrap('<div>').parent().html() + "</style>";
+
+		// HTML
+		html = styles + html;
+
+		//  HTML changing tags
+		html = html.replace(/</g, "StrTag").replace(/>/g, "EndTag");
+
+		// send request to server wiht  POST action
+		$.ajax({
+			type: "POST",
+			url: "/Registration/GeneratePdf", // URL
+			data: { html: html },
+			xhrFields: {
+				responseType: 'blob'  //  PDF
+			},
+			success: function(response) {
+				//  URL  PDF
+				var blob = new Blob([response], { type: "application/pdf" });
+				var link = document.createElement('a');
+				link.href = URL.createObjectURL(blob);
+				link.download = "generated-file.pdf";  //Filen Name PDF
+				link.click();  // Starting download
+			},
+			error: function() {
+				alert('There was an error generating the PDF.');
+			}
+		});
+	});
+</script>

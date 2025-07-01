@@ -1,0 +1,138 @@
+﻿@model BankAccountViewModel
+
+@{
+	Layout = "_DashboardLayout";
+}
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+<body class="light  dark ">
+    <div class="form-container enhanced-form w-50">
+        <div class="card shadow">
+            <h4 class="text-center mb-2 text-success" style="font-size: 1.1rem;">
+                <i class="fas fa-plus me-2 text-success"></i> افزودن شغل
+            </h4>
+            <hr />
+
+            <h5 class="text-center mb-4" style="font-size: 1.1rem;">
+                <i class="fas fa-briefcase text-primary"></i> نوبت دهی ولایات
+            </h5>
+            <form asp-action="Create" method="post" class="w-75 mx-auto border rounded p-4 shadow-sm">
+                <div class="row">
+
+                    <!-- ولایت -->
+                    <div class="col-md-6 col-sm-12">
+                        <div class="mb-3">
+                            <label asp-for="SelectedCityId" class="form-label">ولایت</label>
+                            <select asp-for="SelectedCityId" class="form-select" asp-items="ViewBag.ActiveCities">
+                                <option value="">-- انتخاب ولایت --</option>
+                            </select>
+                            <span asp-validation-for="SelectedCityId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- شماره حساب -->
+                    <div class="col-md-6 col-sm-12">
+                        <div class="mb-3">
+                            <label asp-for="AccountNumber" class="form-label"></label>
+                            <input asp-for="AccountNumber" type="text" class="form-control" maxlength="13" onkeypress="return isNumberKey(event)" placeholder="1234567890123" />
+                            <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- نام دارنده حساب -->
+                    <div class="col-md-6 col-sm-12">
+                        <div class="mb-3">
+                            <label asp-for="AccountHolder" class="form-label"></label>
+                            <input asp-for="AccountHolder" class="form-control" placeholder="نام دارنده حساب" />
+                            <span asp-validation-for="AccountHolder" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- مقدار فیس -->
+                    <div class="col-md-6 col-sm-12">
+                        <div class="mb-3">
+                            <label asp-for="Fee" class="form-label"></label>
+                            <input asp-for="Fee" class="form-control" type="number" min="1" />
+                            <span asp-validation-for="Fee" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- کد ارگان -->
+                    <div class="col-md-6 col-sm-12">
+                        <div class="mb-3">
+                            <label asp-for="OrgCode" class="form-label"></label>
+                            <input asp-for="OrgCode" class="form-control" placeholder="کد ارگان" />
+                            <span asp-validation-for="OrgCode" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- کد موقعیت -->
+                    <div class="col-md-6 col-sm-12">
+                        <div class="mb-3">
+                            <label asp-for="LocationCode" class="form-label"></label>
+                            <input asp-for="LocationCode" class="form-control" placeholder="کد موقعیت" />
+                            <span asp-validation-for="LocationCode" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- کد واحد -->
+                    <div class="col-md-6 col-sm-12">
+                        <div class="mb-3">
+                            <label asp-for="UniteCode" class="form-label"></label>
+                            <input asp-for="UniteCode" class="form-control" placeholder="کد واحد" />
+                            <span asp-validation-for="UniteCode" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- کد عواید پاسپورت -->
+                    <div class="col-md-6 col-sm-12">
+                        <div class="mb-3">
+                            <label asp-for="PassportRevenueCode" class="form-label"></label>
+                            <input asp-for="PassportRevenueCode" class="form-control" placeholder="کد عواید پاسپورت" />
+                            <span asp-validation-for="PassportRevenueCode" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- کد عواید کتابچه -->
+                    <div class="col-md-6 col-sm-12">
+                        <div class="mb-3">
+                            <label asp-for="PassportBookletRevenueCode" class="form-label"></label>
+                            <input asp-for="PassportBookletRevenueCode" class="form-control" placeholder="کد کتابچه (اختیاری)" />
+                            <span asp-validation-for="PassportBookletRevenueCode" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- حساب تجارتی -->
+                    <div class="col-md-6 col-sm-12">
+                        <div class="mb-3">
+                            <label asp-for="CamercialBankAccount" class="form-label"></label>
+                            <input asp-for="CamercialBankAccount" class="form-control" placeholder="حساب تجارتی (اختیاری)" maxlength="13" onkeypress="return isNumberKey(event)" />
+                            <span asp-validation-for="CamercialBankAccount" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- دکمه ثبت -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success px-5">ثبت اطلاعات</button>
+                </div>
+            </form>
+            @section Scripts {
+                @{
+                    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+                }
+            }
+
+
+        </div>
+    </div>
+
+
+</body>
+         @*    @section Scripts {
+                <script>
+                    function isNumberKey(evt) {
+                        var charCode = (evt.which) ? evt.which : evt.keyCode;
+                        return charCode >= 48 && charCode <= 57;
+                    }
+                </script>
+            } *@

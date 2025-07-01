@@ -1,0 +1,52 @@
+﻿@model ProvinceQuotaViewModel
+
+@{
+	Layout = "_DashboardLayout";
+}
+<link href="~/css/dashboardliststyle/dashboardliststyle.css" rel="stylesheet" />
+<body class="light  dark ">
+	<div class="form-container enhanced-form w-50">
+		<div class="card shadow">
+			<h4 class="text-center mb-2 text-success" style="font-size: 1.1rem;">
+				<i class="fas fa-plus me-2 text-success"></i> افزودن شغل
+			</h4>
+			<hr />
+
+			<h5 class="text-center mb-4" style="font-size: 1.1rem;">
+				<i class="fas fa-briefcase text-primary"></i> نوبت دهی ولایات
+			</h5>
+			<form asp-action="Create" method="post" class="w-75 mx-auto border border-success rounded p-4">
+				<div class="mb-3">
+					<label asp-for="SelectedCityId" class="form-label">ولایت</label>
+					<select asp-for="SelectedCityId" class="form-select" asp-items="ViewBag.ActiveCities">
+						<option value="">-- انتخاب ولایت --</option>
+					</select>
+					<span asp-validation-for="SelectedCityId" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="DailyQuota" class="form-label">تعداد نوبت روزانه</label>
+					<input asp-for="DailyQuota" type="number" min="1" max="1000" class="form-control" />
+					<span asp-validation-for="DailyQuota" class="text-danger"></span>
+				</div>
+				<div class="mb-3">
+					<label asp-for="EndTime" class="form-label">تا ساعت نوبت‌دهی</label>
+					<input asp-for="EndTime" type="time" class="form-control" />
+					<span asp-validation-for="EndTime" class="text-danger"></span>
+				</div>
+				<button type="submit" class="btn btn-primary">ثبت</button>
+			</form>
+
+			@section Scripts {
+				@{
+					await Html.RenderPartialAsync("_ValidationScriptsPartial");
+				}
+			}
+
+
+		</div>
+	</div>
+
+
+</body>
+

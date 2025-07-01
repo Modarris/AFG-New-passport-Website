@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html lang="en, fa" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        @ViewData["Title"] - Afg passport Website
+    </title>
+
+
+
+    <link rel="styleshe:has(:hover)" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Af_Passport_Website.styles.css" asp-append-version="true" />
+    <link href"="~/css/site.css" rel="stylesheet" />
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" asp-append-version="true" />
+
+    @using Microsoft.AspNetCore.Mvc.Localization
+    @inject IViewLocalizer Localizer
+    <style>
+
+
+        .logo {
+            text-align: center;
+            box-shadow: 1px;
+            padding-top: 5px;
+        }
+
+        .navbar .container .navbar-collapse {
+            /*background-color:#12a4d9;*/
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 4px 15px rgba(0, 0, 0, 0.1); /* باکس شادو */
+            transition: box-shadow 0.3s ease; /* افکت انتقال برای باکس شادو */
+        }
+
+            .navbar .container .navbar-collapse:h {
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 8px 30px rgba(0, 0, 0, 0.15);
+            }
+
+            .navbar .container .navbar-collapse ul li {
+                margin-top: 7px;
+                margin-bottom: 7px;
+            }
+
+        .navbar-nav li {
+            margin-left: 7px;
+            margin-right: px;
+        }
+
+        .navbar-nav {
+            margin-right: -33px;
+        }
+
+        #H {
+            width: 70px;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
+        #I {
+            width: 100px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
+        #C {
+            width: 80px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
+        #Index {
+            width: 85px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
+        #N {
+            width: 75px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
+        #E {
+            width: 80px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
+        #D {
+            -moz-border-radius-bottomright width: 80px;
+            border-top-left-radius: 40px;
+            border-bottom-left-radius: 40px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        #P.texte-centerexte-center {
+            .navbar border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        .texte-center {
+            display: flex; /* استفاده از flexbox */
+            justify-content: center; /* قرار دادن عناصر در وسط افقی */
+            align-items: center; /* قرار دادن عناصر در وسط عمودی */
+            transform-box: inherit;
+            box-sizing: border-box;
+            margin-top: 8px;
+            background-color: white;
+        }
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <div class="position-nav">
+
+    <div class="text-center container">
+                <h3 class="logo">@Localizer["Directorate of Passport"]</h3>
+            </div>
+
+            <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between" id="navbarSupportedContent">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a id="H" class="btn btn-info text-white" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="N" class="btn btn-info text-white" asp-area="" asp-controller="AdminAccount" asp-action="Login">@Localizer["Information"]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="N" class="btn btn-info text-white" asp-area="" asp-controller="Home" asp-action="Information">@Localizer["Information"]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="N" class="btn btn-info text-white" asp-area="" asp-controller="Home" asp-action="News">@Localizer["News"]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="I" class="btn btn-info text-white" asp-area="" asp-controller="Home" asp-action="Contact">@Localizer["Contact"]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="Index" class="btn btn-info text-white" asp-area="" asp-controller="Home" asp-action="Insertphoto">@Localizer["Guideline"]</a>
+                               
+                            </li>
+                            <li class="nav-item">
+                                <a id="Index" class="btn btn-info text-white" asp-area="" asp-controller="News" asp-action="Index">@Localizer["New News"]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="I" class="btn btn-info text-white" asp-area="" asp-controller="News" asp-action="Index">@Localizer["Form"]</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - Af_Passport_Website - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
