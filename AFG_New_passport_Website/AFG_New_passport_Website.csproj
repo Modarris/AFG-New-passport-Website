@@ -22,7 +22,7 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="wwwroot\MD.BootstrapPersianDateTimePicker-master-bs5\.vscode\settings.json" />
+    <!-- <Content Include="wwwroot\MD.BootstrapPersianDateTimePicker-master-bs5\.vscode\settings.json" /> -->
   </ItemGroup>
 
   <ItemGroup>
